@@ -1,0 +1,77 @@
+.section {
+    padding: 8rem 2rem;
+    background-color: #0a0a0a;
+}
+
+.inner {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.sectionLabel {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-accent, #00e4ff);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 4rem;
+}
+
+/* --- Grid --- */
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+}
+
+/* --- Card --- */
+.card {
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: border-color 0.4s ease;
+}
+
+.card:hover {
+    border-color: var(--color-primary, #8d04e4);
+}
+
+.number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-primary, #8d04e4);
+    line-height: 1;
+    margin-bottom: 1rem;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--color-text, #ffffff);
+    margin-bottom: 1rem;
+}
+
+.description {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text, #ffffff);
+    opacity: 0.8;
+}
+
+/* --- Desktop (3 columns) --- */
+@media (min-width: 1024px) {
+    .section {
+        padding: 8rem 4rem;
+    }
+
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* --- Reduced Motion --- */
+@media (prefers-reduced-motion: reduce) {
+    .card {
+        transition: none;
+    }
+}

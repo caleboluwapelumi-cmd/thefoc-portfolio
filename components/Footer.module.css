@@ -1,0 +1,90 @@
+.footer {
+    background-color: #000000;
+    padding: 4rem 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+/* --- Brand --- */
+.brand {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text, #ffffff);
+}
+
+.tagline {
+    font-size: 0.875rem;
+    color: var(--color-text, #ffffff);
+    opacity: 0.6;
+}
+
+/* --- Social --- */
+.social {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.socialLabel {
+    font-size: 0.875rem;
+    color: var(--color-text, #ffffff);
+    opacity: 0.6;
+}
+
+.socialLinks {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.socialLink {
+    font-size: 0.875rem;
+    color: var(--color-text, #ffffff);
+    opacity: 0.8;
+    text-decoration: none;
+    transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+.socialLink:hover {
+    color: var(--color-accent, #00e4ff);
+    opacity: 1;
+}
+
+/* --- Copyright --- */
+.copyright {
+    font-size: 0.8125rem;
+    color: var(--color-text, #ffffff);
+    opacity: 0.5;
+}
+
+/* --- Desktop --- */
+@media (min-width: 768px) {
+    .footer {
+        padding: 4rem 4rem;
+    }
+
+    .inner {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+}
+
+/* --- Reduced Motion --- */
+@media (prefers-reduced-motion: reduce) {
+    .socialLink {
+        transition: none;
+    }
+}

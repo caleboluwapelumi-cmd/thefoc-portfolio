@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "number": "01",
+        "title": "Brand Identity Development",
+        "description": "From strategy to execution, I build cohesive brand identities that communicate clearly and resonate deeply. Logo design, visual systems, brand guidelines, and positioning strategies that set you apart."
+    },
+    {
+        "id": 2,
+        "number": "02",
+        "title": "Brand Strategy & Positioning",
+        "description": "Strategic thinking that defines who you are, what you stand for, and how you show up. Market research, audience insights, messaging frameworks, and competitive positioning that drives business growth."
+    },
+    {
+        "id": 3,
+        "number": "03",
+        "title": "Visual Design & Creative Direction",
+        "description": "Compelling visual solutions across all touchpoints. Marketing collateral, digital assets, pitch decks, and creative campaigns that align with your brand and engage your audience."
+    }
+]

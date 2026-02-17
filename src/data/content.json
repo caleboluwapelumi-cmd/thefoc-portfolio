@@ -1,0 +1,41 @@
+{
+    "hero": {
+        "name": "TheFOC",
+        "title": "Brand Identity Specialist",
+        "tagline": "Creativity meets strategy. Impact follows."
+    },
+    "about": {
+        "label": "About Me",
+        "bio": "I'm TheFOC — a creative designer turned brand identity specialist with a passion for helping brands stand out and scale with purpose. My journey started in graphic design, where I developed a strong eye for clean, compelling visuals. Over time, I expanded into strategic branding, learning that powerful brands are built not just on beautiful design, but on clarity, consistency, and connection.\n\nToday, I partner with businesses, startups, and individuals to elevate their visibility, strengthen their brand identity, and communicate more effectively with their target audience. I combine creativity with strategy to craft branding solutions that are visually striking, thoughtfully positioned, and built for real-world impact.\n\nWhether it's building a brand from the ground up or refining an existing identity, my mission is simple: to help you show up confidently, connect authentically, and grow intentionally."
+    },
+    "contact": {
+        "label": "Let's Work Together",
+        "headline": "Ready to elevate your brand?",
+        "subtext": "Whether you're building from scratch or refining your identity, let's create something impactful together.",
+        "email": "thefoc.studio@gmail.com",
+        "cta": "Get in Touch"
+    },
+    "footer": {
+        "brand": "TheFOC",
+        "tagline": "Brand Identity Specialist",
+        "social": [
+            {
+                "name": "Twitter",
+                "url": "https://twitter.com/thefoc"
+            },
+            {
+                "name": "Instagram",
+                "url": "https://instagram.com/thefoc"
+            },
+            {
+                "name": "LinkedIn",
+                "url": "https://linkedin.com/in/thefoc"
+            },
+            {
+                "name": "Behance",
+                "url": "https://behance.net/thefoc"
+            }
+        ],
+        "copyright": "© 2025 TheFOC. All rights reserved."
+    }
+}
