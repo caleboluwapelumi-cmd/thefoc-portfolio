@@ -23,6 +23,17 @@ export default function ContactPage() {
 
     return (
         <main className={styles.page}>
+            {/* Gradient Mesh Background */}
+            <div className={styles.meshBg} aria-hidden="true">
+                {/* Faint background photo */}
+                <div className={styles.bgImage} />
+                {/* Dark gradient overlay on top of photo */}
+                <div className={styles.bgOverlay} />
+                <div className={styles.meshOrb1} />
+                <div className={styles.meshOrb2} />
+                <div className={styles.meshOrb3} />
+            </div>
+
             <div className={styles.container}>
                 {/* Page Header */}
                 <header className={styles.header}>

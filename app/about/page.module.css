@@ -3,8 +3,8 @@
    =========================================== */
 
 .page {
-    padding-top: 8rem;
-    padding-bottom: 4rem;
+    padding-top: 6rem;
+    padding-bottom: 3rem;
     min-height: 100vh;
     background-color: var(--color-background, #000000);
 }
@@ -12,7 +12,7 @@
 .container {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 1.25rem;
 }
 
 /* --- Breadcrumb --- */
@@ -72,7 +72,7 @@
 .imageWrapper {
     position: relative;
     width: 100%;
-    aspect-ratio: 3 / 4;
+    aspect-ratio: 4 / 3;
     border-radius: 0.5rem;
     overflow: hidden;
     background-color: #8d04e4;
@@ -111,7 +111,7 @@
 }
 
 .bioText {
-    font-size: 1.125rem;
+    font-size: 1rem;
     line-height: 1.8;
     color: var(--color-text, #ffffff);
     opacity: 0.9;
@@ -153,8 +153,17 @@
    =========================================== */
 
 @media (min-width: 768px) {
+    .page {
+        padding-top: 7rem;
+        padding-bottom: 4rem;
+    }
+
     .container {
-        padding: 0 4rem;
+        padding: 0 3rem;
+    }
+
+    .imageWrapper {
+        aspect-ratio: 3 / 4;
     }
 
     .grid {
@@ -169,6 +178,20 @@
 
     .textCol {
         flex: 1;
+    }
+
+    .bioText {
+        font-size: 1.125rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .page {
+        padding-top: 8rem;
+    }
+
+    .container {
+        padding: 0 4rem;
     }
 
     .bioText {

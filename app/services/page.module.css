@@ -3,8 +3,8 @@
    =========================================== */
 
 .page {
-    padding-top: 8rem;
-    padding-bottom: 4rem;
+    padding-top: 6rem;
+    padding-bottom: 0;
     min-height: 100vh;
     background-color: var(--color-background, #000000);
 }
@@ -12,7 +12,7 @@
 .container {
     max-width: 900px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 1.25rem;
 }
 
 /* --- Page Header --- */
@@ -22,7 +22,7 @@
 }
 
 .heading {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 700;
     letter-spacing: -0.03em;
     color: var(--color-text, #ffffff);
@@ -99,20 +99,87 @@
 }
 
 /* ===========================================
-   DESKTOP
+   CTA SECTION
+   =========================================== */
+
+.cta {
+    background-color: #0a0a0a;
+    padding: 4rem 1.25rem;
+    text-align: center;
+}
+
+.ctaInner {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.ctaHeading {
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--color-text, #ffffff);
+    margin-bottom: 1rem;
+}
+
+.ctaText {
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--color-text, #ffffff);
+    opacity: 0.8;
+    margin-bottom: 2rem;
+}
+
+.ctaButton {
+    display: block;
+    width: 100%;
+    padding: 1rem 3rem;
+    background-color: #6b21a8;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    text-align: center;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ctaButton:hover {
+    background-color: #7c3aed;
+    transform: scale(1.05);
+    box-shadow: 0 0 24px rgba(107, 33, 168, 0.4), 0 0 60px rgba(107, 33, 168, 0.15);
+}
+
+.ctaButton:active {
+    transform: scale(0.98);
+}
+
+/* ===========================================
+   TABLET (2 COLUMNS)
    =========================================== */
 
 @media (min-width: 768px) {
+    .page {
+        padding-top: 8rem;
+        padding-bottom: 4rem;
+    }
+
     .container {
         padding: 0 4rem;
     }
 
     .heading {
-        font-size: 3.5rem;
+        font-size: 3rem;
     }
 
     .intro {
         font-size: 1.25rem;
+    }
+
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .card {
@@ -130,5 +197,52 @@
     .description {
         font-size: 1.125rem;
         padding-left: 3.375rem;
+    }
+
+    .cta {
+        padding: 6rem 2rem;
+    }
+
+    .ctaHeading {
+        font-size: 2.5rem;
+    }
+
+    .ctaText {
+        font-size: 1.125rem;
+    }
+
+    .ctaButton {
+        display: inline-block;
+        width: auto;
+        font-size: 1.1rem;
+        padding: 1.1rem 3.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .heading {
+        font-size: 3.5rem;
+    }
+
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .ctaHeading {
+        font-size: 3rem;
+    }
+}
+
+/* ===========================================
+   REDUCED MOTION
+   =========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .ctaButton {
+        transition: none;
+    }
+
+    .ctaButton:hover {
+        transform: none;
     }
 }

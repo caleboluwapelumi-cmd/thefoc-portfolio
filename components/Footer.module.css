@@ -1,6 +1,6 @@
 .footer {
     background-color: #000000;
-    padding: 4rem 2rem;
+    padding: 3rem 1.25rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -9,7 +9,9 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
 }
 
 /* --- Brand --- */
@@ -46,7 +48,9 @@
 
 .socialLinks {
     display: flex;
-    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
 }
 
 .socialLink {
@@ -72,13 +76,19 @@
 /* --- Desktop --- */
 @media (min-width: 768px) {
     .footer {
-        padding: 4rem 4rem;
+        padding: 4rem;
     }
 
     .inner {
         flex-direction: row;
         justify-content: space-between;
         align-items: flex-start;
+        text-align: left;
+    }
+
+    .socialLinks {
+        justify-content: flex-start;
+        gap: 1.5rem;
     }
 }
 

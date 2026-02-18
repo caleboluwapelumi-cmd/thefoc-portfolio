@@ -3,9 +3,9 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 80px;
+    height: 60px;
     z-index: 50;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     transition: box-shadow 0.3s ease;
@@ -18,7 +18,7 @@
 .inner {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 1.25rem;
     height: 100%;
     display: flex;
     align-items: center;
@@ -27,12 +27,14 @@
 
 /* --- Logo --- */
 .logo {
-    font-size: 1.25rem;
+    font-size: 1.125rem;
     font-weight: 700;
     color: var(--color-text, #ffffff);
     text-decoration: none;
     letter-spacing: -0.02em;
     transition: color 0.3s ease;
+    z-index: 60;
+    position: relative;
 }
 
 .logo:hover {
@@ -62,37 +64,128 @@
     opacity: 1;
 }
 
-/* --- Mobile Menu Button --- */
+/* --- Mobile Menu Button (Hamburger) --- */
 .menuButton {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--color-text, #ffffff);
-    opacity: 0.8;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
     cursor: pointer;
     background: none;
     border: none;
     padding: 0.5rem;
+    z-index: 60;
+    position: relative;
     transition: opacity 0.3s ease;
 }
 
 .menuButton:hover {
+    opacity: 0.8;
+}
+
+.bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background-color: #ffffff;
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform-origin: center;
+}
+
+/* Open state — animate bars into X */
+.menuButton.open .bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.menuButton.open .bar:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.menuButton.open .bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* --- Mobile Drawer --- */
+.drawer {
+    position: fixed;
+    inset: 0;
+    z-index: 55;
+    background-color: rgba(0, 0, 0, 0.97);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.drawer.drawerOpen {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.drawerLink {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--color-text, #ffffff);
+    text-decoration: none;
+    opacity: 0.85;
+    transition: color 0.3s ease, opacity 0.3s ease;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+}
+
+.drawerLink:hover {
+    color: var(--color-accent, #00e4ff);
     opacity: 1;
 }
 
-/* --- Desktop --- */
+/* --- Tablet / Desktop --- */
 @media (min-width: 768px) {
+    .header {
+        height: 80px;
+    }
+
+    .inner {
+        padding: 0 3rem;
+    }
+
+    .logo {
+        font-size: 1.25rem;
+    }
+
+    .nav {
+        display: flex;
+        gap: 1.5rem;
+    }
+
+    .menuButton {
+        display: none;
+    }
+
+    .drawer {
+        display: none;
+    }
+}
+
+@media (min-width: 1024px) {
     .inner {
         padding: 0 4rem;
     }
 
     .nav {
-        display: flex;
-    }
-
-    .menuButton {
-        display: none;
+        gap: 2rem;
     }
 }
 
@@ -102,7 +195,10 @@
     .header,
     .logo,
     .navLink,
-    .menuButton {
+    .menuButton,
+    .bar,
+    .drawer,
+    .drawerLink {
         transition: none;
     }
 }

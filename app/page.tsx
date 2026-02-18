@@ -24,12 +24,27 @@ export default function Home() {
     <>
       {/* Hero */}
       <section className={styles.hero} id="hero">
-        {/* Animated Background Orbs */}
-        <div className={styles.heroBackground}>
-          <div className={`${styles.orb} ${styles.orb1}`} />
-          <div className={`${styles.orb} ${styles.orb2}`} />
-          <div className={`${styles.orb} ${styles.orb3}`} />
-          <div className={`${styles.orb} ${styles.orb4}`} />
+        {/* Animated Particle Background */}
+        <div className={styles.heroBackground} aria-hidden="true">
+          {/* Mobile-visible particles (1–8) */}
+          <div className={`${styles.particle} ${styles.p1}`} />
+          <div className={`${styles.particle} ${styles.p2}`} />
+          <div className={`${styles.particle} ${styles.p3}`} />
+          <div className={`${styles.particle} ${styles.p4}`} />
+          <div className={`${styles.particle} ${styles.p5}`} />
+          <div className={`${styles.particle} ${styles.p6}`} />
+          <div className={`${styles.particle} ${styles.p7}`} />
+          <div className={`${styles.particle} ${styles.p8}`} />
+          {/* Desktop-only particles (9–17) */}
+          <div className={`${styles.particle} ${styles.p9}`} />
+          <div className={`${styles.particle} ${styles.p10}`} />
+          <div className={`${styles.particle} ${styles.p11}`} />
+          <div className={`${styles.particle} ${styles.p12}`} />
+          <div className={`${styles.particle} ${styles.p13}`} />
+          <div className={`${styles.particle} ${styles.p14}`} />
+          <div className={`${styles.particle} ${styles.p15}`} />
+          <div className={`${styles.particle} ${styles.p16}`} />
+          <div className={`${styles.particle} ${styles.p17}`} />
         </div>
 
         {/* Hero Content */}

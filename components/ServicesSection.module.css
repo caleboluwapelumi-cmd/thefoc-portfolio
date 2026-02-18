@@ -1,5 +1,5 @@
 .section {
-    padding: 8rem 2rem;
+    padding: 4rem 1.25rem;
     background-color: #0a0a0a;
 }
 
@@ -36,7 +36,7 @@
 }
 
 .number {
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: 700;
     color: var(--color-primary, #8d04e4);
     line-height: 1;
@@ -44,7 +44,7 @@
 }
 
 .title {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 700;
     line-height: 1.2;
     color: var(--color-text, #ffffff);
@@ -56,6 +56,25 @@
     line-height: 1.7;
     color: var(--color-text, #ffffff);
     opacity: 0.8;
+}
+
+/* --- Tablet (2 columns) --- */
+@media (min-width: 768px) {
+    .section {
+        padding: 8rem 4rem;
+    }
+
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .number {
+        font-size: 3rem;
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
 }
 
 /* --- Desktop (3 columns) --- */

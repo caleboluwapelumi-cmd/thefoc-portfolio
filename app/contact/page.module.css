@@ -2,27 +2,131 @@
    CONTACT PAGE
    =========================================== */
 
+/* Gradient mesh drift animations */
+@keyframes meshDrift1 {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate(60px, -80px) scale(1.15);
+    }
+
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+}
+
+@keyframes meshDrift2 {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    50% {
+        transform: translate(-80px, 60px) scale(1.1);
+    }
+
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+}
+
 .page {
-    padding-top: 8rem;
-    padding-bottom: 4rem;
+    padding-top: 5rem;
+    padding-bottom: 3rem;
     min-height: 100vh;
     background-color: var(--color-background, #000000);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Gradient mesh background layer */
+.meshBg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+/* Faint background photo — fixed parallax */
+.bgImage {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1920&h=1080&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    opacity: 0.08;
+    z-index: 0;
+}
+
+/* Dark gradient overlay — sits on top of photo, below orbs */
+.bgOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.7) 0%,
+            rgba(0, 0, 0, 0.4) 50%,
+            rgba(0, 0, 0, 0.7) 100%);
+    z-index: 1;
+}
+
+.meshOrb1 {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 40%, rgba(141, 4, 228, 0.12) 0%, transparent 65%);
+    filter: blur(80px);
+    top: -15%;
+    left: -10%;
+    will-change: transform;
+    animation: meshDrift1 45s ease-in-out infinite;
+}
+
+.meshOrb2 {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 60% 60%, rgba(0, 228, 255, 0.08) 0%, transparent 65%);
+    filter: blur(90px);
+    bottom: -10%;
+    right: -8%;
+    will-change: transform;
+    animation: meshDrift2 55s ease-in-out infinite;
+}
+
+.meshOrb3 {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(107, 33, 168, 0.1) 0%, transparent 70%);
+    filter: blur(60px);
+    top: 45%;
+    right: 5%;
+    will-change: transform;
+    animation: meshDrift1 38s ease-in-out infinite reverse;
 }
 
 .container {
     max-width: 800px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 1.25rem;
+    position: relative;
+    z-index: 1;
 }
 
 /* --- Page Header --- */
 
 .header {
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
 }
 
 .heading {
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 700;
     letter-spacing: -0.03em;
     color: var(--color-text, #ffffff);
@@ -73,7 +177,8 @@
 .select,
 .textarea {
     width: 100%;
-    padding: 1rem;
+    padding: 0.875rem 1rem;
+    min-height: 48px;
     background-color: #1a1a1a;
     color: var(--color-text, #ffffff);
     border: 1px solid rgba(255, 255, 255, 0.12);
@@ -180,11 +285,11 @@
 }
 
 .socialHeading {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
     font-weight: 700;
     letter-spacing: -0.02em;
     color: var(--color-text, #ffffff);
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 
@@ -195,21 +300,48 @@
    =========================================== */
 
 @media (min-width: 768px) {
+    .page {
+        padding-top: 8rem;
+        padding-bottom: 4rem;
+    }
+
     .container {
         padding: 0 4rem;
     }
 
+    .header {
+        margin-bottom: 3rem;
+    }
+
     .heading {
-        font-size: 3rem;
+        font-size: 2.5rem;
     }
 
     .subheading {
         font-size: 1.125rem;
     }
 
+    .socialHeading {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
     .submit {
         width: auto;
         align-self: flex-start;
+    }
+}
+
+@media (min-width: 1024px) {
+    .heading {
+        font-size: 3rem;
+    }
+}
+
+/* iOS / mobile: fixed attachment doesn't work inside overflow:hidden */
+@media (max-width: 767px) {
+    .bgImage {
+        background-attachment: scroll;
     }
 }
 
@@ -224,5 +356,15 @@
 
     .submit:hover:not(:disabled) {
         transform: none;
+    }
+
+    .bgImage {
+        background-attachment: scroll;
+    }
+
+    .meshOrb1,
+    .meshOrb2,
+    .meshOrb3 {
+        animation: none;
     }
 }
