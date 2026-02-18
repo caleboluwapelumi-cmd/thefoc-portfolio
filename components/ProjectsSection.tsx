@@ -23,19 +23,23 @@ export default function ProjectsSection() {
             <div className={styles.grid}>
                 {projects.map((project) => (
                     <article key={project.id} className={styles.card}>
-                        <div className={styles.imageContainer}>
-                            <div
+                        <div className={styles.imageContainer} style={{ backgroundColor: project.color }}>
+                            <img
+                                src={project.image}
+                                alt={project.title}
                                 className={styles.image}
-                                style={{ backgroundColor: project.color }}
                             />
                         </div>
                         <h3 className={styles.title}>{project.title}</h3>
                         <p className={styles.description}>{project.description}</p>
-                        <a href={project.link} className={styles.link}>
-                            View Project <span className={styles.arrow}>→</span>
-                        </a>
                     </article>
                 ))}
+            </div>
+
+            <div className={styles.viewAll}>
+                <a href="/portfolio" className={styles.viewAllLink}>
+                    View all projects <span className={styles.arrow}>→</span>
+                </a>
             </div>
         </section>
     );

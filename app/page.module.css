@@ -1,11 +1,11 @@
-.fadeIn {
-    animation: fadeIn 1s ease forwards;
-}
+/* ===========================================
+   HERO STAGGERED FADE-IN
+   =========================================== */
 
-@keyframes fadeIn {
+@keyframes heroStagger {
     from {
         opacity: 0;
-        transform: translateY(12px);
+        transform: translateY(24px);
     }
 
     to {
@@ -14,7 +14,124 @@
     }
 }
 
-/* --- Hero Section --- */
+@keyframes heroStaggerFade {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+
+    to {
+        opacity: 0.7;
+        transform: translateY(0);
+    }
+}
+
+/* ===========================================
+   FLOATING ORB ANIMATIONS
+   =========================================== */
+
+@keyframes orbFloat1 {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    25% {
+        transform: translate(60px, -80px) scale(1.1);
+    }
+
+    50% {
+        transform: translate(-40px, -120px) scale(0.95);
+    }
+
+    75% {
+        transform: translate(80px, -40px) scale(1.05);
+    }
+}
+
+@keyframes orbFloat2 {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    25% {
+        transform: translate(-80px, 60px) scale(1.05);
+    }
+
+    50% {
+        transform: translate(50px, 100px) scale(0.9);
+    }
+
+    75% {
+        transform: translate(-60px, -50px) scale(1.1);
+    }
+}
+
+@keyframes orbFloat3 {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    25% {
+        transform: translate(100px, 40px) scale(0.95);
+    }
+
+    50% {
+        transform: translate(-70px, -60px) scale(1.08);
+    }
+
+    75% {
+        transform: translate(40px, 80px) scale(1);
+    }
+}
+
+@keyframes orbFloat4 {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    25% {
+        transform: translate(-50px, -100px) scale(1.1);
+    }
+
+    50% {
+        transform: translate(80px, 50px) scale(0.92);
+    }
+
+    75% {
+        transform: translate(-30px, 70px) scale(1.05);
+    }
+}
+
+/* ===========================================
+   CTA BUTTON GLOW PULSE
+   =========================================== */
+
+@keyframes ctaGlow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px rgba(107, 33, 168, 0.3),
+            0 0 60px rgba(107, 33, 168, 0.1);
+    }
+
+    50% {
+        box-shadow: 0 0 30px rgba(107, 33, 168, 0.5),
+            0 0 80px rgba(107, 33, 168, 0.2);
+    }
+}
+
+/* ===========================================
+   HERO SECTION
+   =========================================== */
+
 .hero {
     min-height: 100vh;
     display: flex;
@@ -24,6 +141,70 @@
     text-align: center;
     padding: 2rem;
     position: relative;
+    overflow: hidden;
+}
+
+/* --- Animated Background Orbs --- */
+
+.heroBackground {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    will-change: transform;
+}
+
+.orb1 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(107, 33, 168, 0.2) 0%, transparent 70%);
+    top: -10%;
+    left: -10%;
+    animation: orbFloat1 20s ease-in-out infinite;
+}
+
+.orb2 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(0, 228, 255, 0.15) 0%, transparent 70%);
+    bottom: -5%;
+    right: -5%;
+    animation: orbFloat2 25s ease-in-out infinite;
+}
+
+.orb3 {
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(107, 33, 168, 0.12) 0%, transparent 70%);
+    top: 40%;
+    right: 20%;
+    animation: orbFloat3 22s ease-in-out infinite;
+}
+
+.orb4 {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(0, 228, 255, 0.1) 0%, transparent 70%);
+    bottom: 30%;
+    left: 15%;
+    animation: orbFloat4 28s ease-in-out infinite;
+}
+
+/* --- Hero Content --- */
+
+.heroContent {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .heroTitle {
@@ -33,6 +214,9 @@
     line-height: 1;
     color: var(--color-text, #ffffff);
     margin-bottom: 1rem;
+    opacity: 0;
+    animation: heroStagger 0.8s ease forwards;
+    animation-delay: 0.1s;
 }
 
 .heroSubtitle {
@@ -41,24 +225,60 @@
     color: var(--color-accent, #00e4ff);
     letter-spacing: 0.02em;
     margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: heroStagger 0.8s ease forwards;
+    animation-delay: 0.3s;
 }
 
 .heroTagline {
     font-size: 1rem;
     color: var(--color-text, #ffffff);
-    opacity: 0.7;
+    opacity: 0;
     line-height: 1.6;
     max-width: 480px;
+    animation: heroStaggerFade 0.8s ease forwards;
+    animation-delay: 0.5s;
 }
 
-/* --- About Section --- */
+.heroCta {
+    display: inline-block;
+    margin-top: 3rem;
+    padding: 1rem 2.5rem;
+    background-color: #6b21a8;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    opacity: 0;
+    animation: heroStagger 0.8s ease forwards, ctaGlow 4s ease-in-out infinite;
+    animation-delay: 0.7s, 1.5s;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.heroCta:hover {
+    background-color: #7c3aed;
+    transform: scale(1.05);
+}
+
+.heroCta:active {
+    transform: scale(0.98);
+}
+
+/* ===========================================
+   ABOUT SECTION
+   =========================================== */
+
 .about {
     background-color: #0a0a0a;
     padding: 8rem 2rem;
 }
 
 .aboutInner {
-    max-width: 900px;
+    max-width: 1100px;
     margin: 0 auto;
 }
 
@@ -69,6 +289,61 @@
     text-transform: uppercase;
     letter-spacing: 0.15em;
     margin-bottom: 3rem;
+}
+
+/* --- Two-Column Grid --- */
+
+.aboutGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+/* --- Image Column --- */
+
+.aboutImageCol {
+    width: 100%;
+}
+
+.aboutImageWrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background-color: #8d04e4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.aboutImage {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 1;
+    border-radius: 0.5rem;
+}
+
+.placeholderText {
+    position: relative;
+    z-index: 0;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-align: center;
+    padding: 1rem;
+    letter-spacing: 0.02em;
+}
+
+/* --- Text Column --- */
+
+.aboutTextCol {
+    display: flex;
+    align-items: center;
 }
 
 .bioText {
@@ -86,7 +361,10 @@
     margin-bottom: 0;
 }
 
-/* --- Desktop --- */
+/* ===========================================
+   DESKTOP
+   =========================================== */
+
 @media (min-width: 768px) {
     .hero {
         padding: 4rem;
@@ -104,19 +382,73 @@
         font-size: 1.125rem;
     }
 
+    .heroCta {
+        font-size: 1.1rem;
+        padding: 1.1rem 3rem;
+    }
+
     .about {
         padding: 8rem 4rem;
+    }
+
+    .aboutGrid {
+        flex-direction: row;
+        gap: 4rem;
+    }
+
+    .aboutImageCol {
+        flex: 0 0 40%;
+        max-width: 40%;
+    }
+
+    .aboutTextCol {
+        flex: 1;
     }
 
     .bioText {
         font-size: 1.25rem;
     }
+
+    .orb1 {
+        width: 700px;
+        height: 700px;
+    }
+
+    .orb2 {
+        width: 550px;
+        height: 550px;
+    }
+
+    .orb3 {
+        width: 450px;
+        height: 450px;
+    }
+
+    .orb4 {
+        width: 400px;
+        height: 400px;
+    }
 }
 
-/* --- Reduced Motion --- */
+/* ===========================================
+   REDUCED MOTION
+   =========================================== */
+
 @media (prefers-reduced-motion: reduce) {
-    .fadeIn {
+
+    .heroTitle,
+    .heroSubtitle,
+    .heroTagline,
+    .heroCta {
         animation: none;
         opacity: 1;
+    }
+
+    .heroTagline {
+        opacity: 0.7;
+    }
+
+    .orb {
+        animation: none !important;
     }
 }

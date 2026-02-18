@@ -4,10 +4,11 @@ import { useState, useEffect } from "react";
 import styles from "./Header.module.css";
 
 const navItems = [
-    { label: "Work", href: "#work" },
-    { label: "Services", href: "#services" },
-    { label: "About", href: "#about" },
-    { label: "Contact", href: "#contact" },
+    { label: "Home", href: "/" },
+    { label: "About", href: "/about" },
+    { label: "Portfolio", href: "/portfolio" },
+    { label: "Services", href: "/services" },
+    { label: "Contact", href: "/contact" },
 ];
 
 export default function Header() {
@@ -27,7 +28,7 @@ export default function Header() {
             className={`${styles.header} ${scrolled ? styles.headerScrolled : ""}`}
         >
             <div className={styles.inner}>
-                <a href="#hero" className={styles.logo}>
+                <a href="/" className={styles.logo}>
                     TheFOC
                 </a>
 

@@ -1,0 +1,134 @@
+/* ===========================================
+   SERVICES PAGE
+   =========================================== */
+
+.page {
+    padding-top: 8rem;
+    padding-bottom: 4rem;
+    min-height: 100vh;
+    background-color: var(--color-background, #000000);
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* --- Page Header --- */
+
+.header {
+    margin-bottom: 4rem;
+}
+
+.heading {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--color-text, #ffffff);
+    margin-bottom: 1rem;
+}
+
+.intro {
+    font-size: 1.125rem;
+    color: var(--color-text, #ffffff);
+    opacity: 0.7;
+    line-height: 1.6;
+    max-width: 560px;
+}
+
+/* --- Services List --- */
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* --- Service Card --- */
+
+.card {
+    padding: 3rem 0;
+}
+
+.card:first-child {
+    padding-top: 0;
+}
+
+.cardHeader {
+    display: flex;
+    align-items: baseline;
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+
+.number {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-primary, #8d04e4);
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--color-text, #ffffff);
+}
+
+.description {
+    font-size: 1.0625rem;
+    line-height: 1.8;
+    color: var(--color-text, #ffffff);
+    opacity: 0.75;
+    padding-left: 0;
+}
+
+.divider {
+    margin-top: 3rem;
+    height: 1px;
+    background: linear-gradient(to right,
+            rgba(141, 4, 228, 0.3),
+            rgba(0, 228, 255, 0.1),
+            transparent);
+}
+
+.card:last-child .divider {
+    display: none;
+}
+
+/* ===========================================
+   DESKTOP
+   =========================================== */
+
+@media (min-width: 768px) {
+    .container {
+        padding: 0 4rem;
+    }
+
+    .heading {
+        font-size: 3.5rem;
+    }
+
+    .intro {
+        font-size: 1.25rem;
+    }
+
+    .card {
+        padding: 3.5rem 0;
+    }
+
+    .number {
+        font-size: 1.125rem;
+    }
+
+    .title {
+        font-size: 1.75rem;
+    }
+
+    .description {
+        font-size: 1.125rem;
+        padding-left: 3.375rem;
+    }
+}

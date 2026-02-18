@@ -1,0 +1,177 @@
+/* ===========================================
+   ABOUT PAGE
+   =========================================== */
+
+.page {
+    padding-top: 8rem;
+    padding-bottom: 4rem;
+    min-height: 100vh;
+    background-color: var(--color-background, #000000);
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* --- Breadcrumb --- */
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 3rem;
+    font-size: 0.875rem;
+}
+
+.breadcrumbLink {
+    color: var(--color-accent, #00e4ff);
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.breadcrumbLink:hover {
+    opacity: 0.8;
+    color: var(--color-accent, #00e4ff);
+}
+
+.breadcrumbSep {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.breadcrumbCurrent {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* --- Section Label --- */
+
+.sectionLabel {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-accent, #00e4ff);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 3rem;
+}
+
+/* --- Two-Column Grid --- */
+
+.grid {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+/* --- Image Column --- */
+
+.imageCol {
+    width: 100%;
+}
+
+.imageWrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background-color: #8d04e4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 1;
+    border-radius: 0.5rem;
+}
+
+.placeholderText {
+    position: relative;
+    z-index: 0;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-align: center;
+    padding: 1rem;
+    letter-spacing: 0.02em;
+}
+
+/* --- Text Column --- */
+
+.textCol {
+    display: flex;
+    align-items: center;
+}
+
+.bioText {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--color-text, #ffffff);
+    opacity: 0.9;
+}
+
+.bioText p {
+    margin-bottom: 2rem;
+}
+
+.bioText p:last-child {
+    margin-bottom: 0;
+}
+
+/* --- Back Link --- */
+
+.backLink {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.backAnchor {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9375rem;
+    color: var(--color-accent, #00e4ff);
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.backAnchor:hover {
+    opacity: 0.8;
+    color: var(--color-accent, #00e4ff);
+}
+
+/* ===========================================
+   DESKTOP
+   =========================================== */
+
+@media (min-width: 768px) {
+    .container {
+        padding: 0 4rem;
+    }
+
+    .grid {
+        flex-direction: row;
+        gap: 4rem;
+    }
+
+    .imageCol {
+        flex: 0 0 40%;
+        max-width: 40%;
+    }
+
+    .textCol {
+        flex: 1;
+    }
+
+    .bioText {
+        font-size: 1.25rem;
+    }
+}

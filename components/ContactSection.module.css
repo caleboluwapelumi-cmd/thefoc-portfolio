@@ -47,9 +47,15 @@
 }
 
 .cta:hover {
-    background-color: #9d14f4;
+    background-color: #7c3aed;
     transform: scale(1.02);
     color: #ffffff;
+}
+
+/* --- Social Icons Row --- */
+
+.socialRow {
+    margin-top: 3rem;
 }
 
 /* --- Desktop --- */

@@ -1,0 +1,228 @@
+/* ===========================================
+   CONTACT PAGE
+   =========================================== */
+
+.page {
+    padding-top: 8rem;
+    padding-bottom: 4rem;
+    min-height: 100vh;
+    background-color: var(--color-background, #000000);
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* --- Page Header --- */
+
+.header {
+    margin-bottom: 3rem;
+}
+
+.heading {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--color-text, #ffffff);
+    margin-bottom: 1rem;
+}
+
+.subheading {
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--color-text, #ffffff);
+    opacity: 0.7;
+    max-width: 560px;
+}
+
+/* ===========================================
+   FORM
+   =========================================== */
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* --- Field --- */
+
+.field {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-text, #ffffff);
+    opacity: 0.85;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.02em;
+}
+
+.required {
+    color: var(--color-primary, #8d04e4);
+}
+
+/* --- Inputs --- */
+
+.input,
+.select,
+.textarea {
+    width: 100%;
+    padding: 1rem;
+    background-color: #1a1a1a;
+    color: var(--color-text, #ffffff);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+    border-color: var(--color-primary, #6b21a8);
+    box-shadow: 0 0 0 3px rgba(107, 33, 168, 0.15);
+}
+
+/* --- Select Arrow --- */
+
+.select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.4)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+    padding-right: 2.5rem;
+    cursor: pointer;
+}
+
+.select option {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+/* Placeholder style for selects */
+.select:invalid,
+.select option[value=""][disabled] {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.select:not(:invalid) {
+    color: var(--color-text, #ffffff);
+}
+
+/* --- Textarea --- */
+
+.textarea {
+    min-height: 150px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+/* ===========================================
+   SUBMIT BUTTON
+   =========================================== */
+
+.submit {
+    width: 100%;
+    padding: 1rem 3rem;
+    background-color: var(--color-primary, #8d04e4);
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    margin-top: 0.5rem;
+    transition: background-color 0.3s ease, transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.submit:hover:not(:disabled) {
+    background-color: #7c3aed;
+    transform: scale(1.02);
+    box-shadow: 0 0 24px rgba(107, 33, 168, 0.35),
+        0 0 60px rgba(107, 33, 168, 0.1);
+}
+
+.submit:active:not(:disabled) {
+    transform: scale(0.99);
+}
+
+.submit:disabled {
+    background-color: rgba(107, 33, 168, 0.5);
+    cursor: default;
+}
+
+/* ===========================================
+   SOCIAL LINKS SECTION
+   =========================================== */
+
+.socialSection {
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.socialHeading {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--color-text, #ffffff);
+    margin-bottom: 2rem;
+}
+
+
+
+
+/* ===========================================
+   DESKTOP
+   =========================================== */
+
+@media (min-width: 768px) {
+    .container {
+        padding: 0 4rem;
+    }
+
+    .heading {
+        font-size: 3rem;
+    }
+
+    .subheading {
+        font-size: 1.125rem;
+    }
+
+    .submit {
+        width: auto;
+        align-self: flex-start;
+    }
+}
+
+/* ===========================================
+   REDUCED MOTION
+   =========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .submit {
+        transition: none;
+    }
+
+    .submit:hover:not(:disabled) {
+        transform: none;
+    }
+}

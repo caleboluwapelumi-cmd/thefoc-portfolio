@@ -1,29 +1,29 @@
 [
     {
         "id": 1,
-        "title": "Brand Identity System",
-        "description": "Complete rebrand for emerging tech startup",
-        "category": "Brand Identity",
-        "image": "/images/projects/project-1.jpg",
+        "title": "Visual Marketing",
+        "description": "Eye-catching flyers, social graphics, and promotional materials that drive engagement",
+        "category": "Graphics",
+        "image": "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop",
         "color": "#8d04e4",
-        "link": "/projects/brand-identity-system"
+        "link": "/portfolio"
     },
     {
         "id": 2,
-        "title": "Visual Strategy",
-        "description": "Strategic positioning for lifestyle brand",
-        "category": "Strategy",
-        "image": "/images/projects/project-2.jpg",
+        "title": "Brand Identity Systems",
+        "description": "Complete brand development from logos to visual guidelines and touchpoint design",
+        "category": "Branding",
+        "image": "https://images.unsplash.com/photo-1634942537034-2531766767d1?w=800&h=600&fit=crop",
         "color": "#00e4ff",
-        "link": "/projects/visual-strategy"
+        "link": "/portfolio"
     },
     {
         "id": 3,
-        "title": "Digital Presence",
-        "description": "Web design and brand guidelines",
-        "category": "Digital Design",
-        "image": "/images/projects/project-3.jpg",
+        "title": "Brand Strategy Sessions",
+        "description": "One-on-one strategic consultation to define positioning, messaging, and growth roadmap",
+        "category": "Strategy",
+        "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop",
         "color": "#6b21a8",
-        "link": "/projects/digital-presence"
+        "link": "/portfolio"
     }
 ]
