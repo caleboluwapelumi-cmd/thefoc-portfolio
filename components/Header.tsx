@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import styles from "./Header.module.css";
 
 const navItems = [
@@ -15,10 +15,9 @@ export default function Header() {
     const [scrolled, setScrolled] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
 
+    // Scroll shadow
     useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 10);
-        };
+        const handleScroll = () => setScrolled(window.scrollY > 10);
         window.addEventListener("scroll", handleScroll, { passive: true });
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
@@ -29,7 +28,17 @@ export default function Header() {
         return () => { document.body.style.overflow = ""; };
     }, [menuOpen]);
 
-    const closeMenu = () => setMenuOpen(false);
+    // Close on Escape key
+    const closeMenu = useCallback(() => setMenuOpen(false), []);
+
+    useEffect(() => {
+        if (!menuOpen) return;
+        const handleKey = (e: KeyboardEvent) => {
+            if (e.key === "Escape") closeMenu();
+        };
+        window.addEventListener("keydown", handleKey);
+        return () => window.removeEventListener("keydown", handleKey);
+    }, [menuOpen, closeMenu]);
 
     return (
         <>
@@ -68,12 +77,30 @@ export default function Header() {
                 </div>
             </header>
 
+            {/* Click-outside backdrop */}
+            {menuOpen && (
+                <div
+                    className={styles.backdrop}
+                    onClick={closeMenu}
+                    aria-hidden="true"
+                />
+            )}
+
             {/* Mobile Drawer */}
             <nav
                 className={`${styles.drawer} ${menuOpen ? styles.drawerOpen : ""}`}
                 aria-label="Mobile navigation"
                 aria-hidden={!menuOpen}
             >
+                {/* × Close button inside drawer */}
+                <button
+                    className={styles.closeButton}
+                    onClick={closeMenu}
+                    aria-label="Close menu"
+                >
+                    ×
+                </button>
+
                 {navItems.map((item) => (
                     <a
                         key={item.label}
