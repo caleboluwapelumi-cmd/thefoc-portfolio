@@ -1,0 +1,188 @@
+[
+    {
+        "slug": "visual-marketing",
+        "title": "Visual Marketing",
+        "category": "Graphics",
+        "accentColor": "#8d04e4",
+        "description": "Eye-catching flyers, social graphics, and promotional materials that cut through the noise and drive real engagement.",
+        "hero": {
+            "image": "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1920&h=800&fit=crop"
+        },
+        "overview": {
+            "challenge": "Brands struggle to stand out in an oversaturated digital landscape. Generic templates and inconsistent visuals dilute brand recognition and fail to convert audiences into customers.",
+            "solution": "We developed a scalable visual system tailored to each platform — from high-impact social media graphics to print-ready promotional flyers — ensuring every touchpoint reinforces the brand's identity and drives action."
+        },
+        "process": [
+            {
+                "number": "01",
+                "title": "Discovery",
+                "description": "Deep-dive into the brand's audience, competitors, and existing visual assets to identify gaps and opportunities."
+            },
+            {
+                "number": "02",
+                "title": "Concept Development",
+                "description": "Exploring visual directions through moodboards, colour palettes, and typography pairings before committing to execution."
+            },
+            {
+                "number": "03",
+                "title": "Design Execution",
+                "description": "Producing a full suite of on-brand assets — social templates, flyers, banners — optimised for each platform and format."
+            },
+            {
+                "number": "04",
+                "title": "Delivery & Support",
+                "description": "Handing over production-ready files with usage guidelines, plus ongoing support for future asset creation."
+            }
+        ],
+        "gallery": [
+            "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop",
+            "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=1000&fit=crop",
+            "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=800&h=600&fit=crop",
+            "https://images.unsplash.com/photo-1542744094-3a31f272c490?w=800&h=800&fit=crop",
+            "https://images.unsplash.com/photo-1572044162444-ad60f128bdea?w=800&h=600&fit=crop",
+            "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&h=1000&fit=crop"
+        ],
+        "results": [
+            {
+                "stat": "48h",
+                "label": "Average Turnaround"
+            },
+            {
+                "stat": "3×",
+                "label": "Engagement Uplift"
+            },
+            {
+                "stat": "100%",
+                "label": "Brand Consistency"
+            },
+            {
+                "stat": "50+",
+                "label": "Assets Delivered"
+            }
+        ]
+    },
+    {
+        "slug": "brand-identity-systems",
+        "title": "Brand Identity Systems",
+        "category": "Branding",
+        "accentColor": "#00e4ff",
+        "description": "Complete brand systems — from logo design to comprehensive visual guidelines — that resonate across every touchpoint.",
+        "hero": {
+            "image": "https://images.unsplash.com/photo-1634942537034-2531766767d1?w=1920&h=800&fit=crop"
+        },
+        "overview": {
+            "challenge": "Many businesses operate with fragmented visual identities — mismatched logos, inconsistent colours, and no clear guidelines — leading to a brand that feels amateur and forgettable.",
+            "solution": "We build cohesive brand identity systems from the ground up: a distinctive logo, a refined colour palette, purposeful typography, and a comprehensive brand guide that empowers teams to stay on-brand at every touchpoint."
+        },
+        "process": [
+            {
+                "number": "01",
+                "title": "Brand Strategy",
+                "description": "Defining the brand's purpose, values, positioning, and personality before a single pixel is designed."
+            },
+            {
+                "number": "02",
+                "title": "Visual Exploration",
+                "description": "Presenting multiple design directions — logo concepts, colour stories, and type systems — to find the right visual voice."
+            },
+            {
+                "number": "03",
+                "title": "System Development",
+                "description": "Refining the chosen direction into a complete, scalable identity system with all primary and secondary assets."
+            },
+            {
+                "number": "04",
+                "title": "Documentation",
+                "description": "Delivering a comprehensive brand guide covering usage rules, do's and don'ts, and application examples."
+            }
+        ],
+        "gallery": [
+            "https://images.unsplash.com/photo-1634942537034-2531766767d1?w=800&h=600&fit=crop",
+            "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&h=1000&fit=crop",
+            "https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&h=600&fit=crop",
+            "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=800&h=800&fit=crop",
+            "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&h=600&fit=crop",
+            "https://images.unsplash.com/photo-1558655146-d09347e92766?w=800&h=1000&fit=crop"
+        ],
+        "results": [
+            {
+                "stat": "1",
+                "label": "Unified Visual Language"
+            },
+            {
+                "stat": "Clear",
+                "label": "Brand Positioning"
+            },
+            {
+                "stat": "Full",
+                "label": "Asset Toolkit"
+            },
+            {
+                "stat": "∞",
+                "label": "Lasting Impact"
+            }
+        ]
+    },
+    {
+        "slug": "brand-strategy-sessions",
+        "title": "Brand Strategy Sessions",
+        "category": "Strategy",
+        "accentColor": "#6b21a8",
+        "description": "Strategic one-on-one consultation to clarify your brand's direction, messaging, and roadmap for sustainable growth.",
+        "hero": {
+            "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1920&h=800&fit=crop"
+        },
+        "overview": {
+            "challenge": "Without a clear brand strategy, businesses make reactive decisions — chasing trends, speaking to everyone, and resonating with no one. The result is wasted budget and stalled growth.",
+            "solution": "Through focused one-on-one strategy sessions, we help founders and marketing leads define their brand's core positioning, craft a compelling message, and build a clear roadmap that aligns every future decision with their goals."
+        },
+        "process": [
+            {
+                "number": "01",
+                "title": "Discovery Workshop",
+                "description": "An in-depth session exploring your business goals, target audience, competitive landscape, and current brand perception."
+            },
+            {
+                "number": "02",
+                "title": "Market Analysis",
+                "description": "Researching your industry, identifying white space, and mapping competitor positioning to find your unique advantage."
+            },
+            {
+                "number": "03",
+                "title": "Strategy Framework",
+                "description": "Building your brand's strategic foundation: purpose, positioning statement, messaging pillars, and tone of voice."
+            },
+            {
+                "number": "04",
+                "title": "Action Plan",
+                "description": "Translating strategy into a prioritised, actionable roadmap with clear milestones and measurable outcomes."
+            }
+        ],
+        "gallery": [
+            "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop",
+            "https://images.unsplash.com/photo-1531498860502-7c67cf519b9e?w=800&h=1000&fit=crop",
+            "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&h=600&fit=crop",
+            "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=800&fit=crop",
+            "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop",
+            "https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=800&h=1000&fit=crop"
+        ],
+        "results": [
+            {
+                "stat": "Clear",
+                "label": "Brand Direction"
+            },
+            {
+                "stat": "Focused",
+                "label": "Messaging Framework"
+            },
+            {
+                "stat": "90-Day",
+                "label": "Growth Roadmap"
+            },
+            {
+                "stat": "100%",
+                "label": "Bespoke Strategy"
+            }
+        ]
+    }
+]

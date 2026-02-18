@@ -6,12 +6,13 @@ interface Project {
     title: string;
     description: string;
     category: string;
+    slug: string;
     image: string;
     color: string;
     link: string;
 }
 
-const projects: Project[] = projectsData;
+const projects: Project[] = projectsData as Project[];
 
 export default function ProjectsSection() {
     return (
@@ -22,8 +23,16 @@ export default function ProjectsSection() {
 
             <div className={styles.grid}>
                 {projects.map((project) => (
-                    <article key={project.id} className={styles.card}>
-                        <div className={styles.imageContainer} style={{ backgroundColor: project.color }}>
+                    <a
+                        key={project.id}
+                        href={project.link}
+                        className={styles.card}
+                        aria-label={`View ${project.title} case study`}
+                    >
+                        <div
+                            className={styles.imageContainer}
+                            style={{ backgroundColor: project.color }}
+                        >
                             <img
                                 src={project.image}
                                 alt={project.title}
@@ -32,7 +41,10 @@ export default function ProjectsSection() {
                         </div>
                         <h3 className={styles.title}>{project.title}</h3>
                         <p className={styles.description}>{project.description}</p>
-                    </article>
+                        <span className={styles.cardLink}>
+                            View Case Study <span className={styles.arrow}>→</span>
+                        </span>
+                    </a>
                 ))}
             </div>
 

@@ -13,12 +13,13 @@ interface Project {
     title: string;
     description: string;
     category: string;
+    slug: string;
     image: string;
     color: string;
     link: string;
 }
 
-const projects: Project[] = projectsData;
+const projects: Project[] = projectsData as Project[];
 
 export default function PortfolioPage() {
     return (
@@ -39,19 +40,29 @@ export default function PortfolioPage() {
                             key={project.id}
                             href={project.link}
                             className={styles.card}
+                            aria-label={`View ${project.title} case study`}
                         >
+                            {/* Image */}
                             <div className={styles.imageContainer}>
-                                <div
+                                <img
+                                    src={project.image}
+                                    alt={project.title}
                                     className={styles.image}
+                                />
+                                <div
+                                    className={styles.imageOverlay}
                                     style={{ backgroundColor: project.color }}
                                 />
                             </div>
+
+                            {/* Content */}
                             <div className={styles.cardContent}>
                                 <span className={styles.category}>{project.category}</span>
                                 <h2 className={styles.title}>{project.title}</h2>
                                 <p className={styles.description}>{project.description}</p>
                                 <span className={styles.viewLink}>
-                                    View Project <span className={styles.arrow}>→</span>
+                                    View Case Study{" "}
+                                    <span className={styles.arrow}>→</span>
                                 </span>
                             </div>
                         </a>

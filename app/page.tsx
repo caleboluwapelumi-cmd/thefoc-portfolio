@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useEffect, useCallback } from "react";
 import styles from "./page.module.css";
 import ProjectsSection from "@/components/ProjectsSection";
 import ServicesSection from "@/components/ServicesSection";
@@ -19,7 +22,28 @@ interface AboutContent {
 const hero: HeroContent = contentData.hero;
 const about: AboutContent = contentData.about;
 
+const ABOUT_IMAGE = "/FAB00367-Edit.jpg";
+
 export default function Home() {
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+
+  const openLightbox = useCallback(() => setLightboxOpen(true), []);
+  const closeLightbox = useCallback(() => setLightboxOpen(false), []);
+
+  // Escape key closes lightbox
+  useEffect(() => {
+    if (!lightboxOpen) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") closeLightbox(); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [lightboxOpen, closeLightbox]);
+
+  // Lock scroll when lightbox open
+  useEffect(() => {
+    document.body.style.overflow = lightboxOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [lightboxOpen]);
+
   return (
     <>
       {/* Hero */}
@@ -59,20 +83,27 @@ export default function Home() {
       </section>
 
       {/* About */}
-
       <section className={styles.about} id="about">
         <div className={styles.aboutInner}>
           <p className={styles.sectionLabel}>{about.label}</p>
           <div className={styles.aboutGrid}>
             {/* Image Column */}
             <div className={styles.aboutImageCol}>
-              <div className={styles.aboutImageWrapper}>
+              <button
+                className={styles.aboutImageBtn}
+                onClick={openLightbox}
+                aria-label="View full image"
+                type="button"
+              >
                 <img
-                  src="/FAB00367-Edit.jpg"
+                  src={ABOUT_IMAGE}
                   alt="TheFOC — Brand Identity Specialist"
                   className={styles.aboutImage}
                 />
-              </div>
+                <span className={styles.aboutImageOverlay} aria-hidden="true">
+                  <span className={styles.aboutImageOverlayIcon}>⊕</span>
+                </span>
+              </button>
             </div>
 
             {/* Text Column */}
@@ -98,6 +129,36 @@ export default function Home() {
 
       {/* Footer */}
       <Footer />
+
+      {/* Lightbox Modal */}
+      {lightboxOpen && (
+        <div
+          className={styles.lightboxBackdrop}
+          onClick={closeLightbox}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Image lightbox"
+        >
+          <button
+            className={styles.lightboxClose}
+            onClick={closeLightbox}
+            aria-label="Close lightbox"
+            type="button"
+          >
+            ×
+          </button>
+          <div
+            className={styles.lightboxContent}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={ABOUT_IMAGE}
+              alt="TheFOC — Brand Identity Specialist"
+              className={styles.lightboxImage}
+            />
+          </div>
+        </div>
+      )}
     </>
   );
 }
