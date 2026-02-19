@@ -166,6 +166,12 @@
     padding: 2rem 1.25rem;
     position: relative;
     overflow: hidden;
+    /* Subtle top-to-bottom purple-black gradient, hero only */
+    background: linear-gradient(180deg,
+            #1a0a2e 0%,
+            #2d1b4e 35%,
+            #140820 65%,
+            #0a0a0a 100%);
 }
 
 /* --- Animated Particle Background --- */
@@ -185,218 +191,218 @@
     border-radius: 50%;
 }
 
-/* \u2500\u2500 MOBILE-VISIBLE PARTICLES (1\u20138) \u2500\u2500 */
+/* — MOBILE-VISIBLE PARTICLES (1–8) — */
 
-/* p1 \u2014 small purple circle, top-left zone */
+/* p1 — small purple circle, top-left zone */
 .p1 {
     width: 28px;
     height: 28px;
-    background: rgba(141, 4, 228, 0.35);
+    background: rgba(139, 92, 246, 0.5);
     top: 12%;
     left: 8%;
-    animation: floatA 38s ease-in-out infinite;
+    animation: floatA 18s ease-in-out infinite;
     animation-delay: 0s;
 }
 
-/* p2 \u2014 medium cyan circle, top-right zone */
+/* p2 — medium cyan circle, top-right zone */
 .p2 {
     width: 50px;
     height: 50px;
-    background: rgba(0, 228, 255, 0.25);
+    background: rgba(0, 228, 255, 0.4);
     filter: blur(6px);
     top: 8%;
     right: 12%;
-    animation: floatB 45s ease-in-out infinite;
-    animation-delay: -7s;
+    animation: floatB 22s ease-in-out infinite;
+    animation-delay: -4s;
 }
 
-/* p3 \u2014 small rounded square, dark purple, mid-left */
+/* p3 — small rounded square, dark purple, mid-left */
 .p3 {
     width: 22px;
     height: 22px;
     border-radius: 6px;
-    background: rgba(107, 33, 168, 0.4);
+    background: rgba(107, 33, 168, 0.55);
     top: 42%;
     left: 5%;
-    animation: floatF 52s ease-in-out infinite;
-    animation-delay: -14s;
+    animation: floatF 25s ease-in-out infinite;
+    animation-delay: -8s;
 }
 
-/* p4 \u2014 medium purple circle, bottom-left */
+/* p4 — medium purple circle, bottom-left */
 .p4 {
     width: 60px;
     height: 60px;
-    background: rgba(141, 4, 228, 0.2);
+    background: rgba(139, 92, 246, 0.3);
     filter: blur(10px);
     bottom: 18%;
     left: 18%;
-    animation: floatD 40s ease-in-out infinite;
-    animation-delay: -3s;
+    animation: floatD 20s ease-in-out infinite;
+    animation-delay: -2s;
 }
 
-/* p5 \u2014 tiny cyan dot, center-top */
+/* p5 — tiny cyan dot, center-top */
 .p5 {
     width: 20px;
     height: 20px;
-    background: rgba(0, 228, 255, 0.4);
+    background: rgba(0, 228, 255, 0.55);
     top: 22%;
     left: 48%;
-    animation: floatC 35s ease-in-out infinite;
-    animation-delay: -18s;
+    animation: floatC 17s ease-in-out infinite;
+    animation-delay: -10s;
 }
 
-/* p6 \u2014 medium rounded square, cyan, bottom-right */
+/* p6 — medium rounded square, cyan, bottom-right */
 .p6 {
     width: 40px;
     height: 40px;
     border-radius: 10px;
-    background: rgba(0, 228, 255, 0.2);
+    background: rgba(0, 228, 255, 0.35);
     filter: blur(4px);
     bottom: 12%;
     right: 10%;
-    animation: floatE 48s ease-in-out infinite;
-    animation-delay: -9s;
+    animation: floatE 24s ease-in-out infinite;
+    animation-delay: -6s;
 }
 
-/* p7 \u2014 small dark-purple circle, upper-right */
+/* p7 — small dark-purple circle, upper-right */
 .p7 {
     width: 32px;
     height: 32px;
-    background: rgba(107, 33, 168, 0.35);
+    background: rgba(107, 33, 168, 0.5);
     top: 30%;
     right: 6%;
-    animation: floatA 42s ease-in-out infinite;
-    animation-delay: -22s;
+    animation: floatA 20s ease-in-out infinite;
+    animation-delay: -13s;
 }
 
-/* p8 \u2014 blurred purple orb, bottom-center */
+/* p8 — blurred purple orb, bottom-center */
 .p8 {
     width: 80px;
     height: 80px;
-    background: rgba(141, 4, 228, 0.18);
+    background: rgba(139, 92, 246, 0.3);
     filter: blur(20px);
     bottom: 8%;
     left: 42%;
-    animation: floatD 55s ease-in-out infinite;
-    animation-delay: -5s;
+    animation: floatD 22s ease-in-out infinite;
+    animation-delay: -3s;
 }
 
-/* \u2500\u2500 DESKTOP-ONLY PARTICLES (9\u201317, hidden on mobile) \u2500\u2500 */
+/* — DESKTOP-ONLY PARTICLES (9–17, hidden on mobile) — */
 
-/* p9 \u2014 tiny purple square, upper-center-left */
+/* p9 — tiny purple square, upper-center-left */
 .p9 {
     display: none;
     width: 24px;
     height: 24px;
     border-radius: 6px;
-    background: rgba(141, 4, 228, 0.3);
+    background: rgba(139, 92, 246, 0.45);
     top: 18%;
     left: 28%;
-    animation: floatB 44s ease-in-out infinite;
-    animation-delay: -11s;
+    animation: floatB 21s ease-in-out infinite;
+    animation-delay: -6s;
 }
 
-/* p10 \u2014 small cyan circle, mid-right */
+/* p10 — small cyan circle, mid-right */
 .p10 {
     display: none;
     width: 36px;
     height: 36px;
-    background: rgba(0, 228, 255, 0.3);
+    background: rgba(0, 228, 255, 0.45);
     filter: blur(5px);
     top: 55%;
     right: 20%;
-    animation: floatC 50s ease-in-out infinite;
-    animation-delay: -6s;
+    animation: floatC 25s ease-in-out infinite;
+    animation-delay: -4s;
 }
 
-/* p11 \u2014 blurred cyan orb, top-center */
+/* p11 — blurred cyan orb, top-center */
 .p11 {
     display: none;
     width: 70px;
     height: 70px;
-    background: rgba(0, 228, 255, 0.15);
+    background: rgba(0, 228, 255, 0.25);
     filter: blur(18px);
     top: 5%;
     left: 55%;
-    animation: floatA 60s ease-in-out infinite;
-    animation-delay: -20s;
+    animation: floatA 18s ease-in-out infinite;
+    animation-delay: -12s;
 }
 
-/* p12 \u2014 small dark-purple rounded square, center */
+/* p12 — small dark-purple rounded square, center */
 .p12 {
     display: none;
     width: 26px;
     height: 26px;
     border-radius: 7px;
-    background: rgba(107, 33, 168, 0.38);
+    background: rgba(107, 33, 168, 0.55);
     top: 48%;
     left: 62%;
-    animation: floatF 46s ease-in-out infinite;
-    animation-delay: -16s;
+    animation: floatF 23s ease-in-out infinite;
+    animation-delay: -9s;
 }
 
-/* p13 \u2014 medium purple circle, lower-right */
+/* p13 — medium purple circle, lower-right */
 .p13 {
     display: none;
     width: 48px;
     height: 48px;
-    background: rgba(141, 4, 228, 0.22);
+    background: rgba(139, 92, 246, 0.35);
     filter: blur(8px);
     bottom: 25%;
     right: 32%;
-    animation: floatE 38s ease-in-out infinite;
+    animation: floatE 19s ease-in-out infinite;
     animation-delay: -2s;
 }
 
-/* p14 \u2014 tiny cyan dot, mid-left */
+/* p14 — tiny cyan dot, mid-left */
 .p14 {
     display: none;
     width: 18px;
     height: 18px;
-    background: rgba(0, 228, 255, 0.38);
+    background: rgba(0, 228, 255, 0.55);
     top: 65%;
     left: 25%;
-    animation: floatD 33s ease-in-out infinite;
-    animation-delay: -13s;
+    animation: floatD 16s ease-in-out infinite;
+    animation-delay: -7s;
 }
 
-/* p15 \u2014 small purple circle, upper-right zone */
+/* p15 — small purple circle, upper-right zone */
 .p15 {
     display: none;
     width: 30px;
     height: 30px;
-    background: rgba(141, 4, 228, 0.28);
+    background: rgba(139, 92, 246, 0.4);
     filter: blur(3px);
     top: 14%;
     right: 35%;
-    animation: floatB 57s ease-in-out infinite;
-    animation-delay: -8s;
+    animation: floatB 24s ease-in-out infinite;
+    animation-delay: -5s;
 }
 
-/* p16 \u2014 blurred dark-purple orb, left-center */
+/* p16 — blurred dark-purple orb, left-center */
 .p16 {
     display: none;
     width: 65px;
     height: 65px;
-    background: rgba(107, 33, 168, 0.2);
+    background: rgba(107, 33, 168, 0.35);
     filter: blur(16px);
     top: 38%;
     left: 15%;
-    animation: floatC 43s ease-in-out infinite;
-    animation-delay: -19s;
+    animation: floatC 21s ease-in-out infinite;
+    animation-delay: -11s;
 }
 
-/* p17 \u2014 small rounded square, cyan, lower-right */
+/* p17 — small rounded square, cyan, lower-right */
 .p17 {
     display: none;
     width: 22px;
     height: 22px;
     border-radius: 6px;
-    background: rgba(0, 228, 255, 0.32);
+    background: rgba(0, 228, 255, 0.5);
     top: 72%;
     right: 8%;
-    animation: floatA 36s ease-in-out infinite;
-    animation-delay: -4s;
+    animation: floatA 15s ease-in-out infinite;
+    animation-delay: -3s;
 }
 
 
@@ -479,7 +485,8 @@
    =========================================== */
 
 .about {
-    background-color: #0a0a0a;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(2px);
     padding: 4rem 1.25rem;
 }
 
@@ -533,7 +540,7 @@
     width: 100%;
     border-radius: 0.5rem;
     overflow: hidden;
-    background-color: #0a0a0a;
+    background-color: rgba(10, 10, 10, 0.8);
 }
 
 .aboutImage {

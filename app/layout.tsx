@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter } from "next/font/google";
+import { Plus_Jakarta_Sans, Inter } from "next/font/google";
 import Header from "@/components/Header";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
+const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-heading",
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -31,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${spaceGrotesk.className} ${spaceGrotesk.variable} ${inter.variable}`}
+        className={`${plusJakartaSans.className} ${plusJakartaSans.variable} ${inter.variable}`}
       >
         <Header />
         {children}
