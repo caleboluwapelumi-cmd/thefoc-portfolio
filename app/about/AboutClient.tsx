@@ -36,7 +36,9 @@ export default function AboutClient() {
 
     return (
         <>
-            <main className={styles.page}>
+            <main className={styles.page} style={{
+                background: 'linear-gradient(180deg, #0a0514 0%, #1a0f2e 40%, #0a0a0a 100%)'
+            }}>
                 <div className={styles.container}>
                     {/* Breadcrumb */}
                     <nav className={styles.breadcrumb}>
