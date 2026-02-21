@@ -23,7 +23,9 @@ const projects: Project[] = projectsData as Project[];
 
 export default function PortfolioPage() {
     return (
-        <main className={styles.page}>
+        <main className={styles.page} style={{
+            background: 'linear-gradient(180deg, #0a0514 0%, #1a0f2e 30%, #0a0a0a 60%)'
+        }}>
             <div className={styles.container}>
                 {/* Page Header */}
                 <header className={styles.header}>

@@ -28,7 +28,9 @@ export default function ContactPage() {
                 {/* Faint background photo */}
                 <div className={styles.bgImage} />
                 {/* Dark gradient overlay on top of photo */}
-                <div className={styles.bgOverlay} />
+                <div className={styles.bgOverlay} style={{
+                    background: 'linear-gradient(180deg, rgba(10,5,20,0.9) 0%, rgba(26,15,46,0.85) 50%, rgba(10,10,10,0.9) 100%)'
+                }} />
                 <div className={styles.meshOrb1} />
                 <div className={styles.meshOrb2} />
                 <div className={styles.meshOrb3} />
