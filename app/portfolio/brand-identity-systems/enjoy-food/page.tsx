@@ -16,8 +16,19 @@ export default function EnjoyFoodPage() {
     return (
         <main className={styles.page} style={{ "--accent": "#00e4ff" } as React.CSSProperties}>
             {/* ── HERO ── */}
-            <section className={styles.hero}>
-                <div className={`${styles.container} ${styles.heroContent}`}>
+            <section className={styles.hero} style={{
+                backgroundImage: 'url(/portfolio/brand-identity-systems/enjoy-food/Artboard%202.png)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                position: 'relative'
+            }}>
+                <div style={{
+                    position: 'absolute',
+                    inset: 0,
+                    backgroundColor: 'rgba(0,0,0,0.6)',
+                    zIndex: 1
+                }} />
+                <div className={`${styles.container} ${styles.heroContent}`} style={{ position: 'relative', zIndex: 2 }}>
                     <nav className={styles.breadcrumb}>
                         <a href="/" className={styles.breadcrumbLink}>Home</a>
                         <span className={styles.breadcrumbSep}>›</span>
@@ -30,7 +41,7 @@ export default function EnjoyFoodPage() {
 
                     <h1 className={styles.heroTitle}>Enjoy Food</h1>
                     <p className={styles.heroTagline}>
-                        Flavourful branding that whets the appetite — bold, warm, and unmistakably delicious.
+                        Timeless elegance meets modern sophistication — a brand identity built to captivate.
                     </p>
                 </div>
             </section>

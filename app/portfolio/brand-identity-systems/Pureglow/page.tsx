@@ -16,8 +16,19 @@ export default function PureglowPage() {
     return (
         <main className={styles.page} style={{ "--accent": "#00e4ff" } as React.CSSProperties}>
             {/* ── HERO ── */}
-            <section className={styles.hero}>
-                <div className={`${styles.container} ${styles.heroContent}`}>
+            <section className={styles.hero} style={{
+                backgroundImage: 'url(/portfolio/brand-identity-systems/Pureglow/Artboard%201.png)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                position: 'relative'
+            }}>
+                <div style={{
+                    position: 'absolute',
+                    inset: 0,
+                    backgroundColor: 'rgba(0,0,0,0.6)',
+                    zIndex: 1
+                }} />
+                <div className={`${styles.container} ${styles.heroContent}`} style={{ position: 'relative', zIndex: 2 }}>
                     <nav className={styles.breadcrumb}>
                         <a href="/" className={styles.breadcrumbLink}>Home</a>
                         <span className={styles.breadcrumbSep}>›</span>
@@ -30,10 +41,10 @@ export default function PureglowPage() {
 
                     <h1 className={styles.heroTitle}>Pureglow</h1>
                     <p className={styles.heroTagline}>
-                        Clean beauty, radiant identity — a visual system designed to shine on every shelf and screen.
-                    </p>
+                        Pureglow is a skincaare and wellness brand rooted in transparency and natural beauty.    </p>
                 </div>
             </section>
+
 
             {/* ── BRIEF ── */}
             <section className={styles.brief}>

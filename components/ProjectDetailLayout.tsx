@@ -117,16 +117,49 @@ export default function ProjectDetailLayout({ project }: Props) {
                     </p>
                     <h2 className={styles.sectionHeading}>Selected work</h2>
 
-                    <div className={styles.galleryGrid}>
+                    <div style={{
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+                        gap: '1rem',
+                        marginTop: '2rem'
+                    }}>
                         {project.gallery.map((src, i) => (
-                            <div key={i} className={`${styles.galleryItem} ${i === 0 ? styles.galleryItemWide : ""}`} onClick={() => setLightbox(i)}>
-                                <img src={src} alt={`${project.title} ${i + 1}`} className={`${styles.galleryImg} cursor-pointer hover:opacity-80`} loading={i === 0 ? "eager" : "lazy"} />
-                            </div>
+                            <button
+                                key={i}
+                                onClick={() => setLightbox(i)}
+                                style={{
+                                    cursor: 'pointer',
+                                    overflow: 'hidden',
+                                    borderRadius: '0.5rem',
+                                    border: 'none',
+                                    padding: 0,
+                                    background: 'transparent'
+                                }}
+                            >
+                                <img
+                                    src={src}
+                                    alt={`${project.title} work sample ${i + 1}`}
+                                    style={{
+                                        width: '100%',
+                                        height: 'auto',
+                                        display: 'block',
+                                        transition: 'transform 0.3s, opacity 0.3s'
+                                    }}
+                                    onMouseEnter={(e) => {
+                                        e.currentTarget.style.transform = 'scale(1.05)';
+                                        e.currentTarget.style.opacity = '0.8';
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        e.currentTarget.style.transform = 'scale(1)';
+                                        e.currentTarget.style.opacity = '1';
+                                    }}
+                                    loading={i === 0 ? "eager" : "lazy"}
+                                />
+                            </button>
                         ))}
                     </div>
                 </div>
             </section>
-
             {/* ── RESULTS ──────────────────────────────────── */}
             <section className={styles.results}>
                 <div className={styles.container}>

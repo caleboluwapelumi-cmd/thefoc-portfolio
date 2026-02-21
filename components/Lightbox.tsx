@@ -14,11 +14,75 @@ export default function Lightbox({ images, initialIndex, onClose }: Props) {
     const prev = () => setIndex((index - 1 + images.length) % images.length);
 
     return (
-        <div className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center" onClick={onClose}>
-            <button onClick={onClose} className="absolute top-4 right-4 text-white text-3xl hover:text-cyan-400 z-10">×</button>
-            <button onClick={(e) => { e.stopPropagation(); prev(); }} className="absolute left-4 text-white text-4xl hover:text-cyan-400">‹</button>
-            <button onClick={(e) => { e.stopPropagation(); next(); }} className="absolute right-4 text-white text-4xl hover:text-cyan-400">›</button>
-            <img src={images[index]} alt="" className="max-h-[90vh] max-w-[90vw] object-contain" onClick={(e) => e.stopPropagation()} />
+        <div
+            style={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                backgroundColor: 'rgba(0,0,0,0.95)',
+                zIndex: 9999,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+            }}
+            onClick={onClose}
+        >
+            <button
+                onClick={onClose}
+                style={{
+                    position: 'absolute',
+                    top: '1rem',
+                    right: '1rem',
+                    color: 'white',
+                    fontSize: '3rem',
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer',
+                    zIndex: 10000
+                }}
+            >
+                ×
+            </button>
+            <button
+                onClick={(e) => { e.stopPropagation(); prev(); }}
+                style={{
+                    position: 'absolute',
+                    left: '1rem',
+                    color: 'white',
+                    fontSize: '4rem',
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer'
+                }}
+            >
+                ‹
+            </button>
+            <button
+                onClick={(e) => { e.stopPropagation(); next(); }}
+                style={{
+                    position: 'absolute',
+                    right: '1rem',
+                    color: 'white',
+                    fontSize: '4rem',
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer'
+                }}
+            >
+                ›
+            </button>
+            <img
+                src={images[index]}
+                alt=""
+                style={{
+                    maxHeight: '90vh',
+                    maxWidth: '90vw',
+                    objectFit: 'contain'
+                }}
+                onClick={(e) => e.stopPropagation()}
+            />
         </div>
     );
 }

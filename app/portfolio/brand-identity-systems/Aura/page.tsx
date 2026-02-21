@@ -8,7 +8,7 @@ export const metadata: Metadata = {
         "A refined brand identity system for Aura — balancing elegance with bold presence across every touchpoint.",
 };
 
-const images = Array.from({ length: 21 }, (_, i) =>
+const images = Array.from({ length: 21 }).map((_, i) =>
     `/portfolio/brand-identity-systems/aura/Artboard ${i + 1}.png`
 );
 
@@ -16,8 +16,19 @@ export default function AuraPage() {
     return (
         <main className={styles.page} style={{ "--accent": "#00e4ff" } as React.CSSProperties}>
             {/* ── HERO ── */}
-            <section className={styles.hero}>
-                <div className={`${styles.container} ${styles.heroContent}`}>
+            <section className={styles.hero} style={{
+                backgroundImage: 'url(/portfolio/brand-identity-systems/aura/Artboard%201.png)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                position: 'relative'
+            }}>
+                <div style={{
+                    position: 'absolute',
+                    inset: 0,
+                    backgroundColor: 'rgba(0,0,0,0.6)',
+                    zIndex: 1
+                }} />
+                <div className={`${styles.container} ${styles.heroContent}`} style={{ position: 'relative', zIndex: 2 }}>
                     <nav className={styles.breadcrumb}>
                         <a href="/" className={styles.breadcrumbLink}>Home</a>
                         <span className={styles.breadcrumbSep}>›</span>

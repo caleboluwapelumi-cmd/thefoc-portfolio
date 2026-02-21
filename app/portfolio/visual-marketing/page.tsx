@@ -16,7 +16,7 @@ const project: ProjectDetailData = {
     description:
         "Eye-catching flyers, social graphics, and promotional materials that cut through the noise and drive real engagement.",
     hero: {
-        image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1920&h=800&fit=crop",
+        image: "/portfolio/visual-marketing/19th%20Jan.jpg",
     },
     overview: {
         challenge:

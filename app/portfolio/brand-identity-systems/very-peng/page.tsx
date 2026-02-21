@@ -16,8 +16,19 @@ export default function VeryPengPage() {
     return (
         <main className={styles.page} style={{ "--accent": "#00e4ff" } as React.CSSProperties}>
             {/* ── HERO ── */}
-            <section className={styles.hero}>
-                <div className={`${styles.container} ${styles.heroContent}`}>
+            <section className={styles.hero} style={{
+                backgroundImage: 'url(/portfolio/brand-identity-systems/very-peng/Artboard%201.png)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                position: 'relative'
+            }}>
+                <div style={{
+                    position: 'absolute',
+                    inset: 0,
+                    backgroundColor: 'rgba(0,0,0,0.6)',
+                    zIndex: 1
+                }} />
+                <div className={`${styles.container} ${styles.heroContent}`} style={{ position: 'relative', zIndex: 2 }}>
                     <nav className={styles.breadcrumb}>
                         <a href="/" className={styles.breadcrumbLink}>Home</a>
                         <span className={styles.breadcrumbSep}>›</span>
@@ -30,11 +41,9 @@ export default function VeryPengPage() {
 
                     <h1 className={styles.heroTitle}>Very Peng</h1>
                     <p className={styles.heroTagline}>
-                        Unapologetically bold — a brand identity that commands attention and owns the culture.
-                    </p>
+                        Unapologetically bold — a brand identity that commands attention and owns the culture.    </p>
                 </div>
             </section>
-
             {/* ── BRIEF ── */}
             <section className={styles.brief}>
                 <div className={styles.container}>

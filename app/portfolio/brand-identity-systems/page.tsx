@@ -1,36 +1,41 @@
+"use client";
+import { useState, useEffect } from "react";
 import type { Metadata } from "next";
 import styles from "./page.module.css";
-
-export const metadata: Metadata = {
-    title: "Brand Identity Systems | TheFOC Portfolio",
-    description:
-        "Complete brand systems — from logo design to comprehensive visual guidelines — that resonate across every touchpoint.",
-};
 
 const brands = [
     {
         name: "Aura",
         slug: "Aura",
-        image: "/portfolio/brand-identity-systems/aura/Artboard 1.png",
+        image: "/portfolio/brand-identity-systems/aura/Artboard%201.png",
     },
     {
         name: "Pureglow",
         slug: "Pureglow",
-        image: "/portfolio/brand-identity-systems/pureglow/Artboard 1.png",
+        image: "/portfolio/brand-identity-systems/pureglow/Artboard%201.png",
     },
     {
         name: "Enjoy Food",
         slug: "enjoy-food",
-        image: "/portfolio/brand-identity-systems/enjoy-food/Artboard 1.png",
+        image: "/portfolio/brand-identity-systems/enjoy-food/Artboard%201.png",
     },
     {
         name: "Very Peng",
         slug: "very-peng",
-        image: "/portfolio/brand-identity-systems/very-peng/Artboard 1.png",
+        image: "/portfolio/brand-identity-systems/very-peng/Artboard%201.png",
     },
 ];
 
 export default function BrandIdentitySystemsPage() {
+    const [currentImage, setCurrentImage] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentImage((prev) => (prev + 1) % brands.length);
+        }, 4000);
+        return () => clearInterval(interval);
+    }, []);
+
     return (
         <main className={styles.page} style={{ "--accent": "#00e4ff" } as React.CSSProperties}>
             {/* ── HERO ── */}
@@ -38,33 +43,25 @@ export default function BrandIdentitySystemsPage() {
                 <div
                     className={styles.heroBg}
                     style={{
-                        backgroundImage:
-                            "url(https://images.unsplash.com/photo-1634942537034-2531766767d1?w=1920&h=800&fit=crop)",
+                        backgroundImage: `url(${brands[currentImage].image})`,
+                        transition: 'opacity 1s ease-in-out',
                     }}
                 />
                 <div className={styles.heroOverlay} />
 
                 <div className={styles.heroContent}>
                     <nav className={styles.breadcrumb}>
-                        <a href="/" className={styles.breadcrumbLink}>
-                            Home
-                        </a>
+                        <a href="/" className={styles.breadcrumbLink}>Home</a>
                         <span className={styles.breadcrumbSep}>›</span>
-                        <a href="/portfolio" className={styles.breadcrumbLink}>
-                            Portfolio
-                        </a>
+                        <a href="/portfolio" className={styles.breadcrumbLink}>Portfolio</a>
                         <span className={styles.breadcrumbSep}>›</span>
-                        <span className={styles.breadcrumbCurrent}>
-                            Brand Identity Systems
-                        </span>
+                        <span className={styles.breadcrumbCurrent}>Brand Identity Systems</span>
                     </nav>
 
                     <span className={styles.categoryTag}>Branding</span>
                     <h1 className={styles.heroTitle}>Brand Identity Systems</h1>
                     <p className={styles.heroDesc}>
-                        Complete brand systems — from logo design to
-                        comprehensive visual guidelines — that resonate across
-                        every touchpoint.
+                        Complete brand systems — from logo design to comprehensive visual guidelines — that resonate across every touchpoint.
                     </p>
                 </div>
             </section>
