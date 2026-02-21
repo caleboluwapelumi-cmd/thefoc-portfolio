@@ -1,3 +1,6 @@
+"use client";
+import { useState } from "react";
+import Lightbox from "./Lightbox";
 import styles from "@/app/portfolio/[slug]/page.module.css";
 
 export interface ProcessStep {
@@ -30,6 +33,7 @@ interface Props {
 
 export default function ProjectDetailLayout({ project }: Props) {
     const accent = project.accentColor;
+    const [lightbox, setLightbox] = useState<number | null>(null);
 
     return (
         <main className={styles.page}>
@@ -115,16 +119,8 @@ export default function ProjectDetailLayout({ project }: Props) {
 
                     <div className={styles.galleryGrid}>
                         {project.gallery.map((src, i) => (
-                            <div
-                                key={i}
-                                className={`${styles.galleryItem} ${i === 0 ? styles.galleryItemWide : ""}`}
-                            >
-                                <img
-                                    src={src}
-                                    alt={`${project.title} work sample ${i + 1}`}
-                                    className={styles.galleryImg}
-                                    loading={i === 0 ? "eager" : "lazy"}
-                                />
+                            <div key={i} className={`${styles.galleryItem} ${i === 0 ? styles.galleryItemWide : ""}`} onClick={() => setLightbox(i)}>
+                                <img src={src} alt={`${project.title} ${i + 1}`} className={`${styles.galleryImg} cursor-pointer hover:opacity-80`} loading={i === 0 ? "eager" : "lazy"} />
                             </div>
                         ))}
                     </div>
@@ -170,6 +166,8 @@ export default function ProjectDetailLayout({ project }: Props) {
                     </a>
                 </div>
             </section>
-        </main>
+
+            {lightbox !== null && <Lightbox images={project.gallery} initialIndex={lightbox} onClose={() => setLightbox(null)} />}
+        </main >
     );
 }

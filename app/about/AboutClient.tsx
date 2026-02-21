@@ -60,8 +60,8 @@ export default function AboutClient() {
                             >
                                 <div className={styles.imageWrapper}>
                                     <img
-                                        src={ABOUT_IMAGE}
-                                        alt="TheFOC — Brand Identity Specialist"
+                                        src="/images/FOC-6.jpg"
+                                        alt="TheFOC"
                                         className={styles.image}
                                     />
                                 </div>

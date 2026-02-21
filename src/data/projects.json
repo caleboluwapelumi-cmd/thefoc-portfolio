@@ -4,8 +4,7 @@
         "title": "Visual Marketing",
         "description": "Eye-catching flyers, social graphics, and promotional materials that drive engagement",
         "category": "Graphics",
-        "slug": "visual-marketing",
-        "image": "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop",
+        "image": "/portfolio/visual-marketing/Jan 1.jpg",
         "color": "#8d04e4",
         "link": "/portfolio/visual-marketing"
     },
@@ -14,8 +13,7 @@
         "title": "Brand Identity Systems",
         "description": "Complete brand development from logos to visual guidelines and touchpoint design",
         "category": "Branding",
-        "slug": "brand-identity-systems",
-        "image": "https://images.unsplash.com/photo-1634942537034-2531766767d1?w=800&h=600&fit=crop",
+        "image": "/portfolio/brand-identity-systems/pureglow/Artboard 1.png",
         "color": "#00e4ff",
         "link": "/portfolio/brand-identity-systems"
     },
@@ -24,7 +22,6 @@
         "title": "Brand Strategy Sessions",
         "description": "One-on-one strategic consultation to define positioning, messaging, and growth roadmap",
         "category": "Strategy",
-        "slug": "brand-strategy-sessions",
         "image": "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop",
         "color": "#6b21a8",
         "link": "/portfolio/brand-strategy-sessions"

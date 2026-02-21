@@ -103,8 +103,8 @@ export default function Home() {
                 type="button"
               >
                 <img
-                  src={ABOUT_IMAGE}
-                  alt="TheFOC — Brand Identity Specialist"
+                  src="/images/FOC-6.jpg"
+                  alt="TheFOC"
                   className={styles.aboutImage}
                 />
                 <span className={styles.aboutImageOverlay} aria-hidden="true">
