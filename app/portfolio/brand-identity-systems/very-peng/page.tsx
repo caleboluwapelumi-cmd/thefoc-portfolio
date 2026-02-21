@@ -1,0 +1,72 @@
+import type { Metadata } from "next";
+import styles from "../BrandDetailPage.module.css";
+import BrandGallery from "@/components/BrandGallery";
+
+export const metadata: Metadata = {
+    title: "Very Peng | Brand Identity Systems | TheFOC",
+    description:
+        "A bold, street-culture-inspired brand identity for Very Peng — dripping with confidence and character.",
+};
+
+const images = Array.from({ length: 18 }, (_, i) =>
+    `/portfolio/brand-identity-systems/very-peng/Artboard ${i + 1}.png`
+);
+
+export default function VeryPengPage() {
+    return (
+        <main className={styles.page} style={{ "--accent": "#00e4ff" } as React.CSSProperties}>
+            {/* ── HERO ── */}
+            <section className={styles.hero}>
+                <div className={`${styles.container} ${styles.heroContent}`}>
+                    <nav className={styles.breadcrumb}>
+                        <a href="/" className={styles.breadcrumbLink}>Home</a>
+                        <span className={styles.breadcrumbSep}>›</span>
+                        <a href="/portfolio" className={styles.breadcrumbLink}>Portfolio</a>
+                        <span className={styles.breadcrumbSep}>›</span>
+                        <a href="/portfolio/brand-identity-systems" className={styles.breadcrumbLink}>Brand Identity Systems</a>
+                        <span className={styles.breadcrumbSep}>›</span>
+                        <span className={styles.breadcrumbCurrent}>Very Peng</span>
+                    </nav>
+
+                    <h1 className={styles.heroTitle}>Very Peng</h1>
+                    <p className={styles.heroTagline}>
+                        Unapologetically bold — a brand identity that commands attention and owns the culture.
+                    </p>
+                </div>
+            </section>
+
+            {/* ── BRIEF ── */}
+            <section className={styles.brief}>
+                <div className={styles.container}>
+                    <span className={styles.briefLabel} style={{ color: "#00e4ff" }}>
+                        About the Brand
+                    </span>
+                    <p className={styles.briefText}>
+                        Very Peng is a streetwear-adjacent lifestyle brand rooted in Nigerian slang and urban culture.
+                        We designed a high-energy identity system — featuring a punchy logotype, vibrant colour
+                        combinations, bold graphic patterns, and merchandise mockups — that resonates with a young,
+                        fashion-forward audience and stands out on any platform.
+                    </p>
+                </div>
+            </section>
+
+            {/* ── GALLERY ── */}
+            <section className={styles.gallery}>
+                <div className={styles.container}>
+                    <span className={styles.galleryLabel} style={{ color: "#00e4ff" }}>
+                        Brand Assets
+                    </span>
+                    <h2 className={styles.galleryHeading}>Complete Identity System</h2>
+                    <BrandGallery images={images} brandName="Very Peng" />
+                </div>
+            </section>
+
+            {/* ── BACK ── */}
+            <section className={styles.backSection}>
+                <a href="/portfolio/brand-identity-systems" className={styles.backLink}>
+                    ← Back to Brand Identity Systems
+                </a>
+            </section>
+        </main>
+    );
+}

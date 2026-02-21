@@ -5,7 +5,7 @@
 @keyframes heroStagger {
     from {
         opacity: 0;
-        transform: translateY(24px);
+        transform: translateY(32px);
     }
 
     to {
@@ -17,11 +17,11 @@
 @keyframes heroStaggerFade {
     from {
         opacity: 0;
-        transform: translateY(24px);
+        transform: translateY(20px);
     }
 
     to {
-        opacity: 0.7;
+        opacity: 0.6;
         transform: translateY(0);
     }
 }
@@ -132,23 +132,62 @@
     }
 }
 
+/* ===========================================
+   SCROLL INDICATOR ANIMATION
+   =========================================== */
 
+@keyframes scrollBounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+        opacity: 0.6;
+    }
+
+    50% {
+        transform: translateY(8px);
+        opacity: 1;
+    }
+}
+
+@keyframes scrollFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
 
 /* ===========================================
-   CTA BUTTON GLOW PULSE
+   CTA BUTTON GLOW PULSE (subtle)
    =========================================== */
 
 @keyframes ctaGlow {
 
     0%,
     100% {
-        box-shadow: 0 0 20px rgba(107, 33, 168, 0.3),
-            0 0 60px rgba(107, 33, 168, 0.1);
+        box-shadow:
+            0 0 20px rgba(107, 33, 168, 0.2),
+            0 0 60px rgba(107, 33, 168, 0.05);
     }
 
     50% {
-        box-shadow: 0 0 30px rgba(107, 33, 168, 0.5),
-            0 0 80px rgba(107, 33, 168, 0.2);
+        box-shadow:
+            0 0 30px rgba(107, 33, 168, 0.35),
+            0 0 80px rgba(107, 33, 168, 0.1);
+    }
+}
+
+/* CTA Shimmer sweep */
+@keyframes ctaShimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
     }
 }
 
@@ -158,20 +197,34 @@
 
 .hero {
     min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 2rem 1.25rem;
+    padding: 2rem 1.5rem 4rem;
     position: relative;
     overflow: hidden;
-    /* Subtle top-to-bottom purple-black gradient, hero only */
+    /* Ultra-subtle depth gradient — barely noticeable, hero only */
     background: linear-gradient(180deg,
-            #1a0a2e 0%,
-            #2d1b4e 35%,
-            #140820 65%,
+            #0a0514 0%,
+            #1a0f2e 45%,
             #0a0a0a 100%);
+}
+
+/* --- Film Grain Overlay --- */
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+    pointer-events: none;
+    z-index: 3;
+    opacity: 0.5;
+    mix-blend-mode: overlay;
 }
 
 /* --- Animated Particle Background --- */
@@ -193,138 +246,138 @@
 
 /* — MOBILE-VISIBLE PARTICLES (1–8) — */
 
-/* p1 — small purple circle, top-left zone */
+/* p1 — small muted-purple circle, top-left zone */
 .p1 {
     width: 28px;
     height: 28px;
-    background: rgba(139, 92, 246, 0.5);
+    background: rgba(45, 27, 78, 0.20);
     top: 12%;
     left: 8%;
-    animation: floatA 18s ease-in-out infinite;
+    animation: floatA 20s ease-in-out infinite;
     animation-delay: 0s;
 }
 
-/* p2 — medium cyan circle, top-right zone */
+/* p2 — medium faint-cyan circle, top-right zone */
 .p2 {
     width: 50px;
     height: 50px;
-    background: rgba(0, 228, 255, 0.4);
-    filter: blur(6px);
+    background: rgba(0, 228, 255, 0.10);
+    filter: blur(8px);
     top: 8%;
     right: 12%;
     animation: floatB 22s ease-in-out infinite;
     animation-delay: -4s;
 }
 
-/* p3 — small rounded square, dark purple, mid-left */
+/* p3 — small rounded square, deep purple, mid-left */
 .p3 {
     width: 22px;
     height: 22px;
     border-radius: 6px;
-    background: rgba(107, 33, 168, 0.55);
+    background: rgba(26, 15, 46, 0.18);
     top: 42%;
     left: 5%;
     animation: floatF 25s ease-in-out infinite;
     animation-delay: -8s;
 }
 
-/* p4 — medium purple circle, bottom-left */
+/* p4 — medium muted-purple orb, bottom-left */
 .p4 {
     width: 60px;
     height: 60px;
-    background: rgba(139, 92, 246, 0.3);
-    filter: blur(10px);
+    background: rgba(45, 27, 78, 0.15);
+    filter: blur(12px);
     bottom: 18%;
     left: 18%;
-    animation: floatD 20s ease-in-out infinite;
+    animation: floatD 22s ease-in-out infinite;
     animation-delay: -2s;
 }
 
-/* p5 — tiny cyan dot, center-top */
+/* p5 — tiny faint-cyan dot, center-top */
 .p5 {
     width: 20px;
     height: 20px;
-    background: rgba(0, 228, 255, 0.55);
+    background: rgba(0, 228, 255, 0.12);
     top: 22%;
     left: 48%;
-    animation: floatC 17s ease-in-out infinite;
+    animation: floatC 18s ease-in-out infinite;
     animation-delay: -10s;
 }
 
-/* p6 — medium rounded square, cyan, bottom-right */
+/* p6 — medium rounded square, faint cyan, bottom-right */
 .p6 {
     width: 40px;
     height: 40px;
     border-radius: 10px;
-    background: rgba(0, 228, 255, 0.35);
-    filter: blur(4px);
+    background: rgba(0, 228, 255, 0.10);
+    filter: blur(6px);
     bottom: 12%;
     right: 10%;
     animation: floatE 24s ease-in-out infinite;
     animation-delay: -6s;
 }
 
-/* p7 — small dark-purple circle, upper-right */
+/* p7 — small deep-purple circle, upper-right */
 .p7 {
     width: 32px;
     height: 32px;
-    background: rgba(107, 33, 168, 0.5);
+    background: rgba(26, 15, 46, 0.18);
     top: 30%;
     right: 6%;
-    animation: floatA 20s ease-in-out infinite;
+    animation: floatA 21s ease-in-out infinite;
     animation-delay: -13s;
 }
 
-/* p8 — blurred purple orb, bottom-center */
+/* p8 — blurred muted-purple orb, bottom-center */
 .p8 {
     width: 80px;
     height: 80px;
-    background: rgba(139, 92, 246, 0.3);
-    filter: blur(20px);
+    background: rgba(45, 27, 78, 0.12);
+    filter: blur(22px);
     bottom: 8%;
     left: 42%;
-    animation: floatD 22s ease-in-out infinite;
+    animation: floatD 23s ease-in-out infinite;
     animation-delay: -3s;
 }
 
 /* — DESKTOP-ONLY PARTICLES (9–17, hidden on mobile) — */
 
-/* p9 — tiny purple square, upper-center-left */
+/* p9 — tiny deep-purple square, upper-center-left */
 .p9 {
     display: none;
     width: 24px;
     height: 24px;
     border-radius: 6px;
-    background: rgba(139, 92, 246, 0.45);
+    background: rgba(45, 27, 78, 0.16);
     top: 18%;
     left: 28%;
-    animation: floatB 21s ease-in-out infinite;
+    animation: floatB 22s ease-in-out infinite;
     animation-delay: -6s;
 }
 
-/* p10 — small cyan circle, mid-right */
+/* p10 — small faint-cyan circle, mid-right */
 .p10 {
     display: none;
     width: 36px;
     height: 36px;
-    background: rgba(0, 228, 255, 0.45);
-    filter: blur(5px);
+    background: rgba(0, 228, 255, 0.10);
+    filter: blur(6px);
     top: 55%;
     right: 20%;
     animation: floatC 25s ease-in-out infinite;
     animation-delay: -4s;
 }
 
-/* p11 — blurred cyan orb, top-center */
+/* p11 — blurred faint-cyan orb, top-center */
 .p11 {
     display: none;
     width: 70px;
     height: 70px;
-    background: rgba(0, 228, 255, 0.25);
-    filter: blur(18px);
+    background: rgba(0, 228, 255, 0.08);
+    filter: blur(20px);
     top: 5%;
     left: 55%;
-    animation: floatA 18s ease-in-out infinite;
+    animation: floatA 19s ease-in-out infinite;
     animation-delay: -12s;
 }
 
@@ -334,74 +387,74 @@
     width: 26px;
     height: 26px;
     border-radius: 7px;
-    background: rgba(107, 33, 168, 0.55);
+    background: rgba(26, 15, 46, 0.18);
     top: 48%;
     left: 62%;
-    animation: floatF 23s ease-in-out infinite;
+    animation: floatF 24s ease-in-out infinite;
     animation-delay: -9s;
 }
 
-/* p13 — medium purple circle, lower-right */
+/* p13 — medium muted-purple orb, lower-right */
 .p13 {
     display: none;
     width: 48px;
     height: 48px;
-    background: rgba(139, 92, 246, 0.35);
-    filter: blur(8px);
+    background: rgba(45, 27, 78, 0.12);
+    filter: blur(10px);
     bottom: 25%;
     right: 32%;
-    animation: floatE 19s ease-in-out infinite;
+    animation: floatE 20s ease-in-out infinite;
     animation-delay: -2s;
 }
 
-/* p14 — tiny cyan dot, mid-left */
+/* p14 — tiny faint-cyan dot, mid-left */
 .p14 {
     display: none;
     width: 18px;
     height: 18px;
-    background: rgba(0, 228, 255, 0.55);
+    background: rgba(0, 228, 255, 0.12);
     top: 65%;
     left: 25%;
-    animation: floatD 16s ease-in-out infinite;
+    animation: floatD 17s ease-in-out infinite;
     animation-delay: -7s;
 }
 
-/* p15 — small purple circle, upper-right zone */
+/* p15 — small muted-purple circle, upper-right zone */
 .p15 {
     display: none;
     width: 30px;
     height: 30px;
-    background: rgba(139, 92, 246, 0.4);
-    filter: blur(3px);
+    background: rgba(45, 27, 78, 0.14);
+    filter: blur(4px);
     top: 14%;
     right: 35%;
     animation: floatB 24s ease-in-out infinite;
     animation-delay: -5s;
 }
 
-/* p16 — blurred dark-purple orb, left-center */
+/* p16 — blurred deep-purple orb, left-center */
 .p16 {
     display: none;
     width: 65px;
     height: 65px;
-    background: rgba(107, 33, 168, 0.35);
-    filter: blur(16px);
+    background: rgba(26, 15, 46, 0.16);
+    filter: blur(18px);
     top: 38%;
     left: 15%;
-    animation: floatC 21s ease-in-out infinite;
+    animation: floatC 22s ease-in-out infinite;
     animation-delay: -11s;
 }
 
-/* p17 — small rounded square, cyan, lower-right */
+/* p17 — small rounded square, faint cyan, lower-right */
 .p17 {
     display: none;
     width: 22px;
     height: 22px;
     border-radius: 6px;
-    background: rgba(0, 228, 255, 0.5);
+    background: rgba(0, 228, 255, 0.10);
     top: 72%;
     right: 8%;
-    animation: floatA 15s ease-in-out infinite;
+    animation: floatA 16s ease-in-out infinite;
     animation-delay: -3s;
 }
 
@@ -414,70 +467,145 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    max-width: 720px;
 }
 
 .heroTitle {
-    font-size: 2.5rem;
+    font-size: 2.75rem;
     font-weight: 700;
-    letter-spacing: -0.04em;
-    line-height: 1;
+    letter-spacing: -0.05em;
+    line-height: 0.95;
     color: var(--color-text, #ffffff);
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
     opacity: 0;
-    animation: heroStagger 0.8s ease forwards;
-    animation-delay: 0.1s;
+    animation: heroStagger 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.15s;
 }
 
 .heroSubtitle {
-    font-size: 1rem;
+    font-size: 0.9375rem;
     font-weight: 500;
     color: var(--color-accent, #00e4ff);
-    letter-spacing: 0.02em;
-    margin-bottom: 1.5rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 1.75rem;
     opacity: 0;
-    animation: heroStagger 0.8s ease forwards;
-    animation-delay: 0.3s;
+    animation: heroStagger 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.35s;
 }
 
 .heroTagline {
     font-size: 0.9375rem;
-    color: var(--color-text, #ffffff);
+    color: rgba(255, 255, 255, 0.5);
     opacity: 0;
-    line-height: 1.6;
-    max-width: 480px;
-    animation: heroStaggerFade 0.8s ease forwards;
-    animation-delay: 0.5s;
+    line-height: 1.7;
+    max-width: 440px;
+    letter-spacing: 0.01em;
+    animation: heroStaggerFade 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.55s;
 }
 
+/* --- CTA Button (premium glass-morphism) --- */
 .heroCta {
     display: block;
     width: 100%;
-    margin-top: 2.5rem;
+    margin-top: 3rem;
     padding: 1rem 2.5rem;
-    background-color: #6b21a8;
+    background: linear-gradient(135deg, #6b21a8, #5b21b6);
     color: #ffffff;
-    font-size: 1rem;
+    font-size: 0.9375rem;
     font-weight: 600;
-    border: none;
+    border: 1px solid rgba(139, 92, 246, 0.3);
     border-radius: 0.5rem;
     text-decoration: none;
     cursor: pointer;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.04em;
     text-align: center;
+    text-transform: uppercase;
     box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
     opacity: 0;
-    animation: heroStagger 0.8s ease forwards, ctaGlow 4s ease-in-out infinite;
-    animation-delay: 0.7s, 1.5s;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    animation: heroStagger 1s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+        ctaGlow 5s ease-in-out 2s infinite;
+    animation-delay: 0.75s, 2s;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Shimmer sweep on hover */
+.heroCta::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(105deg,
+            transparent 20%,
+            rgba(255, 255, 255, 0.08) 40%,
+            rgba(255, 255, 255, 0.12) 50%,
+            rgba(255, 255, 255, 0.08) 60%,
+            transparent 80%);
+    transform: translateX(-100%);
+    transition: none;
+}
+
+.heroCta:hover::after {
+    animation: ctaShimmer 0.6s ease forwards;
 }
 
 .heroCta:hover {
-    background-color: #7c3aed;
-    transform: scale(1.05);
+    background: linear-gradient(135deg, #7c3aed, #6d28d9);
+    border-color: rgba(139, 92, 246, 0.5);
+    transform: translateY(-2px);
+    box-shadow:
+        0 8px 32px rgba(107, 33, 168, 0.35),
+        0 0 0 1px rgba(139, 92, 246, 0.15);
+    color: #ffffff;
 }
 
 .heroCta:active {
-    transform: scale(0.98);
+    transform: translateY(0) scale(0.98);
+}
+
+/* --- Scroll Indicator --- */
+.scrollIndicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    animation: scrollFadeIn 1s ease 1.5s forwards;
+}
+
+.scrollLine {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom,
+            rgba(255, 255, 255, 0.3),
+            transparent);
+    position: relative;
+}
+
+.scrollDot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    animation: scrollBounce 2s ease-in-out infinite;
+}
+
+.scrollText {
+    font-size: 0.625rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: rgba(255, 255, 255, 0.3);
 }
 
 /* ===========================================
@@ -485,9 +613,24 @@
    =========================================== */
 
 .about {
-    background: rgba(0, 0, 0, 0.55);
-    backdrop-filter: blur(2px);
-    padding: 4rem 1.25rem;
+    background: var(--color-surface, #0a0a0a);
+    padding: 5rem 1.5rem;
+    position: relative;
+}
+
+/* Subtle top divider line */
+.about::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(to right,
+            transparent,
+            rgba(107, 33, 168, 0.2),
+            rgba(0, 228, 255, 0.08),
+            transparent);
 }
 
 .aboutInner {
@@ -496,12 +639,13 @@
 }
 
 .sectionLabel {
-    font-size: 0.875rem;
-    font-weight: 500;
+    font-size: 0.75rem;
+    font-weight: 600;
     color: var(--color-accent, #00e4ff);
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
+    font-family: var(--font-body);
 }
 
 /* --- Two-Column Grid --- */
@@ -509,7 +653,7 @@
 .aboutGrid {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 3.75rem;
 }
 
 /* --- Image Column --- */
@@ -527,9 +671,9 @@
     border: none;
     padding: 0;
     cursor: pointer;
-    border-radius: 0.5rem;
+    border-radius: 0.75rem;
     overflow: hidden;
-    transition: transform 0.35s ease;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .aboutImageBtn:hover {
@@ -538,7 +682,7 @@
 
 .aboutImageWrapper {
     width: 100%;
-    border-radius: 0.5rem;
+    border-radius: 0.75rem;
     overflow: hidden;
     background-color: rgba(10, 10, 10, 0.8);
 }
@@ -548,20 +692,20 @@
     height: auto;
     display: block;
     object-fit: contain;
-    border-radius: 0.5rem;
+    border-radius: 0.75rem;
 }
 
 /* Hover overlay */
 .aboutImageOverlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.35);
+    background: rgba(0, 0, 0, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
-    transition: opacity 0.3s ease;
-    border-radius: 0.5rem;
+    transition: opacity 0.4s ease;
+    border-radius: 0.75rem;
 }
 
 .aboutImageBtn:hover .aboutImageOverlay {
@@ -584,9 +728,8 @@
 
 .bioText {
     font-size: 1rem;
-    line-height: 1.8;
-    color: var(--color-text, #ffffff);
-    opacity: 0.9;
+    line-height: 1.9;
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .bioText p {
@@ -615,15 +758,16 @@
 
 @media (min-width: 768px) {
     .hero {
-        padding: 4rem;
+        padding: 4rem 4rem 5rem;
     }
 
     .heroTitle {
-        font-size: 4rem;
+        font-size: 5rem;
     }
 
     .heroSubtitle {
-        font-size: 1.25rem;
+        font-size: 1rem;
+        letter-spacing: 0.1em;
     }
 
     .heroTagline {
@@ -631,17 +775,17 @@
     }
 
     .heroCta {
-        font-size: 1.05rem;
-        padding: 1rem 2.75rem;
+        font-size: 0.9375rem;
+        padding: 1rem 3rem;
     }
 
     .about {
-        padding: 6rem 4rem;
+        padding: 8rem 4rem;
     }
 
     .aboutGrid {
         flex-direction: row;
-        gap: 4rem;
+        gap: 6rem;
     }
 
     .aboutImageCol {
@@ -673,6 +817,10 @@
     .p17 {
         display: block;
     }
+
+    .scrollIndicator {
+        bottom: 3rem;
+    }
 }
 
 /* ===========================================
@@ -680,25 +828,30 @@
    =========================================== */
 
 @media (min-width: 1024px) {
+    .heroContent {
+        max-width: 800px;
+    }
+
     .heroTitle {
-        font-size: 6rem;
+        font-size: 6.5rem;
     }
 
     .heroSubtitle {
-        font-size: 1.5rem;
+        font-size: 1.0625rem;
     }
 
     .heroTagline {
         font-size: 1.125rem;
+        max-width: 520px;
     }
 
     .heroCta {
-        font-size: 1.1rem;
-        padding: 1.1rem 3rem;
+        font-size: 0.9375rem;
+        padding: 1.1rem 3.25rem;
     }
 
     .about {
-        padding: 8rem 4rem;
+        padding: 10rem 4rem;
     }
 
     .bioText {
@@ -721,11 +874,24 @@
     }
 
     .heroTagline {
-        opacity: 0.7;
+        opacity: 0.6;
     }
 
     .particle {
         animation: none !important;
+    }
+
+    .scrollIndicator {
+        animation: none;
+        opacity: 1;
+    }
+
+    .scrollDot {
+        animation: none;
+    }
+
+    .heroCta::after {
+        display: none;
     }
 }
 
@@ -771,7 +937,7 @@
     width: auto;
     height: auto;
     object-fit: contain;
-    border-radius: 0.375rem;
+    border-radius: 0.5rem;
     box-shadow: 0 32px 80px rgba(0, 0, 0, 0.8);
 }
 
@@ -784,8 +950,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 50%;
     cursor: pointer;
     font-size: 1.75rem;
@@ -797,7 +963,7 @@
 }
 
 .lightboxClose:hover {
-    background: rgba(0, 228, 255, 0.15);
+    background: rgba(0, 228, 255, 0.12);
     border-color: var(--color-accent, #00e4ff);
     color: var(--color-accent, #00e4ff);
 }

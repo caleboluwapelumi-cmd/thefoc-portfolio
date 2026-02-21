@@ -3,7 +3,7 @@
    =========================================== */
 
 .page {
-    padding-top: 6rem;
+    padding-top: 5rem;
     padding-bottom: 3rem;
     min-height: 100vh;
     background-color: var(--color-background, #000000);
@@ -47,7 +47,7 @@
 /* --- Section Label --- */
 
 .sectionLabel {
-    font-size: 0.875rem;
+    font-size: 0.75rem;
     font-weight: 500;
     color: var(--color-accent, #00e4ff);
     text-transform: uppercase;
@@ -60,7 +60,7 @@
 .grid {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 3.75rem;
 }
 
 /* --- Image Column --- */
@@ -135,7 +135,7 @@
 
 .bioText {
     font-size: 1rem;
-    line-height: 1.8;
+    line-height: 1.9;
     color: var(--color-text, #ffffff);
     opacity: 0.9;
 }
@@ -177,8 +177,8 @@
 
 @media (min-width: 768px) {
     .page {
-        padding-top: 7rem;
-        padding-bottom: 4rem;
+        padding-top: 8rem;
+        padding-bottom: 5rem;
     }
 
     .container {
@@ -191,7 +191,7 @@
 
     .grid {
         flex-direction: row;
-        gap: 4rem;
+        gap: 5rem;
     }
 
     .imageCol {
@@ -210,7 +210,7 @@
 
 @media (min-width: 1024px) {
     .page {
-        padding-top: 8rem;
+        padding-top: 10rem;
     }
 
     .container {

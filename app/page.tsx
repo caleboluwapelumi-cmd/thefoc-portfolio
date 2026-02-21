@@ -22,7 +22,7 @@ interface AboutContent {
 const hero: HeroContent = contentData.hero;
 const about: AboutContent = contentData.about;
 
-const ABOUT_IMAGE = "/FAB00367-Edit.jpg";
+const ABOUT_IMAGE = "/Images/FOC-6.jpg";
 
 export default function Home() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -79,6 +79,13 @@ export default function Home() {
           <a href="/contact" className={styles.heroCta}>
             Start a Project
           </a>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className={styles.scrollIndicator} aria-hidden="true">
+          <div className={styles.scrollDot} />
+          <div className={styles.scrollLine} />
+          <span className={styles.scrollText}>Scroll</span>
         </div>
       </section>
 

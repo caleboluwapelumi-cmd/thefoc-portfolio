@@ -3,7 +3,7 @@
    =========================================== */
 
 .page {
-    padding-top: 6rem;
+    padding-top: 5rem;
     padding-bottom: 5rem;
     min-height: 100vh;
     background-color: var(--color-background, #000000);
@@ -24,7 +24,7 @@
 .heading {
     font-size: 2rem;
     font-weight: 700;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.015em;
     color: var(--color-text, #ffffff);
     margin-bottom: 0.75rem;
     line-height: 1.1;
@@ -41,7 +41,7 @@
 .grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 2.5rem;
 }
 
 /* --- Project Card --- */
@@ -110,11 +110,11 @@
 
 .category {
     display: inline-block;
-    font-size: 0.6875rem;
+    font-size: 0.75rem;
     font-weight: 700;
     color: var(--color-accent, #00e4ff);
     text-transform: uppercase;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.15em;
     margin-bottom: 0.625rem;
 }
 
@@ -131,7 +131,7 @@
     font-size: 0.9rem;
     line-height: 1.65;
     color: rgba(255, 255, 255, 0.55);
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
 }
 
 .viewLink {
@@ -164,7 +164,7 @@
 @media (min-width: 640px) {
     .grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 1.75rem;
+        gap: 2.25rem;
     }
 }
 
@@ -175,7 +175,7 @@
 @media (min-width: 768px) {
     .page {
         padding-top: 8rem;
-        padding-bottom: 6rem;
+        padding-bottom: 8rem;
     }
 
     .container {
@@ -191,7 +191,7 @@
     }
 
     .header {
-        margin-bottom: 4rem;
+        margin-bottom: 5rem;
     }
 
     .cardContent {
@@ -214,7 +214,7 @@
 
     .grid {
         grid-template-columns: repeat(3, 1fr);
-        gap: 2rem;
+        gap: 2.5rem;
     }
 
     .heading {

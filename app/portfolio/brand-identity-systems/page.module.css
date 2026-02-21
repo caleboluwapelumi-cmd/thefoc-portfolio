@@ -1,0 +1,493 @@
+/* ===========================================
+   BRAND IDENTITY SYSTEMS — CUSTOM PAGE
+   =========================================== */
+
+/* ── SHARED CONTAINER ───────────────────── */
+
+.page {
+    background-color: var(--color-background, #000000);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+}
+
+/* ── SECTION LABELS ─────────────────────── */
+
+.sectionLabel {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.75rem;
+    display: block;
+}
+
+.sectionHeading {
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: var(--color-text, #ffffff);
+    margin-bottom: 3.5rem;
+    line-height: 1.15;
+}
+
+/* ══════════════════════════════════════════
+   HERO
+   ══════════════════════════════════════════ */
+
+.hero {
+    position: relative;
+    min-height: 70vh;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 4rem;
+    overflow: hidden;
+}
+
+.heroBg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transform: scale(1.04);
+    transition: transform 8s ease;
+    z-index: 0;
+}
+
+.heroOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.3) 0%,
+            rgba(0, 0, 0, 0.55) 40%,
+            rgba(0, 0, 0, 0.92) 100%);
+    z-index: 1;
+}
+
+.heroContent {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: 0 1.25rem;
+    padding-top: 7rem;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+
+.breadcrumbLink {
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.55);
+    text-decoration: none;
+    transition: color 0.25s ease;
+}
+
+.breadcrumbLink:hover {
+    color: #ffffff;
+}
+
+.breadcrumbSep {
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.breadcrumbCurrent {
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+/* Category tag */
+.categoryTag {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--accent, #00e4ff);
+    border: 1px solid currentColor;
+    border-radius: 2rem;
+    padding: 0.3rem 0.85rem;
+    margin-bottom: 1.25rem;
+}
+
+/* Hero title */
+.heroTitle {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    line-height: 1.05;
+    color: #ffffff;
+    margin-bottom: 1.25rem;
+    max-width: 700px;
+}
+
+.heroDesc {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.75);
+    max-width: 560px;
+}
+
+/* ══════════════════════════════════════════
+   OVERVIEW
+   ══════════════════════════════════════════ */
+
+.overview {
+    background-color: #0a0a0a;
+    padding: 5rem 0;
+}
+
+.overviewGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+.overviewCol {
+    flex: 1;
+}
+
+.overviewLabel {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.75rem;
+}
+
+.overviewHeading {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: var(--color-text, #ffffff);
+    margin-bottom: 1.25rem;
+    line-height: 1.3;
+}
+
+.overviewText {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* ══════════════════════════════════════════
+   SELECTED WORKS — BRAND GRID
+   ══════════════════════════════════════════ */
+
+.selectedWorks {
+    padding: 5rem 0;
+    background-color: #000000;
+}
+
+.brandGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+}
+
+.brandCard {
+    position: relative;
+    display: block;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    text-decoration: none;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 0.35s ease;
+}
+
+.brandCard:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 28px rgba(141, 4, 228, 0.3);
+    border-color: rgba(141, 4, 228, 0.35);
+}
+
+.brandImageWrap {
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background-color: #111;
+}
+
+.brandImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+}
+
+.brandCard:hover .brandImage {
+    transform: scale(1.06);
+}
+
+/* Overlay with brand name */
+.brandOverlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    background: linear-gradient(to top,
+            rgba(0, 0, 0, 0.75) 0%,
+            rgba(0, 0, 0, 0.15) 40%,
+            transparent 100%);
+    padding: 1.25rem;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+}
+
+.brandCard:hover .brandOverlay {
+    opacity: 1;
+}
+
+.brandName {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.01em;
+}
+
+.brandArrow {
+    display: inline-block;
+    margin-left: 0.35rem;
+    font-size: 0.875rem;
+    opacity: 0.6;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.brandCard:hover .brandArrow {
+    transform: translateX(3px);
+    opacity: 1;
+}
+
+/* ══════════════════════════════════════════
+   CTA
+   ══════════════════════════════════════════ */
+
+.cta {
+    background: linear-gradient(135deg, #0d0d0d 0%, #1a0a2e 50%, #0d0d0d 100%);
+    padding: 6rem 1.25rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(107, 33, 168, 0.2) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.ctaInner {
+    position: relative;
+    z-index: 1;
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.ctaEyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-accent, #00e4ff);
+    margin-bottom: 1.25rem;
+}
+
+.ctaHeading {
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: #ffffff;
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+}
+
+.ctaText {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 3rem;
+}
+
+.ctaButton {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background-color: #6b21a8;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 1.5rem;
+}
+
+.ctaButton:hover {
+    background-color: #7c3aed;
+    transform: scale(1.04);
+    box-shadow: 0 0 32px rgba(107, 33, 168, 0.4);
+    color: #ffffff;
+}
+
+.ctaSecondary {
+    display: block;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.45);
+    text-decoration: none;
+    transition: color 0.25s ease;
+    letter-spacing: 0.02em;
+}
+
+.ctaSecondary:hover {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* ══════════════════════════════════════════
+   TABLET (768px)
+   ══════════════════════════════════════════ */
+
+@media (min-width: 768px) {
+    .container {
+        padding: 0 3rem;
+    }
+
+    .heroContent {
+        padding: 0 3rem;
+        padding-top: 8rem;
+    }
+
+    .heroTitle {
+        font-size: 3.5rem;
+    }
+
+    .heroDesc {
+        font-size: 1.125rem;
+    }
+
+    .overview {
+        padding: 6rem 0;
+    }
+
+    .overviewGrid {
+        flex-direction: row;
+        gap: 6rem;
+    }
+
+    .overviewHeading {
+        font-size: 1.375rem;
+    }
+
+    .selectedWorks {
+        padding: 6rem 0;
+    }
+
+    .brandGrid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+    }
+
+    .brandName {
+        font-size: 0.9375rem;
+    }
+
+    .sectionHeading {
+        font-size: 2.25rem;
+    }
+
+    .cta {
+        padding: 10rem 3rem;
+    }
+
+    .ctaHeading {
+        font-size: 2.5rem;
+    }
+}
+
+/* ══════════════════════════════════════════
+   DESKTOP (1024px)
+   ══════════════════════════════════════════ */
+
+@media (min-width: 1024px) {
+    .container {
+        padding: 0 4rem;
+    }
+
+    .heroContent {
+        padding: 0 4rem;
+        padding-top: 9rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .heroTitle {
+        font-size: 4.5rem;
+    }
+
+    .brandGrid {
+        gap: 2rem;
+    }
+
+    .brandName {
+        font-size: 1.0625rem;
+    }
+
+    .sectionHeading {
+        font-size: 2.75rem;
+    }
+}
+
+/* ══════════════════════════════════════════
+   REDUCED MOTION
+   ══════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+    .heroBg {
+        transition: none;
+    }
+
+    .brandCard {
+        transition: none;
+    }
+
+    .brandCard:hover {
+        transform: none;
+    }
+
+    .brandImage {
+        transition: none;
+    }
+
+    .brandCard:hover .brandImage {
+        transform: none;
+    }
+
+    .brandOverlay {
+        opacity: 1;
+        transition: none;
+    }
+
+    .ctaButton {
+        transition: none;
+    }
+
+    .ctaButton:hover {
+        transform: none;
+    }
+}

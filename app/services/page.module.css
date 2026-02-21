@@ -3,7 +3,7 @@
    =========================================== */
 
 .page {
-    padding-top: 6rem;
+    padding-top: 5rem;
     padding-bottom: 0;
     min-height: 100vh;
     background-color: var(--color-background, #000000);
@@ -18,13 +18,13 @@
 /* --- Page Header --- */
 
 .header {
-    margin-bottom: 4rem;
+    margin-bottom: 5rem;
 }
 
 .heading {
     font-size: 2rem;
     font-weight: 700;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.015em;
     color: var(--color-text, #ffffff);
     margin-bottom: 1rem;
 }
@@ -48,7 +48,7 @@
 /* --- Service Card --- */
 
 .card {
-    padding: 3rem 0;
+    padding: 3.5rem 0;
 }
 
 .card:first-child {
@@ -58,8 +58,8 @@
 .cardHeader {
     display: flex;
     align-items: baseline;
-    gap: 1.25rem;
-    margin-bottom: 1.25rem;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
 .number {
@@ -104,7 +104,7 @@
 
 .cta {
     background-color: #0a0a0a;
-    padding: 4rem 1.25rem;
+    padding: 5rem 1.25rem;
     text-align: center;
 }
 
@@ -116,9 +116,9 @@
 .ctaHeading {
     font-size: 1.75rem;
     font-weight: 700;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.015em;
     color: var(--color-text, #ffffff);
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
 }
 
 .ctaText {
@@ -126,7 +126,7 @@
     line-height: 1.7;
     color: var(--color-text, #ffffff);
     opacity: 0.8;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
 }
 
 .ctaButton {
@@ -163,7 +163,7 @@
 @media (min-width: 768px) {
     .page {
         padding-top: 8rem;
-        padding-bottom: 4rem;
+        padding-bottom: 5rem;
     }
 
     .container {
@@ -183,7 +183,7 @@
     }
 
     .card {
-        padding: 3.5rem 0;
+        padding: 4rem 0;
     }
 
     .number {
@@ -200,7 +200,7 @@
     }
 
     .cta {
-        padding: 6rem 2rem;
+        padding: 8rem 2rem;
     }
 
     .ctaHeading {

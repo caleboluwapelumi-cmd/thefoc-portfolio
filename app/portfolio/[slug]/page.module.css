@@ -21,7 +21,7 @@
     font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.15em;
     margin-bottom: 0.75rem;
     display: block;
 }
@@ -29,9 +29,9 @@
 .sectionHeading {
     font-size: 1.75rem;
     font-weight: 700;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.015em;
     color: var(--color-text, #ffffff);
-    margin-bottom: 3rem;
+    margin-bottom: 3.5rem;
     line-height: 1.15;
 }
 
@@ -124,7 +124,7 @@
 .heroTitle {
     font-size: 2.5rem;
     font-weight: 700;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.015em;
     line-height: 1.05;
     color: #ffffff;
     margin-bottom: 1.25rem;
@@ -150,7 +150,7 @@
 .overviewGrid {
     display: flex;
     flex-direction: column;
-    gap: 3.5rem;
+    gap: 4rem;
 }
 
 .overviewCol {
@@ -159,19 +159,19 @@
 
 .overviewLabel {
     display: block;
-    font-size: 0.6875rem;
+    font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.15em;
     margin-bottom: 0.75rem;
 }
 
 .overviewHeading {
     font-size: 1.25rem;
     font-weight: 700;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.015em;
     color: var(--color-text, #ffffff);
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
     line-height: 1.3;
 }
 
@@ -193,7 +193,7 @@
 .processGrid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 2.5rem;
 }
 
 .processCard {
@@ -222,7 +222,7 @@
 .processTitle {
     font-size: 1.125rem;
     font-weight: 700;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.015em;
     color: var(--color-text, #ffffff);
     margin-bottom: 0.75rem;
 }
@@ -245,7 +245,7 @@
 .galleryGrid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 1.25rem;
 }
 
 .galleryItem {
@@ -279,7 +279,7 @@
 .resultsGrid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
+    gap: 1.875rem;
 }
 
 .resultCard {
@@ -350,17 +350,17 @@
 .ctaHeading {
     font-size: 1.75rem;
     font-weight: 700;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.015em;
     color: #ffffff;
     line-height: 1.2;
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
 }
 
 .ctaText {
     font-size: 1rem;
     line-height: 1.7;
     color: rgba(255, 255, 255, 0.65);
-    margin-bottom: 2.5rem;
+    margin-bottom: 3rem;
 }
 
 .ctaButton {
@@ -425,7 +425,7 @@
 
     .overviewGrid {
         flex-direction: row;
-        gap: 5rem;
+        gap: 6rem;
     }
 
     .overviewHeading {
@@ -450,7 +450,7 @@
 
     .galleryGrid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 1.25rem;
+        gap: 1.5rem;
     }
 
     .galleryItemWide {
@@ -471,7 +471,7 @@
     }
 
     .cta {
-        padding: 8rem 3rem;
+        padding: 10rem 3rem;
     }
 
     .ctaHeading {

@@ -1,80 +1,120 @@
 .section {
-    padding: 5rem 1.25rem;
+    padding: 5rem 1.5rem;
     background-color: var(--color-background, #000000);
+    position: relative;
+}
+
+/* Subtle top divider */
+.section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(to right,
+            transparent,
+            rgba(107, 33, 168, 0.15),
+            rgba(0, 228, 255, 0.08),
+            transparent);
 }
 
 .inner {
-    max-width: 800px;
+    max-width: 720px;
     margin: 0 auto;
     text-align: center;
 }
 
 .sectionLabel {
-    font-size: 0.875rem;
-    font-weight: 500;
+    font-size: 0.75rem;
+    font-weight: 600;
     color: var(--color-accent, #00e4ff);
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
+    font-family: var(--font-body);
 }
 
 .headline {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     font-weight: 700;
-    line-height: 1.2;
+    line-height: 1.1;
+    letter-spacing: -0.035em;
     color: var(--color-text, #ffffff);
     margin-bottom: 2rem;
 }
 
 .subtext {
-    font-size: 1.125rem;
-    line-height: 1.7;
-    color: var(--color-text, #ffffff);
-    opacity: 0.8;
-    margin-bottom: 3rem;
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 4rem;
 }
 
 .cta {
     display: block;
     width: 100%;
-    padding: 1rem 2rem;
-    background-color: var(--color-primary, #8d04e4);
+    padding: 1rem 2.5rem;
+    background: linear-gradient(135deg, #6b21a8, #5b21b6);
     color: #ffffff;
-    font-size: 1rem;
+    font-size: 0.9375rem;
     font-weight: 600;
+    border: 1px solid rgba(139, 92, 246, 0.3);
     border-radius: 0.5rem;
     text-decoration: none;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
     box-sizing: border-box;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .cta:hover {
-    background-color: #7c3aed;
-    transform: scale(1.02);
+    background: linear-gradient(135deg, #7c3aed, #6d28d9);
+    border-color: rgba(139, 92, 246, 0.5);
+    transform: translateY(-2px);
+    box-shadow:
+        0 8px 32px rgba(107, 33, 168, 0.35),
+        0 0 0 1px rgba(139, 92, 246, 0.15);
     color: #ffffff;
+}
+
+.cta:active {
+    transform: translateY(0) scale(0.98);
 }
 
 /* --- Social Icons Row --- */
 
 .socialRow {
-    margin-top: 3rem;
+    margin-top: 4.25rem;
 }
 
-/* --- Desktop --- */
+/* --- Tablet+ --- */
+@media (min-width: 480px) {
+    .cta {
+        display: inline-block;
+        width: auto;
+    }
+}
+
 @media (min-width: 768px) {
     .section {
-        padding: 10rem 4rem;
+        padding: 8rem 4rem;
     }
 
     .headline {
         font-size: 3rem;
+        letter-spacing: -0.04em;
     }
 
     .cta {
-        display: inline-block;
-        width: auto;
-        font-size: 1.125rem;
-        padding: 1rem 3rem;
+        font-size: 0.9375rem;
+        padding: 1.1rem 3.25rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .section {
+        padding: 10rem 4rem;
     }
 }
 
@@ -82,5 +122,9 @@
 @media (prefers-reduced-motion: reduce) {
     .cta {
         transition: none;
+    }
+
+    .cta:hover {
+        transform: none;
     }
 }

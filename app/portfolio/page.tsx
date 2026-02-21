@@ -60,10 +60,6 @@ export default function PortfolioPage() {
                                 <span className={styles.category}>{project.category}</span>
                                 <h2 className={styles.title}>{project.title}</h2>
                                 <p className={styles.description}>{project.description}</p>
-                                <span className={styles.viewLink}>
-                                    View Case Study{" "}
-                                    <span className={styles.arrow}>→</span>
-                                </span>
                             </div>
                         </a>
                     ))}

@@ -39,11 +39,11 @@ export default function ProjectsSection() {
                                 className={styles.image}
                             />
                         </div>
-                        <h3 className={styles.title}>{project.title}</h3>
-                        <p className={styles.description}>{project.description}</p>
-                        <span className={styles.cardLink}>
-                            View Case Study <span className={styles.arrow}>→</span>
-                        </span>
+                        <div className={styles.cardBody}>
+                            <span className={styles.category}>{project.category}</span>
+                            <h3 className={styles.title}>{project.title}</h3>
+                            <p className={styles.description}>{project.description}</p>
+                        </div>
                     </a>
                 ))}
             </div>
