@@ -1,5 +1,6 @@
-import type { Metadata } from "next";
-import AboutClient from "./AboutClient";
+import { useState, useEffect, useCallback } from "react";
+import Image from "next/image";
+import styles from "./page.module.css";
 
 export const metadata: Metadata = {
     title: "About | TheFOC",

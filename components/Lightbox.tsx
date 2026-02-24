@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
 
 interface Props {
     images: string[];
@@ -73,15 +74,20 @@ export default function Lightbox({ images, initialIndex, onClose }: Props) {
             >
                 ›
             </button>
-            <img
+            <Image
                 src={images[index]}
                 alt=""
+                width={1920}
+                height={1080}
                 style={{
                     maxHeight: '90vh',
                     maxWidth: '90vw',
-                    objectFit: 'contain'
+                    objectFit: 'contain',
+                    width: 'auto',
+                    height: 'auto'
                 }}
                 onClick={(e) => e.stopPropagation()}
+                quality={95}
             />
         </div>
     );

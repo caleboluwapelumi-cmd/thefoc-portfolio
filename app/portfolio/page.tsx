@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import styles from "./page.module.css";
 import projectsData from "@/src/data/projects.json";
 
@@ -46,11 +47,22 @@ export default function PortfolioPage() {
                         >
                             {/* Image */}
                             <div className={styles.imageContainer}>
-                                <img
-                                    src={project.image}
-                                    alt={project.title}
-                                    className={styles.image}
-                                />
+                                {/* Image */}
+                                <div className={styles.imageContainer}>
+                                    <Image
+                                        src={project.image}
+                                        alt={project.title}
+                                        width={800}
+                                        height={600}
+                                        className={styles.image}
+                                        loading="lazy"
+                                        quality={85}
+                                    />
+                                    <div
+                                        className={styles.imageOverlay}
+                                        style={{ backgroundColor: project.color }}
+                                    />
+                                </div>
                                 <div
                                     className={styles.imageOverlay}
                                     style={{ backgroundColor: project.color }}

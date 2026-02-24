@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
 import Lightbox from "./Lightbox";
 import styles from "@/app/portfolio/[slug]/page.module.css";
 
@@ -136,9 +137,11 @@ export default function ProjectDetailLayout({ project }: Props) {
                                     background: 'transparent'
                                 }}
                             >
-                                <img
+                                <Image
                                     src={src}
                                     alt={`${project.title} work sample ${i + 1}`}
+                                    width={800}
+                                    height={600}
                                     style={{
                                         width: '100%',
                                         height: 'auto',
@@ -154,6 +157,7 @@ export default function ProjectDetailLayout({ project }: Props) {
                                         e.currentTarget.style.opacity = '1';
                                     }}
                                     loading={i === 0 ? "eager" : "lazy"}
+                                    quality={85}
                                 />
                             </button>
                         ))}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import Image from "next/image";
 import styles from "./page.module.css";
 import contentData from "@/src/data/content.json";
 
@@ -61,10 +62,14 @@ export default function AboutClient() {
                                 type="button"
                             >
                                 <div className={styles.imageWrapper}>
-                                    <img
+                                    <Image
                                         src="/images/FOC-6.jpg"
                                         alt="TheFOC"
+                                        width={600}
+                                        height={800}
                                         className={styles.image}
+                                        priority
+                                        quality={90}
                                     />
                                 </div>
                                 <span className={styles.imageOverlay} aria-hidden="true">
@@ -111,10 +116,13 @@ export default function AboutClient() {
                         className={styles.lightboxContent}
                         onClick={(e) => e.stopPropagation()}
                     >
-                        <img
+                        <Image
                             src={ABOUT_IMAGE}
                             alt="TheFOC — Brand Identity Specialist"
+                            width={1200}
+                            height={1600}
                             className={styles.lightboxImage}
+                            quality={95}
                         />
                     </div>
                 </div>
