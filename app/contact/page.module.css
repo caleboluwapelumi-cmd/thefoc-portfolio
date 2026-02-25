@@ -696,9 +696,9 @@
     width: 1.25rem;
     height: 1.25rem;
     min-width: 1.25rem;
-    border: 1.5px solid rgba(0, 228, 255, 0.45);
+    border: 1.5px solid rgba(141, 4, 228, 0.5);
     border-radius: 50%;
-    background: rgba(0, 228, 255, 0.04);
+    background: rgba(141, 4, 228, 0.05);
     cursor: pointer;
     position: relative;
     transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
