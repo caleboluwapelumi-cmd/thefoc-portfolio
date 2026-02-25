@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, FormEvent, ChangeEvent } from "react";
+import { useState, FormEvent, ChangeEvent, useRef, useCallback } from "react";
 import styles from "./page.module.css";
 import contentData from "@/src/data/content.json";
 import SocialIcons from "@/components/SocialIcons";
@@ -11,6 +11,9 @@ interface SocialLink {
 }
 
 const socials: SocialLink[] = contentData.footer.social;
+
+/* ─── Required fields for progress calculation ─────────────────────────── */
+const REQUIRED_FIELDS = ["fullName", "email", "companyName", "projectScope", "projectDescription", "budget", "launchDate"] as const;
 
 export default function ContactPage() {
     const [formData, setFormData] = useState({
@@ -29,6 +32,7 @@ export default function ContactPage() {
 
     const [submitted, setSubmitted] = useState(false);
     const [loading, setLoading] = useState(false);
+    const formRef = useRef<HTMLFormElement>(null);
 
     // Handle input changes
     const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -46,15 +50,42 @@ export default function ContactPage() {
         }));
     };
 
+    // Calculate form completion percentage
+    const calcProgress = useCallback(() => {
+        let filled = 0;
+        const total = REQUIRED_FIELDS.length;
+        for (const field of REQUIRED_FIELDS) {
+            const val = formData[field];
+            if (Array.isArray(val) ? val.length > 0 : val.trim() !== "") filled++;
+        }
+        return Math.round((filled / total) * 100);
+    }, [formData]);
+
+    const progress = calcProgress();
+
+    // Scroll to first invalid field on submit
+    const scrollToFirstError = () => {
+        const firstInvalid = formRef.current?.querySelector(":invalid") as HTMLElement | null;
+        if (firstInvalid) {
+            firstInvalid.scrollIntoView({ behavior: "smooth", block: "center" });
+            firstInvalid.focus();
+        }
+    };
+
     // Handle form submission
     async function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        setLoading(true);
 
+        // Native validity check
+        if (!formRef.current?.checkValidity()) {
+            scrollToFirstError();
+            return;
+        }
+
+        setLoading(true);
         try {
             // TODO: Send to Google Sheets API
-            await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call
-
+            await new Promise(resolve => setTimeout(resolve, 1000));
             setSubmitted(true);
             alert("Thank you! I'll be in touch soon.");
 
@@ -72,7 +103,7 @@ export default function ContactPage() {
                 launchDate: "",
                 referralSource: "",
             });
-        } catch (error) {
+        } catch {
             alert("Something went wrong. Please try again.");
         } finally {
             setLoading(false);
@@ -84,17 +115,18 @@ export default function ContactPage() {
     const showBusinessGoals = formData.projectScope.includes("Full Brand Identity") ||
         formData.projectScope.includes("Brand Refresh / Evolution");
 
+    // Helper: has a field value (for floating label)
+    const filled = (val: string) => val.trim() !== "" ? styles.filled : "";
+
     return (
         <main className={styles.page}>
-            {/* Background */}
+            {/* Background — pure CSS, no photo */}
             <div className={styles.meshBg} aria-hidden="true">
-                <div className={styles.bgImage} />
-                <div className={styles.bgOverlay} style={{
-                    background: 'linear-gradient(180deg, rgba(10,5,20,0.9) 0%, rgba(26,15,46,0.85) 50%, rgba(10,10,10,0.9) 100%)'
-                }} />
+                <div className={styles.bgOverlay} />
                 <div className={styles.meshOrb1} />
                 <div className={styles.meshOrb2} />
                 <div className={styles.meshOrb3} />
+                <div className={styles.meshOrb4} />
             </div>
 
             <div className={styles.container}>
@@ -106,79 +138,100 @@ export default function ContactPage() {
                     </p>
                 </header>
 
+                {/* Progress Bar */}
+                <div className={styles.progressWrap} role="progressbar" aria-valuenow={progress} aria-valuemin={0} aria-valuemax={100} aria-label="Form completion">
+                    <div className={styles.progressHeader}>
+                        <span className={styles.progressLabel}>Form Progress</span>
+                        <span className={styles.progressPct}>{progress}%</span>
+                    </div>
+                    <div className={styles.progressTrack}>
+                        <div className={styles.progressBar} style={{ width: `${progress}%` }} />
+                    </div>
+                </div>
+
                 {/* Form */}
-                <form className={styles.form} onSubmit={handleSubmit} noValidate>
+                <form className={styles.form} onSubmit={handleSubmit} ref={formRef} noValidate>
 
                     {/* SECTION 1: THE BASICS */}
-                    <div className={styles.section}>
+                    <div
+                        className={`${styles.section} ${styles.sectionAnimate}`}
+                        style={{ animationDelay: '0.45s' }}
+                    >
                         <h2 className={styles.sectionTitle}>The Basics</h2>
 
-                        <div className={styles.field}>
-                            <label htmlFor="fullName" className={styles.label}>
-                                Full Name <span className={styles.required}>*</span>
-                            </label>
+                        {/* Full Name — floating label */}
+                        <div className={styles.floatField}>
                             <input
                                 id="fullName"
                                 name="fullName"
                                 type="text"
                                 value={formData.fullName}
                                 onChange={handleChange}
-                                className={styles.input}
-                                placeholder="Your full name"
+                                className={`${styles.input} ${styles.floatInput} ${filled(formData.fullName)}`}
                                 required
+                                aria-label="Full Name"
                             />
+                            <label htmlFor="fullName" className={styles.floatLabel}>
+                                Full Name <span className={styles.required}>*</span>
+                            </label>
                         </div>
 
-                        <div className={styles.field}>
-                            <label htmlFor="email" className={styles.label}>
-                                Email Address <span className={styles.required}>*</span>
-                            </label>
+                        {/* Email — floating label */}
+                        <div className={styles.floatField}>
                             <input
                                 id="email"
                                 name="email"
                                 type="email"
                                 value={formData.email}
                                 onChange={handleChange}
-                                className={styles.input}
-                                placeholder="your@email.com"
+                                className={`${styles.input} ${styles.floatInput} ${filled(formData.email)}`}
                                 required
+                                aria-label="Email Address"
                             />
+                            <label htmlFor="email" className={styles.floatLabel}>
+                                Email Address <span className={styles.required}>*</span>
+                            </label>
                         </div>
 
-                        <div className={styles.field}>
-                            <label htmlFor="companyName" className={styles.label}>
-                                Company/Project Name <span className={styles.required}>*</span>
-                            </label>
+                        {/* Company Name — floating label */}
+                        <div className={styles.floatField}>
                             <input
                                 id="companyName"
                                 name="companyName"
                                 type="text"
                                 value={formData.companyName}
                                 onChange={handleChange}
-                                className={styles.input}
-                                placeholder="Your company or project name"
+                                className={`${styles.input} ${styles.floatInput} ${filled(formData.companyName)}`}
                                 required
+                                aria-label="Company/Project Name"
                             />
+                            <label htmlFor="companyName" className={styles.floatLabel}>
+                                Company / Project Name <span className={styles.required}>*</span>
+                            </label>
                         </div>
 
-                        <div className={styles.field}>
-                            <label htmlFor="websiteLinks" className={styles.label}>
-                                Website / Social Media Links
-                            </label>
+                        {/* Website/Social Links — floating label */}
+                        <div className={styles.floatField}>
                             <input
                                 id="websiteLinks"
                                 name="websiteLinks"
                                 type="text"
                                 value={formData.websiteLinks}
                                 onChange={handleChange}
-                                className={styles.input}
-                                placeholder="Your website or Instagram/Twitter handle"
+                                className={`${styles.input} ${styles.floatInput} ${filled(formData.websiteLinks)}`}
+                                aria-label="Website / Social Media Links"
                             />
+                            <label htmlFor="websiteLinks" className={styles.floatLabel}>
+                                Website / Social Media Links
+                            </label>
                         </div>
                     </div>
 
                     {/* SECTION 2: PROJECT SCOPE */}
-                    <div className={styles.section}>
+                    <div
+                        className={`${styles.section} ${styles.sectionAnimate}`}
+                        style={{ animationDelay: '0.6s' }}
+                    >
                         <h2 className={styles.sectionTitle}>Project Scope</h2>
 
                         <div className={styles.field}>
@@ -210,20 +263,21 @@ export default function ContactPage() {
 
                         {/* Dynamic: Flyer Count */}
                         {showFlyerCount && (
-                            <div className={styles.field}>
-                                <label htmlFor="flyerCount" className={styles.label}>
-                                    How many flyers do you need?
-                                </label>
+                            <div className={styles.floatField}>
                                 <input
                                     id="flyerCount"
                                     name="flyerCount"
                                     type="number"
                                     value={formData.flyerCount}
                                     onChange={handleChange}
-                                    className={styles.input}
-                                    placeholder="e.g., 5"
+                                    className={`${styles.input} ${styles.floatInput} ${filled(formData.flyerCount)}`}
+                                    placeholder=""
                                     min="1"
+                                    aria-label="How many flyers do you need?"
                                 />
+                                <label htmlFor="flyerCount" className={styles.floatLabel}>
+                                    How many flyers do you need?
+                                </label>
                             </div>
                         )}
 
@@ -263,7 +317,10 @@ export default function ContactPage() {
                     </div>
 
                     {/* SECTION 3: LOGISTICS */}
-                    <div className={styles.section}>
+                    <div
+                        className={`${styles.section} ${styles.sectionAnimate}`}
+                        style={{ animationDelay: '0.75s' }}
+                    >
                         <h2 className={styles.sectionTitle}>Logistics</h2>
 
                         <div className={styles.field}>
@@ -293,19 +350,21 @@ export default function ContactPage() {
                             </div>
                         </div>
 
-                        <div className={styles.field}>
-                            <label htmlFor="launchDate" className={styles.label}>
-                                Desired Launch Date <span className={styles.required}>*</span>
-                            </label>
+                        {/* Launch Date — floating label */}
+                        <div className={styles.floatField}>
                             <input
                                 id="launchDate"
                                 name="launchDate"
                                 type="date"
                                 value={formData.launchDate}
                                 onChange={handleChange}
-                                className={styles.input}
+                                className={`${styles.input} ${styles.floatInput} ${filled(formData.launchDate)}`}
                                 required
+                                aria-label="Desired Launch Date"
                             />
+                            <label htmlFor="launchDate" className={styles.floatLabel}>
+                                Desired Launch Date <span className={styles.required}>*</span>
+                            </label>
                         </div>
 
                         <div className={styles.field}>
@@ -336,7 +395,7 @@ export default function ContactPage() {
                         className={styles.submit}
                         disabled={loading || submitted}
                     >
-                        {loading ? "Sending..." : submitted ? "Message Sent ✓" : "Send Message"}
+                        {loading ? "Sending…" : submitted ? "Message Sent ✓" : "Send Message →"}
                     </button>
                 </form>
 

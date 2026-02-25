@@ -1,8 +1,9 @@
 /* ===========================================
-   CONTACT PAGE
+   CONTACT PAGE — MODERNIZED
    =========================================== */
 
-/* Gradient mesh drift animations */
+/* ── Keyframe Animations ─────────────────── */
+
 @keyframes meshDrift1 {
     0% {
         transform: translate(0, 0) scale(1);
@@ -31,6 +32,96 @@
     }
 }
 
+@keyframes borderRotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes progressShimmer {
+    0% {
+        background-position: -200% center;
+    }
+
+    100% {
+        background-position: 200% center;
+    }
+}
+
+@keyframes fadeSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes checkPop {
+    0% {
+        transform: scale(0);
+    }
+
+    70% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes dotPulse {
+
+    0%,
+    100% {
+        opacity: 0.12;
+    }
+
+    50% {
+        opacity: 0.28;
+    }
+}
+
+@keyframes orbFloat {
+    0% {
+        transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+
+    33% {
+        transform: translate(30px, -40px) scale(1.08) rotate(4deg);
+    }
+
+    66% {
+        transform: translate(-20px, 20px) scale(0.95) rotate(-3deg);
+    }
+
+    100% {
+        transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+}
+
+@keyframes floatIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ── Page Shell ──────────────────────────── */
+
 .page {
     padding-top: 5rem;
     padding-bottom: 3rem;
@@ -40,7 +131,8 @@
     overflow: hidden;
 }
 
-/* Gradient mesh background layer */
+/* ── Background Layers ───────────────────── */
+
 .meshBg {
     position: absolute;
     inset: 0;
@@ -49,67 +141,103 @@
     overflow: hidden;
 }
 
-/* Faint background photo — fixed parallax */
-.bgImage {
+/* Pure-CSS deep gradient background — no photo */
+.meshBg::before {
+    content: '';
     position: absolute;
     inset: 0;
-    background-image: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1920&h=1080&fit=crop');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    opacity: 0.08;
+    background:
+        linear-gradient(160deg,
+            #0c0416 0%,
+            #130826 25%,
+            #0a0a14 55%,
+            #04040a 100%);
     z-index: 0;
 }
 
-/* Dark gradient overlay — sits on top of photo, below orbs */
+/* Dot-grid texture layer */
+.meshBg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(circle, rgba(141, 4, 228, 0.20) 1px, transparent 1px);
+    background-size: 28px 28px;
+    animation: dotPulse 5s ease-in-out infinite;
+    z-index: 1;
+}
+
+/* Gradient overlay sitting above orbs for depth */
 .bgOverlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to bottom,
-            rgba(0, 0, 0, 0.7) 0%,
-            rgba(0, 0, 0, 0.4) 50%,
-            rgba(0, 0, 0, 0.7) 100%);
-    z-index: 1;
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(141, 4, 228, 0.07) 0%, transparent 65%),
+        linear-gradient(180deg,
+            rgba(8, 2, 16, 0.75) 0%,
+            rgba(0, 0, 0, 0.30) 50%,
+            rgba(4, 2, 10, 0.80) 100%);
+    z-index: 3;
 }
 
 .meshOrb1 {
     position: absolute;
-    width: 600px;
-    height: 600px;
+    width: 700px;
+    height: 700px;
     border-radius: 50%;
-    background: radial-gradient(circle at 40% 40%, rgba(141, 4, 228, 0.12) 0%, transparent 65%);
-    filter: blur(80px);
-    top: -15%;
-    left: -10%;
+    background: radial-gradient(circle at 40% 40%, rgba(141, 4, 228, 0.22) 0%, transparent 60%);
+    filter: blur(100px);
+    top: -20%;
+    left: -12%;
     will-change: transform;
-    animation: meshDrift1 45s ease-in-out infinite;
+    z-index: 2;
+    animation: meshDrift1 40s ease-in-out infinite;
 }
 
 .meshOrb2 {
     position: absolute;
-    width: 500px;
-    height: 500px;
+    width: 580px;
+    height: 580px;
     border-radius: 50%;
-    background: radial-gradient(circle at 60% 60%, rgba(0, 228, 255, 0.08) 0%, transparent 65%);
-    filter: blur(90px);
-    bottom: -10%;
-    right: -8%;
+    background: radial-gradient(circle at 60% 60%, rgba(0, 228, 255, 0.14) 0%, transparent 60%);
+    filter: blur(100px);
+    bottom: -12%;
+    right: -10%;
     will-change: transform;
-    animation: meshDrift2 55s ease-in-out infinite;
+    z-index: 2;
+    animation: meshDrift2 50s ease-in-out infinite;
 }
 
 .meshOrb3 {
     position: absolute;
-    width: 300px;
-    height: 300px;
+    width: 380px;
+    height: 380px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(107, 33, 168, 0.1) 0%, transparent 70%);
-    filter: blur(60px);
-    top: 45%;
-    right: 5%;
+    background: radial-gradient(circle, rgba(107, 33, 168, 0.18) 0%, transparent 65%);
+    filter: blur(70px);
+    top: 40%;
+    right: 2%;
     will-change: transform;
-    animation: meshDrift1 38s ease-in-out infinite reverse;
+    z-index: 2;
+    animation: orbFloat 28s ease-in-out infinite;
 }
+
+/* Extra accent orb — mid-left cyan */
+.meshOrb4 {
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 228, 255, 0.10) 0%, transparent 70%);
+    filter: blur(60px);
+    top: 55%;
+    left: 3%;
+    will-change: transform;
+    z-index: 2;
+    animation: meshDrift2 35s ease-in-out infinite reverse;
+}
+
+/* ── Container ───────────────────────────── */
 
 .container {
     max-width: 800px;
@@ -119,296 +247,305 @@
     z-index: 1;
 }
 
-/* --- Page Header --- */
+/* ── Page Header ─────────────────────────── */
 
 .header {
     margin-bottom: 2rem;
+    opacity: 0;
+    animation: floatIn 0.7s 0.15s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .heading {
     font-size: 2rem;
     font-weight: 700;
     letter-spacing: -0.015em;
-    color: var(--color-text, #ffffff);
+    background: linear-gradient(135deg, #ffffff 30%, #c084fc 70%, #00e4ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     margin-bottom: 1rem;
 }
 
 .subheading {
     font-size: 1.0625rem;
     line-height: 1.7;
-    color: var(--color-text, #ffffff);
-    opacity: 0.7;
+    color: rgba(255, 255, 255, 0.65);
     max-width: 560px;
 }
 
-/* ===========================================
-   FORM
-   =========================================== */
+/* ── Progress Bar ────────────────────────── */
+
+.progressWrap {
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: floatIn 0.7s 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.progressHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.progressLabel {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.progressPct {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    background: linear-gradient(90deg, #8d04e4, #00e4ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.progressTrack {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+.progressBar {
+    height: 100%;
+    border-radius: 99px;
+    background: linear-gradient(90deg, #8d04e4, #7b2ff7, #00e4ff);
+    background-size: 200% auto;
+    animation: progressShimmer 2.5s linear infinite;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Form ────────────────────────────────── */
 
 .form {
     display: flex;
     flex-direction: column;
-    gap: 1.875rem;
+    gap: 2rem;
 }
 
-/* --- Field --- */
+/* ── Section Cards ───────────────────────── */
+
+.section {
+    position: relative;
+    padding: 2rem;
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.025);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(141, 4, 228, 0.22);
+    box-shadow:
+        0 0 0 1px rgba(0, 228, 255, 0.05),
+        0 8px 40px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.07);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    opacity: 0;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* Staggered entrance — set by inline style in TSX */
+.sectionAnimate {
+    animation: floatIn 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.section:hover {
+    border-color: rgba(141, 4, 228, 0.38);
+    box-shadow:
+        0 0 0 1px rgba(0, 228, 255, 0.08),
+        0 12px 48px rgba(141, 4, 228, 0.10),
+        inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+/* Gradient corner accent */
+.section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    border-radius: 1rem 1rem 0 0;
+    background: linear-gradient(90deg, #8d04e4 0%, #7b2ff7 50%, #00e4ff 100%);
+    opacity: 0.7;
+}
+
+/* ── Section Title ───────────────────────── */
+
+.sectionTitle {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    letter-spacing: -0.02em;
+    background: linear-gradient(120deg, #ffffff 40%, #c084fc 80%, #00e4ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ── Field ───────────────────────────────── */
 
 .field {
     display: flex;
     flex-direction: column;
+    gap: 0;
 }
 
-.label {
-    font-size: 0.875rem;
+/* ── Floating Label Wrapper ──────────────── */
+
+.floatField {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.floatLabel {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    font-size: 1rem;
     font-weight: 500;
-    color: var(--color-text, #ffffff);
-    opacity: 0.85;
-    margin-bottom: 0.5rem;
-    letter-spacing: 0.02em;
+    color: rgba(255, 255, 255, 0.45);
+    pointer-events: none;
+    transform-origin: 0 0;
+    transition: transform 0.25s ease, color 0.25s ease, font-size 0.25s ease;
+    z-index: 2;
+}
+
+/* Float up when input is focused or has value */
+.floatField :is(input, textarea, select):focus~.floatLabel,
+.floatField :is(input, textarea, select).filled~.floatLabel {
+    transform: translateY(-1.55rem) scale(0.78);
+    color: #c084fc;
+    background: transparent;
+}
+
+/* For browsers that support :has */
+.floatField:has(:is(input, textarea, select):focus) .floatLabel,
+.floatField:has(.filled) .floatLabel {
+    transform: translateY(-1.55rem) scale(0.78);
+    color: #c084fc;
+}
+
+/* Date inputs always show native browser picker text — keep label permanently elevated */
+.floatField input[type="date"]~.floatLabel {
+    transform: translateY(-1.55rem) scale(0.78);
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.floatField input[type="date"]:focus~.floatLabel,
+.floatField:has(input[type="date"]:focus) .floatLabel {
+    color: #c084fc;
+}
+
+.floatInput {
+    padding-top: 1.25rem;
+    padding-bottom: 0.75rem;
+}
+
+/* ── Static Label ────────────────────────── */
+
+.label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0.625rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
 }
 
 .required {
-    color: var(--color-primary, #8d04e4);
+    color: #c084fc;
+    margin-left: 0.2em;
 }
 
-/* --- Inputs --- */
+/* ── Field Hint ──────────────────────────── */
 
-.input {
+.fieldHint {
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.45);
+    margin-top: -0.25rem;
+    margin-bottom: 0.875rem;
+    font-style: italic;
+}
+
+/* ── Input / Textarea / Select ───────────── */
+
+.input,
+.textarea,
+.select {
     width: 100%;
     padding: 1rem;
-    background: rgba(255, 255, 255, 0.05);
-    /* Semi-transparent background */
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 0.375rem;
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    /* Gradient border via box-shadow trick */
+    border: 1px solid rgba(141, 4, 228, 0.25);
+    border-radius: 0.625rem;
     color: #ffffff;
     font-size: 1rem;
-    transition: all 0.2s ease;
+    font-family: inherit;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease,
+        background 0.3s ease;
     color-scheme: dark;
+    position: relative;
 }
 
-.input:focus {
+.input::placeholder,
+.textarea::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.input:focus,
+.textarea:focus,
+.select:focus {
     outline: none;
-    border-color: #8d04e4;
-    background: rgba(255, 255, 255, 0.05);
-    /* Same background on focus */
+    transform: scale(1.02);
+    border-color: rgba(141, 4, 228, 0.7);
+    background: rgba(141, 4, 228, 0.06);
+    box-shadow:
+        0 0 0 3px rgba(141, 4, 228, 0.18),
+        0 0 20px rgba(141, 4, 228, 0.12),
+        0 4px 16px rgba(0, 228, 255, 0.05);
 }
 
-.input::placeholder {
-    color: rgba(255, 255, 255, 0.4);
-}
-
-/* --- Select Arrow --- */
+/* ── Select Arrow ────────────────────────── */
 
 .select {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.4)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='rgba(192,132,252,0.7)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 1rem center;
     background-size: 1rem;
     padding-right: 2.5rem;
     cursor: pointer;
+    appearance: none;
 }
 
 .select option {
-    background-color: #1a1a1a;
-    color: #ffffff;
-}
-
-/* Placeholder style for selects */
-.select {
-    /* same styles as .input */
-    background: rgba(255, 255, 255, 0.05);
-}
-
-.select:focus {
-    outline: none;
-    border-color: #8d04e4;
-    background: rgba(255, 255, 255, 0.05);
-}
-
-.select option {
-    background: #1a1a1a;
+    background: #1a0f2e;
     color: #ffffff;
     padding: 0.5rem;
 }
 
-.select option:hover {
-    background: #2a2a2a;
-}
-
-/* --- Textarea --- */
+/* ── Textarea ────────────────────────────── */
 
 .textarea {
-    /* same styles as .input */
-    background: rgba(255, 255, 255, 0.05);
     resize: vertical;
+    min-height: 120px;
 }
 
-.textarea:focus {
-    outline: none;
-    border-color: #8d04e4;
-    background: rgba(255, 255, 255, 0.05);
-}
+/* ── Custom Checkbox Group ───────────────── */
 
-/* ===========================================
-   SUBMIT BUTTON
-   =========================================== */
-
-.submit {
-    width: 100%;
-    padding: 1rem 3rem;
-    background-color: var(--color-primary, #8d04e4);
-    color: #ffffff;
-    font-size: 1rem;
-    font-weight: 600;
-    font-family: inherit;
-    border: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    letter-spacing: 0.02em;
-    margin-top: 0.5rem;
-    transition: background-color 0.3s ease, transform 0.3s ease,
-        box-shadow 0.3s ease;
-}
-
-.submit:hover:not(:disabled) {
-    background-color: #7c3aed;
-    transform: scale(1.02);
-    box-shadow: 0 0 24px rgba(107, 33, 168, 0.35),
-        0 0 60px rgba(107, 33, 168, 0.1);
-}
-
-.submit:active:not(:disabled) {
-    transform: scale(0.99);
-}
-
-.submit:disabled {
-    background-color: rgba(107, 33, 168, 0.5);
-    cursor: default;
-}
-
-/* ===========================================
-   SOCIAL LINKS SECTION
-   =========================================== */
-
-.socialSection {
-    margin-top: 5rem;
-    padding-top: 3.5rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.socialHeading {
-    font-size: 1.125rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    color: var(--color-text, #ffffff);
-    margin-bottom: 1.5rem;
-}
-
-
-
-
-/* ===========================================
-   DESKTOP
-   =========================================== */
-
-@media (min-width: 768px) {
-    .page {
-        padding-top: 8rem;
-        padding-bottom: 5rem;
-    }
-
-    .container {
-        padding: 0 4rem;
-    }
-
-    .header {
-        margin-bottom: 3.5rem;
-    }
-
-    .heading {
-        font-size: 2.5rem;
-    }
-
-    .subheading {
-        font-size: 1.125rem;
-    }
-
-    .socialHeading {
-        font-size: 1.5rem;
-        margin-bottom: 2rem;
-    }
-
-    .submit {
-        width: auto;
-        align-self: flex-start;
-    }
-}
-
-@media (min-width: 1024px) {
-    .heading {
-        font-size: 3rem;
-    }
-}
-
-/* iOS / mobile: fixed attachment doesn't work inside overflow:hidden */
-@media (max-width: 767px) {
-    .bgImage {
-        background-attachment: scroll;
-    }
-}
-
-/* ===========================================
-   REDUCED MOTION
-   =========================================== */
-
-@media (prefers-reduced-motion: reduce) {
-    .submit {
-        transition: none;
-    }
-
-    .submit:hover:not(:disabled) {
-        transform: none;
-    }
-
-    .bgImage {
-        background-attachment: scroll;
-    }
-
-    .meshOrb1,
-    .meshOrb2,
-    .meshOrb3 {
-        animation: none;
-    }
-}
-
-/* Form Sections */
-.section {
-    margin-bottom: 3rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.section:last-of-type {
-    border-bottom: none;
-}
-
-.sectionTitle {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-    color: #ffffff;
-    letter-spacing: -0.02em;
-}
-
-/* Field Hint */
-.fieldHint {
-    font-size: 0.875rem;
-    color: rgba(255, 255, 255, 0.6);
-    margin-top: 0.25rem;
-    margin-bottom: 0.75rem;
-}
-
-/* Checkbox Group */
 .checkboxGroup {
     display: flex;
     flex-direction: column;
@@ -418,33 +555,95 @@
 .checkbox {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    padding: 0.75rem;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 0.375rem;
+    gap: 0.875rem;
+    padding: 0.875rem 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(141, 4, 228, 0.18);
+    border-radius: 0.625rem;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Gradient shimmer on hover */
+.checkbox::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(141, 4, 228, 0.0) 0%, rgba(0, 228, 255, 0.04) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: inherit;
 }
 
 .checkbox:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(160, 71, 163, 0.3);
+    background: rgba(141, 4, 228, 0.08);
+    border-color: rgba(141, 4, 228, 0.45);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(141, 4, 228, 0.15);
 }
 
+.checkbox:hover::before {
+    opacity: 1;
+}
+
+/* Hide native checkbox */
 .checkbox input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
     width: 1.25rem;
     height: 1.25rem;
+    min-width: 1.25rem;
+    border: 1.5px solid rgba(141, 4, 228, 0.5);
+    border-radius: 0.3rem;
+    background: rgba(141, 4, 228, 0.05);
     cursor: pointer;
-    accent-color: #8d04e4;
+    position: relative;
+    transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.checkbox input[type="checkbox"]:checked {
+    background: linear-gradient(135deg, #8d04e4, #7b2ff7);
+    border-color: #8d04e4;
+    box-shadow: 0 0 10px rgba(141, 4, 228, 0.5);
+}
+
+/* Animated checkmark */
+.checkbox input[type="checkbox"]::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0.35rem;
+    height: 0.6rem;
+    border: 2px solid #ffffff;
+    border-top: none;
+    border-left: none;
+    transform: translate(-55%, -60%) rotate(45deg) scale(0);
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.checkbox input[type="checkbox"]:checked::after {
+    transform: translate(-55%, -60%) rotate(45deg) scale(1);
+    animation: checkPop 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
 .checkbox span {
-    font-size: 1rem;
-    color: #ffffff;
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.88);
+    font-weight: 400;
+    line-height: 1.4;
+    position: relative;
+    z-index: 1;
 }
 
-/* Radio Group */
+/* ── Custom Radio Group ──────────────────── */
+
 .radioGroup {
     display: flex;
     flex-direction: column;
@@ -454,51 +653,298 @@
 .radio {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    padding: 0.75rem;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 0.375rem;
+    gap: 0.875rem;
+    padding: 0.875rem 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(0, 228, 255, 0.15);
+    border-radius: 0.625rem;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.radio::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0, 228, 255, 0.0) 0%, rgba(141, 4, 228, 0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: inherit;
 }
 
 .radio:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(231, 36, 215, 0.219);
+    background: rgba(0, 228, 255, 0.05);
+    border-color: rgba(0, 228, 255, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 228, 255, 0.10);
 }
 
+.radio:hover::before {
+    opacity: 1;
+}
+
+/* Hide native radio */
 .radio input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
     width: 1.25rem;
     height: 1.25rem;
+    min-width: 1.25rem;
+    border: 1.5px solid rgba(0, 228, 255, 0.45);
+    border-radius: 50%;
+    background: rgba(0, 228, 255, 0.04);
     cursor: pointer;
-    accent-color: #8d04e4;
+    position: relative;
+    transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.radio input[type="radio"]:checked {
+    background: radial-gradient(circle, rgba(0, 228, 255, 0.15) 0%, transparent 70%);
+    border-color: #00e4ff;
+    box-shadow: 0 0 10px rgba(0, 228, 255, 0.45);
+}
+
+.radio input[type="radio"]::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0.5rem;
+    height: 0.5rem;
+    background: #00e4ff;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.radio input[type="radio"]:checked::after {
+    transform: translate(-50%, -50%) scale(1);
 }
 
 .radio span {
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.88);
+    font-weight: 400;
+    line-height: 1.4;
+    position: relative;
+    z-index: 1;
+}
+
+/* ── Submit Button ───────────────────────── */
+
+.submit {
+    width: 100%;
+    padding: 1.0625rem 3rem;
+    background: linear-gradient(135deg, #8d04e4 0%, #6b21a8 60%, #5b1aa0 100%);
+    color: #ffffff;
     font-size: 1rem;
-    color: #ffffff;
+    font-weight: 700;
+    font-family: inherit;
+    border: none;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    animation: floatIn 0.75s 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    isolation: isolate;
 }
 
-/* Required indicator */
-.required {
-    color: #ffffff;
-    margin-left: 0.25rem;
+/* Shimmer overlay */
+.submit::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.1) 50%,
+            transparent 100%);
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+.submit:hover:not(:disabled)::after {
+    transform: translateX(100%);
+}
+
+.submit:hover:not(:disabled) {
+    transform: translateY(-3px) scale(1.01);
+    box-shadow:
+        0 0 30px rgba(141, 4, 228, 0.55),
+        0 0 60px rgba(141, 4, 228, 0.2),
+        0 8px 32px rgba(141, 4, 228, 0.3);
+}
+
+.submit:active:not(:disabled) {
+    transform: translateY(-1px) scale(0.99);
+    box-shadow: 0 0 15px rgba(141, 4, 228, 0.35);
+}
+
+.submit:disabled {
+    background: linear-gradient(135deg, rgba(107, 33, 168, 0.4), rgba(91, 26, 160, 0.4));
+    cursor: not-allowed;
+    opacity: 0.65;
+}
+
+/* ── Social Section ──────────────────────── */
+
+.socialSection {
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.socialHeading {
+    font-size: 1.125rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    background: linear-gradient(120deg, #ffffff, #c084fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1.5rem;
+}
+
+/* ── Error State ─────────────────────────── */
+
+.input.error,
+.textarea.error,
+.select.error {
+    border-color: rgba(239, 68, 68, 0.7);
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+}
+
+.errorText {
+    font-size: 0.8125rem;
+    color: #f87171;
+    margin-top: 0.375rem;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+/* ── Desktop ─────────────────────────────── */
+
+@media (min-width: 768px) {
+    .page {
+        padding-top: 8rem;
+        padding-bottom: 6rem;
+    }
+
+    .container {
+        padding: 0 4rem;
+    }
+
+    .header {
+        margin-bottom: 3rem;
+    }
+
+    .heading {
+        font-size: 2.75rem;
+    }
+
+    .subheading {
+        font-size: 1.125rem;
+    }
+
+    .submit {
+        width: auto;
+        align-self: flex-start;
+        min-width: 200px;
+    }
+
+    .socialHeading {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    /* 2-column grid for checkboxes and radios on desktop */
+    .checkboxGroup {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+    }
+
+    .radioGroup {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+    }
+
+    .section {
+        padding: 2.5rem;
+    }
+
     .sectionTitle {
-        font-size: 1.25rem;
+        font-size: 1.375rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .heading {
+        font-size: 3.25rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .section {
+        padding: 1.5rem;
+    }
+}
+
+/* ── Reduced Motion ──────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .meshOrb1,
+    .meshOrb2,
+    .meshOrb3,
+    .meshOrb4,
+    .meshBg::after {
+        animation: none;
     }
 
-    .checkbox,
-    .radio {
-        padding: 0.625rem;
+    .input:focus,
+    .textarea:focus,
+    .select:focus {
+        transform: none;
     }
 
-    .checkbox span,
-    .radio span {
-        font-size: 0.9375rem;
+    .checkbox:hover,
+    .radio:hover {
+        transform: none;
+    }
+
+    .submit:hover:not(:disabled) {
+        transform: none;
+    }
+
+    .progressBar {
+        animation: none;
+    }
+
+    .submit::after {
+        display: none;
+    }
+
+    /* Skip entrance animations — show everything immediately */
+    .header,
+    .progressWrap,
+    .section,
+    .submit {
+        opacity: 1;
+        animation: none;
     }
 }
