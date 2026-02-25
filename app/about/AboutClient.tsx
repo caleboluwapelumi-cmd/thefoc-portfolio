@@ -11,7 +11,7 @@ interface AboutContent {
 }
 
 const about: AboutContent = contentData.about;
-const ABOUT_IMAGE = "/Images/FOC-6.jpg";
+const ABOUT_IMAGE = "/images/FOC-6.jpg";
 
 export default function AboutClient() {
     const [lightboxOpen, setLightboxOpen] = useState(false);
