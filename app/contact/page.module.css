@@ -1,16 +1,16 @@
-/* ===========================================
-   CONTACT PAGE — MODERNIZED
-   =========================================== */
+/* =====================================================
+   CONTACT PAGE — MULTI-STEP WIZARD REDESIGN
+   ===================================================== */
 
-/* ── Keyframe Animations ─────────────────── */
+/* ── Keyframes ─────────────────────────────────────── */
 
-@keyframes meshDrift1 {
+@keyframes drift1 {
     0% {
         transform: translate(0, 0) scale(1);
     }
 
     50% {
-        transform: translate(60px, -80px) scale(1.15);
+        transform: translate(70px, -90px) scale(1.12);
     }
 
     100% {
@@ -18,13 +18,13 @@
     }
 }
 
-@keyframes meshDrift2 {
+@keyframes drift2 {
     0% {
         transform: translate(0, 0) scale(1);
     }
 
     50% {
-        transform: translate(-80px, 60px) scale(1.1);
+        transform: translate(-60px, 70px) scale(1.08);
     }
 
     100% {
@@ -32,17 +32,65 @@
     }
 }
 
-@keyframes borderRotate {
+@keyframes drift3 {
     0% {
-        transform: rotate(0deg);
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    50% {
+        transform: translate(40px, 30px) rotate(8deg);
     }
 
     100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes spin {
+    to {
         transform: rotate(360deg);
     }
 }
 
-@keyframes progressShimmer {
+@keyframes successPop {
+    0% {
+        opacity: 0;
+        transform: scale(0.88) translateY(20px);
+    }
+
+    60% {
+        transform: scale(1.02) translateY(-4px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes checkDraw {
+    from {
+        stroke-dashoffset: 60;
+    }
+
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes shimmer {
     0% {
         background-position: -200% center;
     }
@@ -52,899 +100,1003 @@
     }
 }
 
-@keyframes fadeSlideUp {
-    from {
-        opacity: 0;
-        transform: translateY(8px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes checkPop {
-    0% {
-        transform: scale(0);
-    }
-
-    70% {
-        transform: scale(1.2);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}
-
 @keyframes dotPulse {
 
     0%,
     100% {
-        opacity: 0.12;
+        opacity: 0.10;
     }
 
     50% {
-        opacity: 0.28;
+        opacity: 0.22;
     }
 }
 
-@keyframes orbFloat {
-    0% {
-        transform: translate(0, 0) scale(1) rotate(0deg);
-    }
-
-    33% {
-        transform: translate(30px, -40px) scale(1.08) rotate(4deg);
-    }
-
-    66% {
-        transform: translate(-20px, 20px) scale(0.95) rotate(-3deg);
-    }
-
-    100% {
-        transform: translate(0, 0) scale(1) rotate(0deg);
-    }
-}
-
-@keyframes floatIn {
+@keyframes enterFromRight {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateX(40px);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateX(0);
     }
 }
 
-/* ── Page Shell ──────────────────────────── */
+@keyframes enterFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes exitToLeft {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateX(-40px);
+    }
+}
+
+@keyframes exitToRight {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+}
+
+/* ── Page Shell ────────────────────────────────────── */
 
 .page {
-    padding-top: 5rem;
-    padding-bottom: 3rem;
     min-height: 100vh;
-    background-color: var(--color-background, #000000);
+    background: #060010;
     position: relative;
     overflow: hidden;
+    display: flex;
+    align-items: stretch;
 }
 
-/* ── Background Layers ───────────────────── */
+/* ── Orb Background ────────────────────────────────── */
 
-.meshBg {
-    position: absolute;
+.orbs {
+    position: fixed;
     inset: 0;
-    z-index: 0;
     pointer-events: none;
+    z-index: 0;
     overflow: hidden;
 }
 
-/* Pure-CSS deep gradient background — no photo */
-.meshBg::before {
-    content: '';
+.orb1 {
     position: absolute;
-    inset: 0;
-    background:
-        linear-gradient(160deg,
-            #0c0416 0%,
-            #130826 25%,
-            #0a0a14 55%,
-            #04040a 100%);
-    z-index: 0;
-}
-
-/* Dot-grid texture layer */
-.meshBg::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image:
-        radial-gradient(circle, rgba(141, 4, 228, 0.20) 1px, transparent 1px);
-    background-size: 28px 28px;
-    animation: dotPulse 5s ease-in-out infinite;
-    z-index: 1;
-}
-
-/* Gradient overlay sitting above orbs for depth */
-.bgOverlay {
-    position: absolute;
-    inset: 0;
-    background:
-        radial-gradient(ellipse at 50% 0%, rgba(141, 4, 228, 0.07) 0%, transparent 65%),
-        linear-gradient(180deg,
-            rgba(8, 2, 16, 0.75) 0%,
-            rgba(0, 0, 0, 0.30) 50%,
-            rgba(4, 2, 10, 0.80) 100%);
-    z-index: 3;
-}
-
-.meshOrb1 {
-    position: absolute;
-    width: 700px;
-    height: 700px;
+    width: 800px;
+    height: 800px;
     border-radius: 50%;
-    background: radial-gradient(circle at 40% 40%, rgba(141, 4, 228, 0.22) 0%, transparent 60%);
-    filter: blur(100px);
-    top: -20%;
-    left: -12%;
-    will-change: transform;
-    z-index: 2;
-    animation: meshDrift1 40s ease-in-out infinite;
+    background: radial-gradient(circle at 35% 40%, rgba(141, 4, 228, 0.28) 0%, transparent 65%);
+    filter: blur(110px);
+    top: -18%;
+    left: -14%;
+    animation: drift1 44s ease-in-out infinite;
 }
 
-.meshOrb2 {
+.orb2 {
     position: absolute;
-    width: 580px;
-    height: 580px;
+    width: 620px;
+    height: 620px;
     border-radius: 50%;
-    background: radial-gradient(circle at 60% 60%, rgba(0, 228, 255, 0.14) 0%, transparent 60%);
+    background: radial-gradient(circle at 60% 60%, rgba(0, 228, 255, 0.16) 0%, transparent 60%);
     filter: blur(100px);
-    bottom: -12%;
+    bottom: -14%;
     right: -10%;
-    will-change: transform;
-    z-index: 2;
-    animation: meshDrift2 50s ease-in-out infinite;
+    animation: drift2 52s ease-in-out infinite;
 }
 
-.meshOrb3 {
+.orb3 {
     position: absolute;
-    width: 380px;
-    height: 380px;
+    width: 340px;
+    height: 340px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(107, 33, 168, 0.18) 0%, transparent 65%);
-    filter: blur(70px);
-    top: 40%;
-    right: 2%;
-    will-change: transform;
-    z-index: 2;
-    animation: orbFloat 28s ease-in-out infinite;
+    background: radial-gradient(circle, rgba(107, 33, 168, 0.22) 0%, transparent 65%);
+    filter: blur(80px);
+    top: 48%;
+    left: 55%;
+    animation: drift3 30s ease-in-out infinite;
 }
 
-/* Extra accent orb — mid-left cyan */
-.meshOrb4 {
+/* Dot-grid texture */
+.noiseTex {
     position: absolute;
-    width: 260px;
-    height: 260px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(0, 228, 255, 0.10) 0%, transparent 70%);
-    filter: blur(60px);
-    top: 55%;
-    left: 3%;
-    will-change: transform;
-    z-index: 2;
-    animation: meshDrift2 35s ease-in-out infinite reverse;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(141, 4, 228, 0.15) 1px, transparent 1px);
+    background-size: 30px 30px;
+    animation: dotPulse 6s ease-in-out infinite;
 }
 
-/* ── Container ───────────────────────────── */
+/* ── Two-column Layout ─────────────────────────────── */
 
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 1.25rem;
+.layout {
     position: relative;
     z-index: 1;
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
 }
 
-/* ── Page Header ─────────────────────────── */
+/* ── Sidebar ───────────────────────────────────────── */
 
-.header {
-    margin-bottom: 2rem;
-    opacity: 0;
-    animation: floatIn 0.7s 0.15s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+.sidebar {
+    width: clamp(280px, 30vw, 380px);
+    min-width: 0;
+    flex-shrink: 0;
+    padding: 5rem 3rem 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+    background: linear-gradient(180deg, rgba(141, 4, 228, 0.06) 0%, transparent 60%);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    scrollbar-width: none;
 }
 
-.heading {
-    font-size: 2rem;
-    font-weight: 700;
-    letter-spacing: -0.015em;
-    background: linear-gradient(135deg, #ffffff 30%, #c084fc 70%, #00e4ff 100%);
+.sidebar::-webkit-scrollbar {
+    display: none;
+}
+
+.eyebrow {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #8d04e4;
+    margin-bottom: 1.75rem;
+    animation: fadeUp 0.6s 0.1s both;
+}
+
+.mainHeading {
+    font-size: clamp(2rem, 3vw, 2.75rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: #fff;
+    margin-bottom: 1.25rem;
+    animation: fadeUp 0.6s 0.2s both;
+}
+
+.gradientText {
+    background: linear-gradient(110deg, #c084fc 0%, #8d04e4 40%, #00e4ff 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+}
+
+.sidebarSub {
+    font-size: 0.9375rem;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 3rem;
+    animation: fadeUp 0.6s 0.3s both;
+}
+
+/* Step Indicator */
+.stepNav {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 3.5rem;
+    animation: fadeUp 0.6s 0.4s both;
+}
+
+.stepItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    position: relative;
+    padding-bottom: 0;
+}
+
+.stepDot {
+    width: 2rem;
+    height: 2rem;
+    min-width: 2rem;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.04);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.35);
+    transition: all 0.4s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.stepLabel {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.35);
+    padding-top: 0.35rem;
+    transition: color 0.3s ease;
+}
+
+.stepLine {
+    position: absolute;
+    left: 0.9375rem;
+    top: 2.25rem;
+    width: 1.5px;
+    height: 2.25rem;
+    background: rgba(255, 255, 255, 0.08);
+    transition: background 0.4s ease;
+}
+
+/* Active step */
+.stepActive .stepDot {
+    border-color: #8d04e4;
+    background: linear-gradient(135deg, #8d04e4, #5b21b6);
+    color: #fff;
+    box-shadow: 0 0 18px rgba(141, 4, 228, 0.5);
+}
+
+.stepActive .stepLabel {
+    color: #fff;
+    font-weight: 700;
+}
+
+/* Done step */
+.stepDone .stepDot {
+    border-color: #00e4ff;
+    background: rgba(0, 228, 255, 0.12);
+    color: #00e4ff;
+}
+
+.stepDone .stepLabel {
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.stepDone .stepLine {
+    background: rgba(141, 4, 228, 0.4);
+}
+
+/* Social */
+.sidebarSocial {
+    margin-top: auto;
+    animation: fadeUp 0.6s 0.5s both;
+}
+
+.sidebarSocialLabel {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.3);
     margin-bottom: 1rem;
 }
 
-.subheading {
-    font-size: 1.0625rem;
-    line-height: 1.7;
-    color: rgba(255, 255, 255, 0.65);
-    max-width: 560px;
+.socialLinks {
+    /* inherits from SocialIcons component */
+    opacity: 0.75;
 }
 
-/* ── Progress Bar ────────────────────────── */
+/* ── Form Panel ────────────────────────────────────── */
 
-.progressWrap {
-    margin-bottom: 2.5rem;
-    opacity: 0;
-    animation: floatIn 0.7s 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-.progressHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.5rem;
-}
-
-.progressLabel {
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.5);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-}
-
-.progressPct {
-    font-size: 0.8125rem;
-    font-weight: 600;
-    background: linear-gradient(90deg, #8d04e4, #00e4ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.progressTrack {
-    width: 100%;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 99px;
-    overflow: hidden;
-}
-
-.progressBar {
-    height: 100%;
-    border-radius: 99px;
-    background: linear-gradient(90deg, #8d04e4, #7b2ff7, #00e4ff);
-    background-size: 200% auto;
-    animation: progressShimmer 2.5s linear infinite;
-    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* ── Form ────────────────────────────────── */
-
-.form {
+.panel {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    justify-content: center;
+    padding: 5rem 3.5rem 4rem;
+    min-height: 100vh;
+    overflow-y: auto;
+    max-width: 680px;
 }
 
-/* ── Section Cards ───────────────────────── */
+/* ── Step Content ──────────────────────────────────── */
 
-.section {
-    position: relative;
-    padding: 2rem;
-    border-radius: 1rem;
-    background: rgba(255, 255, 255, 0.025);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(141, 4, 228, 0.22);
-    box-shadow:
-        0 0 0 1px rgba(0, 228, 255, 0.05),
-        0 8px 40px rgba(0, 0, 0, 0.5),
-        inset 0 1px 0 rgba(255, 255, 255, 0.07);
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    opacity: 0;
-    transition: box-shadow 0.3s ease, border-color 0.3s ease;
-}
-
-/* Staggered entrance — set by inline style in TSX */
-.sectionAnimate {
-    animation: floatIn 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-.section:hover {
-    border-color: rgba(141, 4, 228, 0.38);
-    box-shadow:
-        0 0 0 1px rgba(0, 228, 255, 0.08),
-        0 12px 48px rgba(141, 4, 228, 0.10),
-        inset 0 1px 0 rgba(255, 255, 255, 0.07);
-}
-
-/* Gradient corner accent */
-.section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    border-radius: 1rem 1rem 0 0;
-    background: linear-gradient(90deg, #8d04e4 0%, #7b2ff7 50%, #00e4ff 100%);
-    opacity: 0.7;
-}
-
-/* ── Section Title ───────────────────────── */
-
-.sectionTitle {
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin-bottom: 0.25rem;
-    letter-spacing: -0.02em;
-    background: linear-gradient(120deg, #ffffff 40%, #c084fc 80%, #00e4ff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-/* ── Field ───────────────────────────────── */
-
-.field {
+.stepContent {
     display: flex;
     flex-direction: column;
     gap: 0;
 }
 
-/* ── Floating Label Wrapper ──────────────── */
+.enterActive {
+    animation: enterFromRight 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
 
-.floatField {
-    position: relative;
+.exitLeft {
+    animation: exitToLeft 0.32s cubic-bezier(0.4, 0, 1, 1) both;
+}
+
+.exitRight {
+    animation: exitToRight 0.32s cubic-bezier(0.4, 0, 1, 1) both;
+}
+
+/* ── Step Header ───────────────────────────────────── */
+
+.stepHeader {
+    margin-bottom: 2.75rem;
+}
+
+.stepNum {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #8d04e4;
+    margin-bottom: 0.625rem;
+}
+
+.stepTitle {
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: #fff;
+    margin-bottom: 0.375rem;
+    line-height: 1.15;
+}
+
+.stepSub {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.45);
+    line-height: 1.6;
+}
+
+/* ── Fields Stack ──────────────────────────────────── */
+
+.fields {
     display: flex;
     flex-direction: column;
+    gap: 1.375rem;
+    margin-bottom: 2.5rem;
+}
+
+.fieldGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+}
+
+.fieldLabel {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.fieldHint {
+    font-size: 0.8125rem;
+    color: rgba(255, 255, 255, 0.35);
+    margin: 0;
+    font-style: italic;
+}
+
+.req {
+    color: #8d04e4;
+}
+
+/* ── Floating Label Input ──────────────────────────── */
+
+.floatWrap {
+    position: relative;
+}
+
+.floatInput {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 1.125rem 1rem 0.625rem;
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.75rem;
+    color: #fff;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+    color-scheme: dark;
+    outline: none;
+}
+
+.floatInput::placeholder {
+    color: transparent;
+}
+
+.floatInput:focus {
+    border-color: rgba(141, 4, 228, 0.65);
+    background: rgba(141, 4, 228, 0.05);
+    box-shadow: 0 0 0 3px rgba(141, 4, 228, 0.15), 0 4px 16px rgba(0, 0, 0, 0.3);
 }
 
 .floatLabel {
     position: absolute;
     left: 1rem;
-    top: 1rem;
-    font-size: 1rem;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.45);
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.9375rem;
+    color: rgba(255, 255, 255, 0.38);
     pointer-events: none;
-    transform-origin: 0 0;
-    transition: transform 0.25s ease, color 0.25s ease, font-size 0.25s ease;
-    z-index: 2;
+    transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: left center;
 }
 
-/* Float up when input is focused or has value */
-.floatField :is(input, textarea, select):focus~.floatLabel,
-.floatField :is(input, textarea, select).filled~.floatLabel {
-    transform: translateY(-1.55rem) scale(0.78);
+/* Float up on focus or filled */
+.floatWrap:focus-within .floatLabel,
+.floatFilled .floatLabel,
+.floatInput:not(:placeholder-shown)~.floatLabel {
+    transform: translateY(-130%) scale(0.78);
     color: #c084fc;
-    background: transparent;
+    font-size: 0.9375rem;
 }
 
-/* For browsers that support :has */
-.floatField:has(:is(input, textarea, select):focus) .floatLabel,
-.floatField:has(.filled) .floatLabel {
-    transform: translateY(-1.55rem) scale(0.78);
-    color: #c084fc;
-}
-
-/* Date inputs always show native browser picker text — keep label permanently elevated */
-.floatField input[type="date"]~.floatLabel {
-    transform: translateY(-1.55rem) scale(0.78);
-    color: rgba(255, 255, 255, 0.5);
-}
-
-.floatField input[type="date"]:focus~.floatLabel,
-.floatField:has(input[type="date"]:focus) .floatLabel {
-    color: #c084fc;
-}
-
-.floatInput {
-    padding-top: 1.25rem;
-    padding-bottom: 0.75rem;
-}
-
-/* ── Static Label ────────────────────────── */
-
-.label {
-    font-size: 0.8125rem;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 0.625rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-}
-
-.required {
-    color: #c084fc;
-    margin-left: 0.2em;
-}
-
-/* ── Field Hint ──────────────────────────── */
-
-.fieldHint {
-    font-size: 0.8125rem;
+/* Date — always float because browser shows value text */
+.floatInput[type="date"]~.floatLabel {
+    transform: translateY(-130%) scale(0.78);
     color: rgba(255, 255, 255, 0.45);
-    margin-top: -0.25rem;
-    margin-bottom: 0.875rem;
-    font-style: italic;
 }
 
-/* ── Input / Textarea / Select ───────────── */
+.floatInput[type="date"]:focus~.floatLabel {
+    color: #c084fc;
+}
 
-.input,
-.textarea,
+/* ── Textarea ───────────────────────────────────────── */
+
+.textarea {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.75rem;
+    color: #fff;
+    font-size: 0.9375rem;
+    font-family: inherit;
+    line-height: 1.6;
+    resize: vertical;
+    min-height: 110px;
+    transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+    color-scheme: dark;
+    outline: none;
+}
+
+.textarea::placeholder {
+    color: rgba(255, 255, 255, 0.28);
+}
+
+.textarea:focus {
+    border-color: rgba(141, 4, 228, 0.65);
+    background: rgba(141, 4, 228, 0.05);
+    box-shadow: 0 0 0 3px rgba(141, 4, 228, 0.15);
+}
+
+/* ── Select ────────────────────────────────────────── */
+
 .select {
     width: 100%;
-    padding: 1rem;
-    background: rgba(255, 255, 255, 0.04);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    /* Gradient border via box-shadow trick */
-    border: 1px solid rgba(141, 4, 228, 0.25);
-    border-radius: 0.625rem;
-    color: #ffffff;
-    font-size: 1rem;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 1rem 2.75rem 1rem 1rem;
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.75rem;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.9375rem;
     font-family: inherit;
-    transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease,
-        border-color 0.3s ease,
-        background 0.3s ease;
-    color-scheme: dark;
-    position: relative;
-}
-
-.input::placeholder,
-.textarea::placeholder {
-    color: rgba(255, 255, 255, 0.3);
-}
-
-.input:focus,
-.textarea:focus,
-.select:focus {
-    outline: none;
-    transform: scale(1.02);
-    border-color: rgba(141, 4, 228, 0.7);
-    background: rgba(141, 4, 228, 0.06);
-    box-shadow:
-        0 0 0 3px rgba(141, 4, 228, 0.18),
-        0 0 20px rgba(141, 4, 228, 0.12),
-        0 4px 16px rgba(0, 228, 255, 0.05);
-}
-
-/* ── Select Arrow ────────────────────────── */
-
-.select {
+    appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='rgba(192,132,252,0.7)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 1rem center;
     background-size: 1rem;
-    padding-right: 2.5rem;
+    transition: border-color 0.25s ease, background-color 0.25s ease;
     cursor: pointer;
-    appearance: none;
+    outline: none;
+    color-scheme: dark;
+}
+
+.select:focus {
+    border-color: rgba(141, 4, 228, 0.65);
+    background-color: rgba(141, 4, 228, 0.05);
+    box-shadow: 0 0 0 3px rgba(141, 4, 228, 0.15);
 }
 
 .select option {
     background: #1a0f2e;
-    color: #ffffff;
-    padding: 0.5rem;
+    color: #fff;
 }
 
-/* ── Textarea ────────────────────────────── */
+/* ── Scope Cards ───────────────────────────────────── */
 
-.textarea {
-    resize: vertical;
-    min-height: 120px;
-}
-
-/* ── Custom Checkbox Group ───────────────── */
-
-.checkboxGroup {
-    display: flex;
-    flex-direction: column;
+.scopeGrid {
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 0.75rem;
 }
 
-.checkbox {
-    display: flex;
-    align-items: center;
-    gap: 0.875rem;
-    padding: 0.875rem 1rem;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(141, 4, 228, 0.18);
-    border-radius: 0.625rem;
-    cursor: pointer;
-    transition:
-        background 0.3s ease,
-        border-color 0.3s ease,
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
-    position: relative;
-    overflow: hidden;
+@media (min-width: 480px) {
+    .scopeGrid {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
-/* Gradient shimmer on hover */
-.checkbox::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(141, 4, 228, 0.0) 0%, rgba(0, 228, 255, 0.04) 100%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    border-radius: inherit;
-}
-
-.checkbox:hover {
-    background: rgba(141, 4, 228, 0.08);
-    border-color: rgba(141, 4, 228, 0.45);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(141, 4, 228, 0.15);
-}
-
-.checkbox:hover::before {
-    opacity: 1;
-}
-
-/* Hide native checkbox */
-.checkbox input[type="checkbox"] {
-    appearance: none;
-    -webkit-appearance: none;
-    width: 1.25rem;
-    height: 1.25rem;
-    min-width: 1.25rem;
-    border: 1.5px solid rgba(141, 4, 228, 0.5);
-    border-radius: 0.3rem;
-    background: rgba(141, 4, 228, 0.05);
-    cursor: pointer;
-    position: relative;
-    transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-}
-
-.checkbox input[type="checkbox"]:checked {
-    background: linear-gradient(135deg, #8d04e4, #7b2ff7);
-    border-color: #8d04e4;
-    box-shadow: 0 0 10px rgba(141, 4, 228, 0.5);
-}
-
-/* Animated checkmark */
-.checkbox input[type="checkbox"]::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0.35rem;
-    height: 0.6rem;
-    border: 2px solid #ffffff;
-    border-top: none;
-    border-left: none;
-    transform: translate(-55%, -60%) rotate(45deg) scale(0);
-    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.checkbox input[type="checkbox"]:checked::after {
-    transform: translate(-55%, -60%) rotate(45deg) scale(1);
-    animation: checkPop 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-}
-
-.checkbox span {
-    font-size: 0.9375rem;
-    color: rgba(255, 255, 255, 0.88);
-    font-weight: 400;
-    line-height: 1.4;
-    position: relative;
-    z-index: 1;
-}
-
-/* ── Custom Radio Group ──────────────────── */
-
-.radioGroup {
+.scopeCard {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 1rem 1rem 0.875rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1.5px solid rgba(255, 255, 255, 0.07);
+    border-radius: 0.875rem;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.25s, border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+    font-family: inherit;
+}
+
+.scopeCard:hover {
+    background: rgba(141, 4, 228, 0.07);
+    border-color: rgba(141, 4, 228, 0.35);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(141, 4, 228, 0.12);
+}
+
+.scopeCardActive {
+    background: rgba(141, 4, 228, 0.12) !important;
+    border-color: #8d04e4 !important;
+    box-shadow: 0 0 0 3px rgba(141, 4, 228, 0.18), 0 6px 24px rgba(141, 4, 228, 0.2) !important;
+}
+
+.scopeIcon {
+    font-size: 1.125rem;
+    color: #c084fc;
+    line-height: 1;
+}
+
+.scopeLabel {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.82);
+    line-height: 1.35;
+}
+
+/* ── Budget Cards ──────────────────────────────────── */
+
+.budgetGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 0.75rem;
 }
 
-.radio {
+@media (min-width: 640px) {
+    .budgetGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.budgetCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 1.1rem 0.75rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1.5px solid rgba(255, 255, 255, 0.07);
+    border-radius: 0.875rem;
+    cursor: pointer;
+    text-align: center;
+    transition: background 0.25s, border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+    font-family: inherit;
+}
+
+.budgetCard:hover {
+    background: rgba(0, 228, 255, 0.06);
+    border-color: rgba(0, 228, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(0, 228, 255, 0.1);
+}
+
+.budgetCardActive {
+    background: rgba(0, 228, 255, 0.09) !important;
+    border-color: #00e4ff !important;
+    box-shadow: 0 0 0 3px rgba(0, 228, 255, 0.18), 0 6px 24px rgba(0, 228, 255, 0.15) !important;
+}
+
+.budgetLabel {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.budgetSub {
+    font-size: 0.6875rem;
+    color: rgba(255, 255, 255, 0.45);
+    font-weight: 500;
+}
+
+/* ── Error ─────────────────────────────────────────── */
+
+.errorMsg {
+    font-size: 0.875rem;
+    color: #f87171;
+    margin-bottom: 1.25rem;
+    padding: 0.75rem 1rem;
+    background: rgba(239, 68, 68, 0.08);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    border-radius: 0.625rem;
+}
+
+/* ── Navigation Row ────────────────────────────────── */
+
+.navRow {
     display: flex;
     align-items: center;
-    gap: 0.875rem;
-    padding: 0.875rem 1rem;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(0, 228, 255, 0.15);
-    border-radius: 0.625rem;
-    cursor: pointer;
-    transition:
-        background 0.3s ease,
-        border-color 0.3s ease,
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
-    position: relative;
-    overflow: hidden;
+    gap: 1rem;
 }
 
-.radio::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(0, 228, 255, 0.0) 0%, rgba(141, 4, 228, 0.05) 100%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    border-radius: inherit;
+.navSpacer {
+    flex: 1;
 }
 
-.radio:hover {
-    background: rgba(0, 228, 255, 0.05);
-    border-color: rgba(0, 228, 255, 0.4);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 228, 255, 0.10);
-}
-
-.radio:hover::before {
-    opacity: 1;
-}
-
-/* Hide native radio */
-.radio input[type="radio"] {
-    appearance: none;
-    -webkit-appearance: none;
-    width: 1.25rem;
-    height: 1.25rem;
-    min-width: 1.25rem;
-    border: 1.5px solid rgba(141, 4, 228, 0.5);
-    border-radius: 50%;
-    background: rgba(141, 4, 228, 0.05);
-    cursor: pointer;
-    position: relative;
-    transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-}
-
-.radio input[type="radio"]:checked {
-    background: radial-gradient(circle, rgba(0, 228, 255, 0.15) 0%, transparent 70%);
-    border-color: #00e4ff;
-    box-shadow: 0 0 10px rgba(0, 228, 255, 0.45);
-}
-
-.radio input[type="radio"]::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0.5rem;
-    height: 0.5rem;
-    background: #00e4ff;
-    border-radius: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.radio input[type="radio"]:checked::after {
-    transform: translate(-50%, -50%) scale(1);
-}
-
-.radio span {
+.backBtn {
+    padding: 0.875rem 1.5rem;
+    background: transparent;
+    border: 1.5px solid rgba(255, 255, 255, 0.12);
+    border-radius: 0.75rem;
+    color: rgba(255, 255, 255, 0.55);
     font-size: 0.9375rem;
-    color: rgba(255, 255, 255, 0.88);
-    font-weight: 400;
-    line-height: 1.4;
-    position: relative;
-    z-index: 1;
+    font-family: inherit;
+    font-weight: 500;
+    cursor: pointer;
+    transition: border-color 0.25s, color 0.25s;
 }
 
-/* ── Submit Button ───────────────────────── */
+.backBtn:hover {
+    border-color: rgba(255, 255, 255, 0.28);
+    color: rgba(255, 255, 255, 0.85);
+}
 
-.submit {
-    width: 100%;
-    padding: 1.0625rem 3rem;
-    background: linear-gradient(135deg, #8d04e4 0%, #6b21a8 60%, #5b1aa0 100%);
-    color: #ffffff;
+.nextBtn {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.9375rem 2rem;
+    background: linear-gradient(135deg, #8d04e4 0%, #5b21b6 100%);
+    border: none;
+    border-radius: 0.75rem;
+    color: #fff;
     font-size: 1rem;
     font-weight: 700;
     font-family: inherit;
-    border: none;
-    border-radius: 0.75rem;
     cursor: pointer;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    margin-top: 0.5rem;
+    letter-spacing: 0.01em;
     position: relative;
     overflow: hidden;
-    opacity: 0;
-    animation: floatIn 0.75s 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
-    isolation: isolate;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-/* Shimmer overlay */
-.submit::after {
+.nextBtn::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(90deg,
-            transparent 0%,
-            rgba(255, 255, 255, 0.1) 50%,
-            transparent 100%);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
     transform: translateX(-100%);
     transition: transform 0.5s ease;
 }
 
-.submit:hover:not(:disabled)::after {
+.nextBtn:hover::after {
     transform: translateX(100%);
 }
 
-.submit:hover:not(:disabled) {
-    transform: translateY(-3px) scale(1.01);
-    box-shadow:
-        0 0 30px rgba(141, 4, 228, 0.55),
-        0 0 60px rgba(141, 4, 228, 0.2),
-        0 8px 32px rgba(141, 4, 228, 0.3);
+.nextBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 28px rgba(141, 4, 228, 0.5), 0 8px 24px rgba(141, 4, 228, 0.25);
 }
 
-.submit:active:not(:disabled) {
-    transform: translateY(-1px) scale(0.99);
-    box-shadow: 0 0 15px rgba(141, 4, 228, 0.35);
+.btnArrow {
+    display: inline-block;
+    transition: transform 0.25s ease;
 }
 
-.submit:disabled {
-    background: linear-gradient(135deg, rgba(107, 33, 168, 0.4), rgba(91, 26, 160, 0.4));
-    cursor: not-allowed;
-    opacity: 0.65;
+.nextBtn:hover .btnArrow {
+    transform: translateX(4px);
 }
 
-/* ── Social Section ──────────────────────── */
-
-.socialSection {
-    margin-top: 4rem;
-    padding-top: 3rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.07);
-}
-
-.socialHeading {
-    font-size: 1.125rem;
+.submitBtn {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.9375rem 2.25rem;
+    background: linear-gradient(135deg, #8d04e4 0%, #5b21b6 60%, #00e4ff 200%);
+    background-size: 200% auto;
+    border: none;
+    border-radius: 0.75rem;
+    color: #fff;
+    font-size: 1rem;
     font-weight: 700;
-    letter-spacing: -0.02em;
-    background: linear-gradient(120deg, #ffffff, #c084fc);
+    font-family: inherit;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background-position 0.5s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.submitBtn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 0 32px rgba(141, 4, 228, 0.55), 0 10px 28px rgba(141, 4, 228, 0.28);
+    background-position: right center;
+}
+
+.submitBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Loading spinner */
+.spinner {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.75s linear infinite;
+}
+
+/* ── Success Screen ────────────────────────────────── */
+
+.successWrap {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 100vh;
+    width: 100%;
+    padding: 2rem;
+    animation: successPop 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.successIcon {
+    width: 5rem;
+    height: 5rem;
+    margin-bottom: 2rem;
+}
+
+.successIcon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.successIcon circle {
+    stroke-dasharray: 200;
+    stroke-dashoffset: 0;
+}
+
+.successIcon path {
+    stroke-dasharray: 60;
+    animation: checkDraw 0.5s 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.successEyebrow {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #00e4ff;
+    margin-bottom: 0.875rem;
+}
+
+.successHeading {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    background: linear-gradient(120deg, #fff 30%, #c084fc 70%, #00e4ff 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
+    line-height: 1.1;
 }
 
-/* ── Error State ─────────────────────────── */
-
-.input.error,
-.textarea.error,
-.select.error {
-    border-color: rgba(239, 68, 68, 0.7);
-    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+.successSub {
+    font-size: 1.0625rem;
+    color: rgba(255, 255, 255, 0.55);
+    line-height: 1.75;
+    max-width: 460px;
+    margin-bottom: 2.5rem;
 }
 
-.errorText {
-    font-size: 0.8125rem;
-    color: #f87171;
-    margin-top: 0.375rem;
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
+.successSub strong {
+    color: rgba(255, 255, 255, 0.85);
 }
 
-/* ── Desktop ─────────────────────────────── */
+.successBtn {
+    padding: 0.875rem 2rem;
+    background: transparent;
+    border: 1.5px solid rgba(141, 4, 228, 0.5);
+    border-radius: 0.75rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9375rem;
+    font-family: inherit;
+    font-weight: 500;
+    cursor: pointer;
+    transition: border-color 0.25s, color 0.25s, background 0.25s;
+}
 
-@media (min-width: 768px) {
-    .page {
-        padding-top: 8rem;
-        padding-bottom: 6rem;
+.successBtn:hover {
+    border-color: #8d04e4;
+    color: #fff;
+    background: rgba(141, 4, 228, 0.08);
+}
+
+/* ── Responsive ────────────────────────────────────── */
+
+@media (max-width: 900px) {
+    .layout {
+        flex-direction: column;
     }
 
-    .container {
-        padding: 0 4rem;
+    .sidebar {
+        width: 100%;
+        min-width: 0;
+        height: auto;
+        position: relative;
+        padding: 5rem 1.5rem 2.5rem;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        background: linear-gradient(180deg, rgba(141, 4, 228, 0.06) 0%, transparent 60%);
     }
 
-    .header {
-        margin-bottom: 3rem;
+    .mainHeading {
+        font-size: 2.25rem;
     }
 
-    .heading {
-        font-size: 2.75rem;
-    }
-
-    .subheading {
-        font-size: 1.125rem;
-    }
-
-    .submit {
-        width: auto;
-        align-self: flex-start;
-        min-width: 200px;
-    }
-
-    .socialHeading {
-        font-size: 1.5rem;
+    .stepNav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.75rem;
         margin-bottom: 2rem;
     }
 
-    /* 2-column grid for checkboxes and radios on desktop */
-    .checkboxGroup {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 0.75rem;
+    .stepItem {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.375rem;
     }
 
-    .radioGroup {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 0.75rem;
-    }
-
-    .section {
-        padding: 2.5rem;
-    }
-
-    .sectionTitle {
-        font-size: 1.375rem;
-    }
-}
-
-@media (min-width: 1024px) {
-    .heading {
-        font-size: 3.25rem;
-    }
-}
-
-@media (max-width: 767px) {
-    .section {
-        padding: 1.5rem;
-    }
-}
-
-/* ── Reduced Motion ──────────────────────── */
-
-@media (prefers-reduced-motion: reduce) {
-
-    .meshOrb1,
-    .meshOrb2,
-    .meshOrb3,
-    .meshOrb4,
-    .meshBg::after {
-        animation: none;
-    }
-
-    .input:focus,
-    .textarea:focus,
-    .select:focus {
-        transform: none;
-    }
-
-    .checkbox:hover,
-    .radio:hover {
-        transform: none;
-    }
-
-    .submit:hover:not(:disabled) {
-        transform: none;
-    }
-
-    .progressBar {
-        animation: none;
-    }
-
-    .submit::after {
+    .stepLine {
         display: none;
     }
 
-    /* Skip entrance animations — show everything immediately */
-    .header,
-    .progressWrap,
-    .section,
-    .submit {
+    .stepLabel {
+        font-size: 0.75rem;
+    }
+
+    .sidebarSocial {
+        margin-top: 1rem;
+    }
+
+    .panel {
+        padding: 2.5rem 1.5rem 4rem;
+        min-height: auto;
+        max-width: 100%;
+    }
+
+    .scopeGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .budgetGrid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 540px) {
+    .sidebar {
+        padding: 4.5rem 1.25rem 2rem;
+    }
+
+    .panel {
+        padding: 2rem 1.25rem 3rem;
+    }
+
+    .budgetGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .scopeGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .nextBtn,
+    .submitBtn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .backBtn {
+        flex: 1;
+        text-align: center;
+    }
+}
+
+/* ── Reduced Motion ────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .orb1,
+    .orb2,
+    .orb3,
+    .noiseTex {
+        animation: none;
+    }
+
+    .enterActive,
+    .exitLeft,
+    .exitRight {
+        animation: none;
+    }
+
+    .successWrap {
+        animation: none;
+    }
+
+    .successIcon path {
+        animation: none;
+    }
+
+    .spinner {
+        animation: none;
+    }
+}
+
+/* ── "Other" referral reveal ───────────────────────── */
+
+@keyframes revealDown {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+        max-height: 0;
+    }
+
+    to {
         opacity: 1;
+        transform: translateY(0);
+        max-height: 80px;
+    }
+}
+
+/* The FloatField wrapper rendered inside the fieldGroup gets this via
+   the :first-of-type sibling trick — we target the floatWrap that
+   follows a select inside .fieldGroup */
+.select~div {
+    animation: revealDown 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
+    overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .select~div {
         animation: none;
     }
 }

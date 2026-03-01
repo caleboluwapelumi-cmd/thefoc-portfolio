@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import styles from "./page.module.css";
 import servicesData from "@/src/data/services.json";
+import ContactSection from "@/components/ContactSection";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
     title: "Services | TheFOC",
@@ -49,20 +51,10 @@ export default function ServicesPage() {
                 </div>
             </div> {/* Close gradient wrapper - ADDED THIS */}
 
-            {/* CTA Section */}
-            <section className={styles.cta} style={{
-                background: 'linear-gradient(180deg, #0a0a0a 0%, #1a0f2e 60%, #0a0514 100%)'
-            }}>
-                <div className={styles.ctaInner}>
-                    <h2 className={styles.ctaHeading}>Ready to get started?</h2>
-                    <p className={styles.ctaText}>
-                        Let&apos;s discuss how we can elevate your brand together.
-                    </p>
-                    <a href="/contact" className={styles.ctaButton}>
-                        Start a Conversation
-                    </a>
-                </div>
-            </section>
+            {/* CTA Section — same as homepage */}
+            <ContactSection />
+
+            <Footer />
         </main>
     );
 }
